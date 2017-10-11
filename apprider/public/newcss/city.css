@@ -1,0 +1,75 @@
+.cityPage{
+	background: #FFF;
+}
+.cityPage .tit{
+	background: #EEE;
+	height: 30px;
+	padding-left: 15px;
+	line-height: 30px;
+}
+.cityPage .nowcity .li,
+.cityPage .hotcity .li{
+	padding:5px 10px;
+	display: flex;
+}
+.cityPage .nowcity .li .btn,
+.cityPage .hotcity .li .btn{
+	flex-grow: 0;
+	margin: 5px;
+}
+.cityPage .citylist_content{
+}
+.cityPage .citylist_content div{
+	padding-left: 15px;
+	height: 36px;
+	line-height: 36px;
+	border-bottom: 1px solid #EEE;
+}
+.cityPage .citylist_content div:active{
+	background: #EEE;
+}
+.cityPage .allletter{
+	display: flex;
+	width: 30px;
+	position: absolute;
+	right: 0px;
+	flex-wrap: wrap;
+	flex-direction: column;
+	top: 0;
+	bottom: 0;
+	justify-content: center;
+	align-items: center;
+	z-index: 101
+}
+.cityPage .allletter .tit{
+	background: none;
+	line-height: 16px;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	padding-left: 0;
+	display: flex;
+	height: 20px;
+	width: 20px;
+	margin: 0;
+	overflow: hidden;
+	background: #EEE;
+}
+.cityPage.AppPage{
+	position: relative;
+}
+.cityPage.AppPage .list{
+	padding-top: 68px;
+}
+.cityPage.AppPage #newNavHeadContent.newNavHeadContent{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 100;
+}
+
+
+
+
+
+

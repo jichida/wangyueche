@@ -1,0 +1,115 @@
+.tourbusUserinfoPage{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.tourbusUserinfoPage .seltime:after{
+    content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #c8c8cd;
+    border-style: solid;
+    -webkit-transform: matrix(.71,.71,-.71,.71,0,0);
+    transform: matrix(.71,.71,-.71,.71,0,0);
+    position: relative;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    margin-top: -4px;
+}
+.tourbusUserinfoPage .seltime .select-btn{
+}
+.tourbusUserinfoPage .carlist{
+    height: 90px;
+    display: flex;
+    background: #FFF;
+}
+.tourbusUserinfoPage .carlist .li{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #EEE;
+    overflow-x: scroll;
+}
+.tourbusUserinfoPage .carlist .li span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.tourbusUserinfoPage .carlist .li span i{
+    position: absolute;
+    background: #e07b08;
+    color: #FFF;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 20px;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+}
+.tourbusUserinfoPage .carlist .li span img{
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    margin: 0 5px;
+}
+.tourbusUserinfoPage .carlist .carlistlnk{
+    flex-shrink: 0;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+    padding: 0 15px;
+}
+.tourbusUserinfoPage .submitBtn{
+    margin: 15px;
+}
+.tourbusUserinfoPage .weui-cells__title{
+    
+}
+
+
+.tourbusUserinfoPage .weui-cells__title.pricenum{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 0;
+    padding-top: 10px;
+}
+.tourbusUserinfoPage .weui-cells__title.pricenum:before{
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #e5e5e5;
+    color: #e5e5e5;
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    left: 15px;
+    z-index: 2;
+}
+
+.tourbusUserinfoPage .weui-cells__title.pricenum img{
+    width: 30px;
+    border-radius: 30px;
+    border: 1px solid #fe8802;
+    margin-right: 10px;
+}
+.tourbusUserinfoPage .weui-cells__title.pricenum span{
+    flex-grow: 1;
+}
+

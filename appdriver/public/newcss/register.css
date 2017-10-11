@@ -1,0 +1,77 @@
+
+.registerPage .submitBtn {
+	display: flex;
+	flex-direction: column;
+}
+.registerPage .submitBtn .btn{
+	color: #FFF;
+	margin: 15px 30px 0 30px;
+}
+.registerPage .submitBtn a{
+	text-align: center;
+	padding: 10px;
+}
+.register1Page .weui-cells{
+	background: none
+}
+.register1Page .weui-cell.weui-cell_access {
+	margin: 10px 20px;
+	background: #FFF;
+}
+.register1Page .weui-cell_access .weui-cell__ft:after{
+	width: 12px;
+	height: 12px;
+}
+.register1Page .weui-cell.weui-cell_access .weui-cell__hd{
+	display: flex;
+	align-items: center;
+}
+.register1Page .weui-cell.weui-cell_access .weui-cell__hd img{
+	width: 60px;
+	height: 60px;
+	border-radius: 60px;
+	margin-right: 15px;
+}
+.register1Page .weui-cell.weui-cell_access .weui-cell__bd .tit{
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+.register1Page .weui-cell.weui-cell_access .weui-cell__bd .con{
+	color: #999;
+	font-size: 14px;
+}
+.registerPage .aggreeForm{
+	display: flex;
+	align-items: center;
+}
+.registerPage .aggreeForm label{
+	padding-left: 10px;
+	flex-grow: 1;
+}
+.registerPage div.li{
+	border-bottom: 1px solid #EEE;
+}
+.registerPage div.li.yanzhenli{
+	display: flex;
+	align-items: center;
+}
+.registerPage div.li.yanzhenli .weui-cell{
+	flex-grow: 1;
+}
+.registerPage .getyanzhen{
+	flex-shrink: 0;
+	border-left: 1px solid #369;
+	color: #369;
+	padding: 0 5px;
+	font-size: 14px;
+	width: 86px;
+	text-align: center;
+}
+.registerPage .aggreeForm{
+	flex-shrink: 0;
+}
+
+
+
+
+

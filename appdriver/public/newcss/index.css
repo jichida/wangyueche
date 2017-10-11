@@ -1,0 +1,110 @@
+/*index*/
+.starcontent{
+    font-size: 28px;
+    height: 40px;
+    overflow: hidden;
+    color: #EEE;
+}
+.indexPage .indexHead .weui-cells{
+    margin-top: 0;
+}
+.indexPage .indexHead .weui-cell__hd{
+    display: flex;
+    align-items: center
+}
+.indexPage .indexHead .weui-cell__hd img{
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    display: flex;
+    margin-right: 20px;
+}
+.indexPage .indexHead .weui-cell__bd .tit{
+    margin-bottom: 6px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.indexPage .indexHead .weui-cell__bd .tit span.name{
+    margin-right: 10px;
+}
+.indexPage .indexHead .weui-cell__bd .tit span.type{
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 0 10px;
+    color: #666;
+    font-size: 14px;
+}
+.indexPage .indexHead .weui-cell__bd .con{
+    font-size: 14px;
+    color: #999
+}
+.indexPage .indexHead .weui-cell_access .weui-cell__ft:after{
+    height: 8px;
+    width: 8px;
+}
+.indexPage .list .weui-cell__hd {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    overflow: hidden;
+    width: 30px;
+    margin-right: 10px;
+}
+.indexPage .list .weui-cell__hd img{
+    width: 30px;
+    margin-right: 10px;
+}
+.indexPage .list .weui-cell_access .weui-cell__ft:after{
+    width: 10px;
+    height: 10px;
+}
+.indexPage .pointLnk{
+    
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    z-index: 10000;
+    bottom: 0;
+    left: 50%;
+    margin-left: -35px;
+    bottom: 20px;
+    border-radius: 70px;
+}
+.indexPage .pointLnk span{
+    display: block;
+    line-height: 20px;
+}
+.indexPage .pointLnk a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #CCC;
+    width: 70px;
+    height: 70px;
+    justify-content: center;
+    border-radius: 70px;
+    color: #FFF;
+    box-shadow: 1px 1px 5px #888888;
+}
+.indexPage .pointLnk a:active{
+    background: #f4b124;
+}
+.indexPage .pointLnk a img{
+    width: 30px;
+    height: 30px;
+    margin:0;
+}
+.indexPage {
+    display: flex;
+    flex-direction: column;
+}
+.indexPage .list{
+    overflow: scroll;
+    flex-grow: 1;
+    padding-bottom: 80px;
+}
+
+

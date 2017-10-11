@@ -1,0 +1,69 @@
+.userwalletPage{
+    width: 100%;
+}
+.userwalletPage .head {
+    min-height: 130px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background:linear-gradient(to top, #53a9ff, #0181ff); 
+    background:-moz-linear-gradient(top, #53a9ff, #0181ff);
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#53a9ff), to(#0181ff));
+    background:-o-linear-gradient(top, #53a9ff, #0181ff);
+
+    color: #FFF;
+    flex-direction: column;
+}
+.userwalletPage .head .tit{
+    margin-bottom: 3%;
+    align-self: flex-start;
+    padding: 20px;
+    padding-bottom: 0;
+}
+.userwalletPage .head .myprice{
+    font-size: 36px;
+    text-align: center;
+}
+.userwalletPage .list {
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.userwalletPage .list>div{
+    flex-shrink: 0;
+}
+.userwalletPage .list div.l2{
+    flex-grow: 1;
+    overflow: scroll;
+    flex-shrink: 1;
+}
+.userwalletPage .list .l2 .weui-cells{
+    margin-top: 0;
+}
+.userwalletPage .list .tixianlnk{
+    margin-top: 0;
+}
+.userwalletPage .list .tixianlnk .weui-cell__hd {
+    display: flex;
+    align-items: center;
+}
+.userwalletPage .list .tixianlnk .weui-cell__hd >img{
+    width: 26px;
+    margin-right: 8px;
+}
+.userwalletPage .list .weui-cell__bd{
+    display: flex;
+    flex-direction: column;
+}
+
+.userwalletPage .list .l2 .weui-cell__ft{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.userwalletPage .list .weui-cell__bd span.status{
+    color: #999;
+    font-size: 14px;
+}

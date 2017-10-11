@@ -1,0 +1,165 @@
+.caroverlayinitPage{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    z-index: 999;
+    margin: 10px;
+}
+.caroverlayinitPage .listnav {
+    width: 142px;
+    border-radius: 16px 16px 0px 0px;
+    background-color: #fff;
+    padding: 5px 10px;
+    box-shadow: 0px 0px 2px rgba(153,153,153,0.5);
+    margin: 0;
+    margin-bottom: 2px;
+}
+.caroverlayinitPage .listnav li {
+    width: 60px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 1px;
+    line-height: 28px
+}
+.caroverlayinitPage .listnav li.hover {
+    border: 1px solid #ddd;
+    border-radius: 35px; color:#0080ff
+}
+.caroverlayinitPage  .listcontent{
+    background: #FFF;
+    border-radius: 0px 0px 8px 8px;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0px 0px 2px rgba(153,153,153,0.5);
+}
+.caroverlayinitPage  .listcontent .setordertime{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 10px;
+}
+.caroverlayinitPage  .listcontent .setordertime div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 18px;
+    padding: 3px 0;
+    overflow: hidden;
+}
+.caroverlayinitPage  .listcontent .setordertime div span{
+    display: block;
+    line-height: 18px;
+}
+
+.caroverlayinitPage  .listcontent .setordertime div img{
+    width: 16px;
+    height: 16px;
+    
+    margin: 0;
+    margin-right: 5px;
+}
+.caroverlayinitPage  .listcontent .setordertime >span{
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    
+} 
+.caroverlayinitPage  .listcontent .setordertime >span:after{
+    content: "";
+    border-top: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    transform:rotate(45deg);
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+}
+.caroverlayinitPage .addresslist {
+    padding-top: 10px;
+}
+.caroverlayinitPage .addresslist li{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.caroverlayinitPage .addresslist li:first-child{
+    padding-bottom: 10px;
+    overflow:hidden;
+}
+.caroverlayinitPage .addresslist li:first-child:before{
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #02b164;
+    border-radius: 8px;
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+.caroverlayinitPage .addresslist li span{
+    display: block;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+
+.caroverlayinitPage .addresslist li:last-child:before{
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border: 1px solid #f85415;
+    border-radius: 8px;
+    margin-right: 6px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.caroverlayinitPage .addresslist li:last-child:after{
+    content: "";
+    border-top: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    transform:rotate(45deg);
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+}
+.caroverlayinitPage .addresslist li:last-child{
+    border-top: 1px solid #EEE;
+    padding-top: 10px;
+}
+.caroverlayinitPage .addresslist li:last-child span{
+    flex-grow: 1;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+} 
+.caroverlayinitPage .isGetaddress .showprice h2{
+    font-size: 16px;
+    font-weight: 200;
+}
+.caroverlayinitPage .isGetaddress .btnlist{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.caroverlayinitPage .isGetaddress .btnlist a.btn{
+    flex-grow: 1;
+}
+.caroverlayinitPage .isGetaddress .btnlist a.btn:first-child{
+    margin-bottom: 10px;
+}
+.caroverlayinitPage .showprice{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;    
+}
+.caroverlayinitPage .showprice span{
+    color: #f49d05;
+    font-weight: 300;
+    margin: 0 5px;
+}
+
+
+
+

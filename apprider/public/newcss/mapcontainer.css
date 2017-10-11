@@ -1,0 +1,13 @@
+.mapcontainer {
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position:'relative'
+}
+.appriderhomePage .homesidebarcontent .view .list, 
+.appriderhomePage .homesidebarcontent .view .list .mapgaodePage, 
+.appriderhomePage .homesidebarcontent .view .list .mapgaodePage .mapcontainer{
+	position: relative;
+}
+

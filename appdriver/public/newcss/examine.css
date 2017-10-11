@@ -1,0 +1,42 @@
+/*examine 审核信息*/
+.examinePage{
+    
+}
+.examinePage .li{
+    background: #FFF;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    padding: 20px 0;
+}
+.examinePage .list{
+    overflow: scroll;
+    flex-grow: 1;
+}
+.examinePage .li>img{
+    width: 60px;
+}
+.examinePage .li .tit{
+    font-size: 20px;
+    margin-top: 15px;
+}
+.examinePage .li .btn{
+    align-self: stretch;
+    margin: 10px 40px;
+}
+.examinePage .li .desc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+
+
+
+

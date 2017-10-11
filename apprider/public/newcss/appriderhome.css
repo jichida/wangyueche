@@ -1,0 +1,128 @@
+.appriderhomePage .homesidebar{
+	width: 50%;
+	display: flex;
+}
+.appriderhomePage .homesidebarcontent{
+	z-index: 0;
+}
+.appriderhomePage .nav{
+	border-top: 1px solid #EEE;
+	display: flex;
+	justify-content: space-between;
+	background: #FFF;
+	position: relative;
+	overflow: visible;
+}
+.appriderhomePage .nav .daijiayueTip{
+	position: absolute;
+	left: 0;
+	top:0;
+	width: 100%;
+	text-indent: 15px;
+	top: 41px;
+	z-index: 1000;
+}
+.appriderhomePage .nav .daijiayueTip span{
+	margin-right: 15px;
+	text-indent: 0;
+}
+.appriderhomePage .nav>div{
+	text-align: center;
+	padding: 10px 0;
+	flex-grow: 1;
+	position: relative;
+}
+.appriderhomePage .nav>div:before{
+	content: "";
+	position: absolute;
+	height: 25px;
+	background: #EEE;
+	width: 1px;
+	right: 0;
+	top: 10px;
+}
+.appriderhomePage .nav>div:last-child:before{
+	content: none;
+}
+.appriderhomePage .nav>div.hover{
+	color: #0080ff;
+}
+.appriderhomePage .nav>div.hover:after{
+	content: "";
+	position: absolute;
+	height: 2px;
+	background: #0080ff;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+}
+.appriderhomePage .bottomContent{
+	position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    z-index: 999;
+    margin: 10px;
+}
+.appriderhomePage .daijiayueTip {
+	display: flex;
+	height: 40px;
+	background: #FFF;
+	padding: 0 15px;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 1px solid #EEE;
+}
+.appriderhomePage .daijiayueTip span{
+	display: inline-block;
+	padding-left: 15px;
+}
+.appriderhomePage .daijiayueTip span.btnn{
+	display: inline-block;
+	border: 1px solid #fe8802;
+	color: #fe8802;
+	font-size: 14px;
+	padding: 0 15px;
+	border-radius: 50px;
+}
+.appriderhomePage .homesidebarcontent{
+	display: flex;
+	flex-direction: column;
+}
+.appriderhomePage .homesidebarcontent .view{
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+}
+.appriderhomePage .homesidebarcontent .view .list,
+.appriderhomePage .homesidebarcontent .view .list .mapgaodePage,
+.appriderhomePage .homesidebarcontent .view .list .mapgaodePage .mapcontainer{
+	display: flex;
+	flex-grow: 1;
+}
+.mapcontainer #gaodemap {
+	width: 100%;
+    position: relative;
+    background: #EEE;
+    flex-grow: 1;
+    align-self: stretch;
+}
+
+.mapcontainer .startIcon{
+	width: 100%;
+	flex-shrink: 0;
+	align-self: stretch;
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: -100%;
+	z-index: 1000;
+	position: relative;
+}
+.mapcontainer .startIcon >img{
+	width: 30px;
+	margin-left: -200%;
+	margin-bottom: 23px;
+}
+

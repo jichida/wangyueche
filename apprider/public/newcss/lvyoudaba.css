@@ -1,0 +1,13 @@
+.addresscommonPage .list .weui-cells .weui-cell__hd img{
+    width: 26px;
+    margin-right: 5px;
+}
+.addresscommonPage .weui-search-bar__box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.addresscommonPage .weui-cell.weui-cell_access >div{
+    display: flex;
+    align-items: center;
+}

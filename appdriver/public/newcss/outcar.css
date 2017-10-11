@@ -1,0 +1,329 @@
+.outcarPage{
+
+}
+.outcarPage .weui-loadmore_line .weui-loadmore__tips{
+    background: #EEE;
+}
+
+.outcarPage .falseorder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.outcarPage .falseorder img{
+    width: 100px;
+    border-radius: 100px;
+    margin-bottom: 15px;
+}
+.outcarPage .falseorder .tit{
+    font-size: 16px;
+}
+.outcarPage .falseorder .reson{
+    margin: 0 20px;
+    color: #999;
+    margin-bottom: 20px;
+}
+.outcarPage .falseorder .btn{
+    border: 1px solid #1f6fe8;
+    border-radius: 40px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1f6fe8;
+    min-width: 100px;
+}
+.outcarPage .headNav{
+    box-shadow: 1px 1px 5px #CCC;
+    background: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    height: 48px;
+    position: relative;
+    z-index: 2;
+}
+.outcarPage .headNav span{
+    display: inline-block;
+    line-height: 48px;
+    padding: 0 15px;
+    font-size: 16px;
+}
+.outcarPage .headNav span:active{
+    background: #EEE;
+}
+.outcarPage .headNav span.sel{
+    color: #4183c4;
+}
+.outcarPage .mapcontent{
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden;
+}
+.outcarPage .mapcontent .baidumap{
+    position: relative;
+    z-index: 1
+}
+.outcarPage .mapcontent .outcarControl{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    background: #FFF;
+}
+.outcarPage .mapcontent .outcarControl .bbtn{
+    display: flex;
+    border-top: 1px solid #EEE;
+    z-index: 2;
+    position: relative;
+    background: #FFF;
+}
+.outcarPage .mapcontent .outcarControl .bbtn span{
+    display: block;
+    width: 50%;
+    text-align: center;
+    line-height: 48px;
+    position: relative;
+}
+.outcarPage .mapcontent .outcarControl .bbtn span:first-child:after{
+    position: absolute;
+    right: 0;
+    content: "";
+    height: 40px;
+    width: 1px;
+    background: #EEE;
+    top: 2px;
+}
+.outcarPage .mapcontent .outcarControl .lnk{
+    text-align: center;
+    line-height: 40px;
+    position: relative;
+    z-index: 2;
+    background: #FFF;
+}
+.outcarPage .mapcontent .outcarControl .lnk:active{
+    background: #EEE;
+}
+.outcarPage .mapcontent .outcarControl .lnk:after{
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-left: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    transform: rotate(45deg);
+    margin-bottom: -2px;
+    margin-left: 10px;
+}
+.outcarPage .mapcontent .outcarControl  .list{
+    position: absolute;
+    background: #FFF;
+    z-index: 1;
+    bottom: 89px;
+    width: 100%;
+    z-index: 1;
+}
+.outcarPage .mapcontent .outcarControl  .list .weui-cells{
+    margin-top: 0;
+}
+.outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd >div.tt {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-top: -15px;
+    margin-left: -15px;
+}
+.outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd >div.tt span.i{
+    background: #83cb7a;
+    border-radius: 0 20px 20px 0;
+    padding: 0 10px;
+    line-height: 30px;
+    color: #FFF;
+    margin-right: 10px;
+}
+.outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd >div.li{
+    display: flex;
+
+}
+.outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd >div.li:before{
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    margin-right: 5px;
+    flex-shrink: 0;
+    margin-top: 7px;
+}
+.outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd .a:before{
+    border: 1px solid #1aae66;
+}
+.outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__bd .b:before{
+    border: 1px solid #f45a28;
+}
+.outcarPage .mapcontent .outcarControl  .list .weui-cells .weui-cell .weui-cell__ft:after{
+    width: 12px;
+    height: 12px;
+    border-width: 1px 1px 0 0;
+}
+.outcarPage .mapcontent .outcarControl  .list{
+  max-height: 300px;
+  overflow: scroll;
+  margin-bottom: -100px;
+  display: none;
+  bottom: 0;
+}
+.outcarPage .mapcontent .outcarControl  .list.show{
+    display: block;
+    margin-bottom: 48px;
+    animation:listshow 1s;
+    -webkit-animation:listshow .5s;
+}
+@keyframes listshow{
+    from {margin-bottom : -100px;}
+    to {margin-bottom : 33px;}
+}
+
+
+.outcarPage .orderinfohead{
+    display: flex;
+    background: #FFF;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    flex-shrink: 0;
+    flex-direction: row;
+    position: relative;
+    border-top: 1px solid #EEE;
+    box-shadow: 3px 3px 3px rgba(0,0,0,.2);
+    position: relative;
+    z-index: 2000
+}
+.outcarPage .orderinfohead .userinfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    max-width: 68px;
+}
+
+.outcarPage .orderinfohead .call{
+    display: flex;
+    align-items: center;
+    background: #fe8802;
+    color: #FFF;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 6px;
+    padding:0 8px;
+    flex-shrink: 0;
+    font-size: 12px;
+}
+.outcarPage .orderinfohead .call img{
+    width: 20px;
+    margin-right: 5px;
+}
+
+.outcarPage .orderinfohead img.avatar{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    align-self: flex-start;
+    flex-shrink: 0;
+}
+.outcarPage .orderinfohead .userinfo span{
+    font-size: 12px;
+    color: #999;
+}
+
+.outcarPage .orderinfohead .userinfo img.avatar{
+    align-self: center;
+}
+.outcarPage .address{
+    display: flex;
+    flex-direction: column;
+    padding-left: 8px;
+    flex-grow: 1;
+}
+
+.outcarPage .orderinfohead img.phone{
+    width: 40px;
+    margin-left: 10px;
+    align-self: center
+}
+
+.outcarPage .orderinfohead .qiangdanLnk{
+    background: #fe8802;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 30px 0 0 30px;
+    padding-left: 20px;
+    padding-right: 10px;
+    color: #FFF;
+    margin-right: -15px;
+    flex-shrink: 0;
+    align-self: center;
+}
+.outcarPage .orderinfohead .address >div.startaddress,
+.outcarPage .orderinfohead .address >div.endaddress{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+.outcarPage .orderinfohead .address >div.startaddress:before,
+.outcarPage .orderinfohead .address >div.endaddress:before{
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+.outcarPage .orderinfohead .address >div.startaddress:before{
+    border: 1px solid #02ae62;
+}
+.outcarPage .orderinfohead .address >div.endaddress:before{
+    border: 1px solid #f55716;
+}
+.outcarPage .submitBtn{
+    padding: 10px 15px;
+    background: #FFF;
+}
+.startTrip .address .a{
+    display: flex;
+    align-items: center;
+
+}
+.startTrip .address .a img{
+    width: 22px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+.startTrip .address .b{
+    padding-left: 40px;
+}
+
+.outcarPage.AppPage .amap-info-content{
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left: -14px;
+    position: relative;
+}
+
+
+.outcarPage.AppPage .amap-info-close{
+    display: none;
+}
+
+.outcarPage.AppPage .amap-info-sharp{
+    top: -31px;
+}

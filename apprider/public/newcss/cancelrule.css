@@ -1,0 +1,36 @@
+.cancelrulePage {
+    background: #FFF;
+}
+.cancelrulePage .content{
+    padding: 15px;
+    border-top:1px solid #EEE;
+    color:#999;
+    flex-grow: 1;
+    overflow: scroll;
+}
+.cancelrulePage .content .panel{
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+.cancelrulePage .content .tit{
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 5px;
+}
+.cancelrulePage .content .panel .li{
+    display: flex;
+    justify-content: space-between;
+}
+.cancelrulePage .content .panel .li:before{
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #DDD;
+    border-radius: 6px;
+    margin: 9px;
+    flex-shrink: 0;
+}
+.cancelrulePage .content .panel .li .cont{
+    flex-grow: 1;
+}

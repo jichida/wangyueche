@@ -1,0 +1,48 @@
+.withdrawalsPage{
+	display: flex;
+	flex-direction: column;
+}
+.withdrawalsPage .submitBtn .btn{
+    color: #FFF;
+    margin: 15px 30px 0 30px;
+}
+.withdrawalsPage .promptcontent{
+    margin: 15px;
+    font-size: 16px;
+}
+
+.withdrawalsPage .list{
+	overflow: scroll;
+	flex-grow: 1;
+}
+.withdrawalsPage .messageCodeContent {
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	background: #FFF;
+	margin-bottom: 20px;
+}
+.withdrawalsPage .messageCodeContent .tit{
+	padding: 15px;
+	border-bottom: 1px solid #EEE;
+	border-top: 1px solid #EEE;
+}
+.withdrawalsPage .messageCodeContent .messageCodeInput{
+	display: flex;
+	flex-grow: 1;
+	padding: 0 15px;
+	height: 60px;
+	font-size: 18px;
+	align-items: center;
+	justify-content: space-between;
+}
+.withdrawalsPage .messageCodeContent .getcode{
+	font-size: 14px;
+	padding: 0 15px;
+	height: 36px;
+	width: 82px;
+}
+
+.withdrawalsPage .messageCodeContent .getcode.unlabel{
+	background: #EEE;
+}

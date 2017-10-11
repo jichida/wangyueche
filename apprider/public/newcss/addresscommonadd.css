@@ -1,0 +1,56 @@
+.addresscommonaddPage .head .weui-cells{
+    margin-top: 0;
+}
+.addresscommonaddPage .head .weui-cell__hd >div{
+	display: flex;
+	justify-content: space-between;
+	border-right: 1px solid #EEE;
+	width: 80px;
+	overflow: hidden;
+}
+.addresscommonaddPage .head .weui-cell__hd >div:after{
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	transform:rotate(45deg);
+	margin-right: 14px;
+	flex-shrink: 0;
+	margin-top: 3px;
+}
+.addresscommonaddPage .head .weui-cell__hd >div .weui-label{
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+}
+.addresscommonaddPage .head .weui-cell__bd{
+	display: flex;
+}
+.addresscommonaddPage .head .weui-cell__bd >div{
+	flex-grow: 1;
+	margin-left: 10px;
+	flex-shrink: 1;
+}
+.addresscommonaddPage .head .weui-cell__bd >span.color_warning{
+	flex-shrink: 0;
+}
+.addresscommonaddPage .list {
+	overflow: scroll;
+	flex-grow: 1;
+	align-self: stretch;
+}
+.addresscommonaddPage .list .weui-cells{
+	margin-top: 0;
+}
+.addresscommonaddPage .list .weui-cell__bd{
+	display: flex;
+	flex-direction: column;
+}
+.addresscommonaddPage .list .weui-cell__bd .a{
+	font-size: 16px;
+}
+.addresscommonaddPage .list .weui-cell__bd .b{
+	color: #999
+}

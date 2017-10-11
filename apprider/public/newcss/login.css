@@ -1,0 +1,92 @@
+.loginPage{
+	background: url(../newimg/p23.png) no-repeat center;
+	background-size: 100% 100%;
+}
+.loginPage #newNavHeadContent.newNavHeadContent{
+	background: none;
+}
+.loginPage .formStyle1{
+	background: none;
+}
+.loginPage #newNavHeadContent .title{
+	color: #FFF;
+	font-size: 20px;
+	
+}
+.loginPage .content{
+	display: flex;
+	flex-direction: column;
+}
+.loginPage .content .logo{
+	text-align: center;
+	padding: 40px 0 30px 0;
+}
+.loginPage .content .logo img{
+	width: 42%;
+}
+.loginPage #newNavHeadContent .back:active{
+	background: none;
+}
+.loginPage #newNavHeadContent .back:after{
+	border-color: #FFF;
+}
+
+.loginPage .loginForm {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+}
+.loginPage .loginForm .li{
+	display: flex;
+	background: #FFF;
+	border-radius: 8px;
+	height:50px;
+	margin-bottom: 15px;
+	align-items: center;
+	position: relative;
+}
+.loginPage .formvalidation.form_input input{
+	background: none;
+	font-size: 16px;
+	display: block;
+}
+.loginPage .loginForm .li .icon{
+	width: 32px;
+	height: 32px;
+	display: block;
+	flex-shrink: 0;
+}
+.loginPage .loginForm .li .icon img{
+	width: 32px;
+	border-radius: 10px;
+}
+.loginPage .loginForm .li .getyanzhen{
+	padding: 0 10px;
+	border-left: 1px solid #369;
+	color: #369;
+	font-size: 16px;
+	line-height: 30px;
+	flex-shrink: 0;
+	position: absolute;
+    right: 10px;
+    background: #FFF;
+    z-index: 1000;
+    top:10px;
+	width: 82px;
+	text-align: center;
+}
+.loginPage .loginForm .getyanzhenli .formvalidation.form_input{
+	margin-right: 115px;
+}
+
+.loginPage .submitBtn{
+	padding-top: 30px;
+	flex-direction: column;
+}
+.loginPage .gotoregister{
+	color: #FFF;
+	text-align: center;
+	line-height: 40px;
+}
+
+

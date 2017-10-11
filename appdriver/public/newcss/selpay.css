@@ -1,0 +1,14 @@
+.selpayPage .weui-cell .weui-cell__hd img{
+	width: 30px;
+	margin-right: 5px;
+}
+.selpayPage .weui-cells_radio .weui-icon-checked:before{
+	content: "\EA01";
+}
+.selpayPage .weui-cells_radio .weui-check:checked + .weui-icon-checked:before{
+	  content: '\EA06';
+}
+
+.selpayPage .weui-check{
+	opacity: 0;
+}

@@ -1,0 +1,77 @@
+.selbusformPage{
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    flex-direction: column;
+}
+.selbusformPage .list{
+    width: 100%;
+    flex-grow: 1;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+}
+.selbusformPage .list .col{
+    border-top: 1px solid #EEE;
+    display: flex;
+    justify-content: space-between;
+    background: #FFF;
+    align-items: center;
+    min-height: 80px;
+    padding-right: 15px;
+}
+.selbusformPage .list .col .xzcx_img img{
+    border-radius: 60px;
+    width: 60px;
+    height: 60px;
+    margin:0 15px;
+}
+.selbusformPage .list .col .info{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.selbusformPage .list .col .info span:last-child{
+    color: #999
+}
+.selbusformPage .list .col .mui-numbox{
+    display: flex;
+}
+.selbusformPage .list .col .mui-numbox button{
+    border: none;
+    background: none;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #DDD;
+    border-radius: 22px;
+    line-height: 10px;
+}
+
+.selbusformPage .list .col .mui-numbox input{
+    border: none;
+    width: 30px;
+    font-size: 14px;
+    text-align: center;
+}
+.selbusformPage .renderOrderpriceField{
+    display: flex;
+    justify-content: space-between;
+    background: #FFF;
+}
+.selbusformPage .renderOrderpriceField .orderprice{
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 16px;
+}
+
+.selbusformPage .renderOrderpriceField .btn{
+    margin: 10px 15px;
+    margin-left: 0;
+    height: 30px;
+    padding: 0 25px;
+}
+
+
+
+

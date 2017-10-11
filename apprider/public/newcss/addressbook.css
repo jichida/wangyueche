@@ -1,0 +1,65 @@
+.seladdressbookPage {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.weui-search-bar__form{
+	display: flex;
+	align-items: center
+}
+.addressbookPage{
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1
+}
+.addressbookPage .list{
+	flex-grow: 1;
+	background: #FFF;
+	overflow: scroll;
+}
+.addressbookPage .list >div > div.list-item{
+	text-indent: 20px;
+	line-height: 40px;
+	border-bottom: 1px solid #EEE;
+	display: flex;
+	flex-direction: column;
+}
+.addressbookPage .list >div > div.list-item >a{
+	position: relative;
+}
+.addressbookPage .list >div > div.list-item >a:before{
+	content: "";
+	width: 100%;
+	position: absolute;
+	height: 1px;
+	background: #EEE;
+	bottom: 0;
+	left: 20px;
+}
+.addressbookPage .list >div > div.list-item >a:after{
+	content: " ";
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-width: 2px 2px 0 0;
+    border-color: #c8c8cd;
+    border-style: solid;
+    -webkit-transform: matrix(.71,.71,-.71,.71,0,0);
+    transform: matrix(.71,.71,-.71,.71,0,0);
+    position: relative;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 20px;
+}
+
+.addressbookPage .list >div > div.list-item >a:last-child:before{
+	content: none;
+}
+.addressbookPage .list >div > div:first-child{
+	background: #EEE;
+	height: 30px;
+	line-height: 30px;
+	text-indent: 20px;
+}

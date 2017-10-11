@@ -1,0 +1,83 @@
+.caroverlayPage{
+}
+.caroverlayPage .list{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.caroverlayPage .list .mapcontainer{
+    flex-grow: 1;
+    align-self: stretch;
+}
+
+.caroverlayPage .loadingdriver{
+    position: fixed;
+    display: flex;
+    pointer-events: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.caroverlayPage .loadingdriver ul{
+    background: #FFF;
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    pointer-events: auto
+}
+.caroverlayPage .loadingdriver ul li:first-child{
+    
+    text-align: center;
+}
+.caroverlayPage .loadingdriver ul li:last-child{
+    margin: 0 20px;
+}
+.caroverlayPage .userorderinfoPage{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    top: 68px;
+    border-top: 1px solid #EEE;
+}
+.caroverlayPage .userorderinfoPage .orderinfohead:after{
+    content: none;
+} 
+.caroverlayPage  .topicinfo>div{
+    display: flex;
+    align-items: center;
+}
+.caroverlayPage  .topicinfo>div img{
+    margin-right: 10px;
+}
+.caroverlayPage  .star{
+    display: flex;
+    flex-direction: column
+}
+.caroverlayPage .dv-star-rating.dv-star-rating-non-editable{
+    width: 82px;
+}
+
+
+
+
+.caroverlayPage.AppPage .amap-info-content{
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left: 0;
+    position: relative;
+}
+
+
+.caroverlayPage.AppPage .amap-info-close{
+    display: none;
+}
+
+.caroverlayPage.AppPage .amap-info-sharp{
+    top: -31px;
+}

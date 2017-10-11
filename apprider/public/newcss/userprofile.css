@@ -1,0 +1,76 @@
+.userprofilePage{
+
+}
+.userprofilePage .list{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: scroll;
+    background: #FFF;
+    border-top: 1px solid #EEE;
+}
+.userprofilePage .list li{
+	padding: 0 15px;
+	height: 50px;
+	border-bottom: 1px solid #EEE;
+	align-items: center;
+	display: flex;
+}
+.userprofilePage .list li:first-child{
+	height: 70px;
+}
+.userprofilePage .list li .item-main{
+	align-self: stretch;
+	flex-grow: 1;
+	display: flex;
+}
+.userprofilePage form{
+	flex-grow: 1;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+.userprofilePage form .pagebtn{
+	padding: 15px;
+	background: #FFF;
+	display: flex;
+}
+.userprofilePage form .pagebtn .btn{
+	flex-grow: 1
+}
+.userprofilePage .field-container{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	align-self: stretch;
+	flex-grow: 1;
+}
+.userprofilePage .field-container .item-after img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+}
+
+.userprofilePage .iinput .field-container input{
+	flex-grow: 1;
+	border: none;
+	align-self: stretch;
+	text-align: right;
+	display:block;
+}
+.userprofilePage .selectinput .field-container{
+	position: relative
+}
+.userprofilePage .selectinput .field-container select{
+	opacity: 0;
+	z-index: 2;
+	position: absolute;
+	top: 0;
+	right:-15px;
+	bottom: 0;
+	width: 100%;
+	display:block;
+}
+.userprofilePage  .field-label{
+	flex-shrink: 0;
+}

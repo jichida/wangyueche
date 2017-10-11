@@ -1,0 +1,20 @@
+.settingPage{}
+.settingPage .list .weui-cells:first-child{
+    margin-top: 0;
+}
+.settingPage .list .weui-cells .weui-cell__hd{
+    display: flex;
+    align-items: center;
+}
+.settingPage .list .weui-cells .weui-cell__hd img{
+    width: 26px;
+    margin-right: 5px;
+}
+.settingPage .btn{
+    background: #FFF;
+    margin-top: 20px;
+    border-radius: 0;
+}
+.settingPage .btn:active{
+    background: #DDD;
+}

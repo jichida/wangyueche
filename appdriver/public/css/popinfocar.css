@@ -1,0 +1,71 @@
+.mapCoverInfo{
+  display: flex;
+  position: absolute;
+  width: auto;
+  height: auto;
+  padding: 6px 15px;
+  border-radius: 100px;
+  background: #FFF;
+  border:1px solid #EEE;
+  box-shadow: 1px 1px 1px rgba(100,100,100,.3);
+  left: 0;
+  top:0;
+  z-index: 1000;
+  justify-content: center;
+  font-size: 14px;
+  flex-direction: column;
+  align-items: center;
+}
+.mapCoverInfo .infoCont{
+  display: flex;
+  justify-content: center;
+}
+.mapCoverInfo .infoCont .info{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapCoverInfo .info p{
+  padding: 0;
+  margin: 0;
+  font-size:14px;
+  line-height: 16px;
+}
+.mapCoverInfo .info p span{
+  color: #f60;
+}
+.mapCoverInfo .price{
+  border-left: 1px solid #EEE;
+  flex-shrink: 0;
+  display: flex;
+  align-self: stretch;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.mapCoverInfo .point{
+  width: 15px;
+  height: 15px;
+  position: relative;
+  position: absolute;
+  width: 100%;
+  bottom: -8px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mapCoverInfo .point:before{
+  content:'';
+  width: 15px;
+  height: 15px;
+  background: #FFF;
+  border-right:1px solid #EEE;
+  border-bottom:1px solid #EEE;
+  transform:rotate(45deg)
+}

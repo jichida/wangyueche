@@ -1,0 +1,51 @@
+.usercenterPage.AppPage{
+	flex-grow: 0;
+	background: #FFF;
+	position: relative;
+	flex-grow: 1;
+}
+.usercenterPage .head{
+    text-align: center;
+    padding: 15px 0;
+   	background: #0080ff;
+   	display: flex;
+   	align-items: center;
+   	flex-direction: column;
+   	color: #FFF;
+   	padding-top: 35px;
+}
+.usercenterPage .head span{
+	display: block;
+}
+.usercenterPage .head img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	margin-bottom: 5px;
+}
+.usercenterPage .name {
+	font-size: 16px;
+}
+.usercenterPage .list .weui-cells{
+	margin-top: 0;
+}
+.usercenterPage .list .weui-cells .weui-cell .weui-cell__hd {
+	display: flex;
+	align-items: center;
+}
+.usercenterPage .list .weui-cells .weui-cell .weui-cell__hd img{
+	width: 28px;
+	margin-right: 5px;
+}
+.usercenterPage .list .weui-cells .weui-cell:last-child .weui-cell__bd{
+	display: flex;
+	flex-direction: column;
+	color: #0080ff;
+}
+.usercenterPage .list .weui-cells .weui-cell:last-child .weui-cell__bd span{
+	display: block;
+}
+.usercenterPage .list .weui-cells .weui-cell:last-child .weui-cell__bd .cont{
+	color: #999;
+	font-size: 12px;
+}

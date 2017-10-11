@@ -1,0 +1,119 @@
+.loginPage{
+	background: url(../img/1.jpg) no-repeat center;
+	background-size: 100% 100%;
+}
+.loginPage #newNavHeadContent.newNavHeadContent{
+	background: none;
+}
+.loginPage .formStyle1{
+	background: none;
+}
+.loginPage #newNavHeadContent .title{
+	color: #FFF;
+	font-size: 20px;
+}
+.loginPage .content{
+	display: flex;
+	flex-direction: column;
+}
+.loginPage .content .logo{
+	text-align: center;
+	padding: 60px 0 30px 0;
+}
+.loginPage .content .logo span{
+	display: block;
+	text-align: center;
+	color: #026277
+}
+.loginPage .content .logo span.tit{
+	font-size: 32px;
+	font-weight: bold;
+}
+.loginPage .content .logo span.tips{
+	border:1px solid #026277;
+	width: 70px;
+	border-radius: 6px;
+	margin: auto;
+}
+.loginPage #newNavHeadContent .back:active{
+	background: none;
+}
+.loginPage #newNavHeadContent .back:after{
+	border-color: #FFF;
+}
+
+.loginPage .loginForm {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+}
+.loginPage .loginForm .li{
+	display: flex;
+	background: #FFF;
+	border-radius: 8px;
+	height:44px;
+	align-items: center;
+	position: relative;
+	margin: 0 10%;
+	margin-bottom: 10px;
+}
+.loginPage .formvalidation.form_input {
+	
+	border-radius: 6px;
+	border: 1px solid #026277;
+}
+.loginPage .formvalidation.form_input input{
+	background: none;
+	font-size: 16px;
+	border-radius: 6px;
+	text-indent: 15px;
+}
+.loginPage .loginForm .li .icon{
+	width: 32px;
+	height: 32px;
+	display: block;
+}
+.loginPage .loginForm .li .icon img{
+	width: 32px;
+	border-radius: 10px;
+}
+.loginPage .loginForm .li .getyanzhen{
+	padding: 0 10px;
+	border-left: 1px solid #369;
+	color: #369;
+	font-size: 16px;
+	line-height: 30px;
+	flex-shrink: 0;
+}
+.loginPage .submitBtn{
+	padding-top: 10px;
+}
+.loginPage .gotoregister{
+	color: #FFF;
+	text-align: center;
+	line-height: 40px;
+	margin-top: 10px;
+	background: rgba(0,0,0,.5);
+	border-radius: 6px;
+}
+.loginPage .resetpassword{
+    display: flex;
+    justify-content: flex-end;
+    background: rgba(255,255,255,.5);
+    align-self: flex-end;
+    flex-grow: 0;
+    padding: 0 15px;
+    border-radius: 8px;
+    width: 80px;
+
+}
+.loginPage .btn.Primary{
+	margin: 0 10%;
+	height: 44px;
+	line-height: 44px;
+	margin-bottom: 5px;
+}
+.loginPage .serverslnk{
+	text-align: center;
+	color: #026277;
+}

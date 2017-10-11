@@ -1,0 +1,79 @@
+.discountPage{}
+.discountPage .list{
+	padding-top: 15px;
+}
+.discountPage .list .li{ 
+   	margin: 0 20px 15px 20px;
+}
+.discountPage .list .li .w{ 
+   	display: flex;
+   	flex-direction: column;
+   	border-bottom: 4px solid #f55716;
+   	border-radius: 6px;
+}
+.discountPage .list .li .w .a{
+	background: url("../newimg/6.png") repeat-x top;
+	height: 8px;
+	width: 100%;
+}
+.discountPage .list .li .w .b{
+	background: #FFF;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+.discountPage .list .li .w .c{
+	flex-grow: 1;
+	align-self: stretch;
+	background:  url("../newimg/7.png") no-repeat right bottom;
+	background-size: 60%;
+	height: 110px;
+	display: flex;
+	justify-content: space-between;
+}
+.discountPage .list .li .w .d{
+	flex-grow: 1;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.discountPage .list .li .w .c .price{
+	display: flex;
+	flex-direction: column;
+	padding-left: 15px;
+	margin-top: 10px;
+}
+.discountPage .list .li .w .c .zhekou{
+	margin-top: 10px;
+	margin-right: 15px;
+}
+.discountPage .list .li .w .c .zhekou .aa{
+	font-size: 30px;
+	margin-right: 3px;
+}
+.discountPage .list .li .w .c .aa{
+	font-size: 20px;
+	margin-bottom: -3px;
+}
+.discountPage .list .li .w .c .bb{
+	font-size: 14px;
+}
+.discountPage .list .li .w .d{
+	position: absolute;
+	bottom: 3px;
+	font-size: 12px;
+}
+.discountPage .list .li .w .d span:first-child{
+	margin-left: 15px;
+}
+.discountPage .list .li .w .d span:last-child{
+	margin-right: 15px;
+}
+
+
+.discountPage .list .li.enabled .color_warning{
+	color: #999
+}
+.discountPage .list .li.enabled .w{
+	border-bottom-color: #CCC;
+}

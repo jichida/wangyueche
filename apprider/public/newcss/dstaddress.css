@@ -1,0 +1,104 @@
+.dstaddressPage .list{
+	margin-top: 0;
+	margin-bottom: 0;
+	flex-grow: 1;
+	overflow: scroll;
+}
+.dstaddressPage .weui-search-bar__label{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.dstaddressPage .weui-search-bar__cancel-btn{
+	line-height: 34px;
+}
+
+.dstaddressPage .list li{
+	position: relative;
+	background:#FFF;
+	padding: 10px 15px;
+}
+.dstaddressPage .list li:active{
+	background:#EEE;
+}
+.dstaddressPage .list li:before{
+	content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #d9d9d9;
+    color: #d9d9d9;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    left: 15px;
+}
+.dstaddressPage .list li:after{
+	content: " ";
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    border-width: 2px 2px 0 0;
+    border-color: #c8c8cd;
+    border-style: solid;
+    -webkit-transform: matrix(.71,.71,-.71,.71,0,0);
+    transform: matrix(.71,.71,-.71,.71,0,0);
+    position: relative;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 15px;
+}
+.dstaddressPage .list li h2{
+	margin-bottom: 0;
+	font-size: 16px;
+	font-weight: 200;
+	margin-bottom: 5px;
+}
+.dstaddressPage .searchContent{
+    height: 60px;
+}
+.dstaddressPage .commonBtnContent{
+    display: flex;
+    background: #FFF;
+    flex-shrink: 0;
+    border-top: 1px solid #EEE;
+}
+.dstaddressPage .commonBtnContent>div{
+    
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-right: 1px solid #EEE;
+    flex-grow: 1;
+}
+
+.dstaddressPage .commonBtnContent>div:last-child{
+    border: none;
+}
+.dstaddressPage .commonBtnContent>div img{
+    width: 32px;
+    margin-right: 10px;
+}
+.dstaddressPage .commonBtnContent>div >div{
+    display: flex;
+    flex-direction: column;
+}
+.dstaddressPage .commonBtnContent>div >div span{
+    display: block;
+}
+
+.dstaddressPage .commonBtnContent>div >div .address{
+    color: #888;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+
+

@@ -1,0 +1,114 @@
+.orderconfirmPinchePage{
+}
+.orderconfirmPinchePage .head{
+	background:-webkit-gradient(linear, 0 0, 0 bottom, from(#51a9ff), to(#0080ff));
+	color: #FFF;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+}
+
+.orderconfirmPinchePage .head .pingchetime{
+	display: flex;
+	align-items: center;
+}
+.orderconfirmPinchePage .head .pingchetime >div{
+	margin-right: 5px;
+}
+.orderconfirmPinchePage .head .pingchetime >div.lastnum{
+	border: 1px solid rgba(255,255,255,.4);
+	font-size: 12px;
+	border-radius: 3px;
+	padding: 0 10px;
+}
+
+.orderconfirmPinchePage .head .city{
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+}
+.orderconfirmPinchePage .head .city span{
+	font-size: 26px;
+	font-weight: 300;
+}
+.orderconfirmPinchePage .head .city span.line{
+	flex-grow: 1;
+	align-self: stretch;
+	position: relative;
+	margin:  0 20px;
+}
+.orderconfirmPinchePage .head .city span.line:before{
+	position: absolute;
+	width: 100%;
+	height: 3px;
+	background: #FFF;
+	content: "";
+	top: 19px;
+}
+.orderconfirmPinchePage .head .city span.line:after{
+	content: "";
+	width: 0;
+    height: 0;
+    border-bottom: 10px solid #FFF;
+    border-right: 10px solid transparent;
+    position: absolute;
+    right: -5px;
+    top: 12px;
+}
+.orderconfirmPinchePage .pinecheline{
+	margin: 28px 15px;
+	background: #DDD;
+	height: 16px;
+	border-radius: 16px;
+	position: relative;
+}
+.orderconfirmPinchePage .pinecheline .groupnumber_num,
+.orderconfirmPinchePage .pinecheline .seatnumbertotal_num,
+.orderconfirmPinchePage .pinecheline .seatnumber_num
+{
+	position: absolute;
+	top: -16px;
+	font-size: 12px;
+	line-height: 15px;
+	margin-right: 5px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.orderconfirmPinchePage .pinecheline .groupnumber_num span,
+.orderconfirmPinchePage .pinecheline .seatnumbertotal_num span{
+	margin-left: -150%;
+}
+.orderconfirmPinchePage .pinecheline .seatnumbertotal_num{
+	top: 16px;
+}
+.orderconfirmPinchePage .pinecheline .seatnumber_num{
+	right: 0;
+	left: auto;
+}
+
+.orderconfirmPinchePage .pinecheline >div{
+	position: absolute;
+	height: 16px;
+	left: 0;
+	top: 0;
+	border-radius: 16px;
+	
+}
+.orderconfirmPinchePage .pinecheline >div.groupnumber{
+	background: rgba(9,187,7,.5)
+}
+.orderconfirmPinchePage .pinecheline >div.seatnumbertotal{
+	background: rgba(52,121,225,.8)
+}
+
+
+.orderconfirmPinchePage .shuoming{
+	padding: 15px;
+	font-size: 14px;
+	border-bottom: 1px solid #DDD;
+}
+
+
+
+

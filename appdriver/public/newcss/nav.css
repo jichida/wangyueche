@@ -1,0 +1,101 @@
+#newNavHeadContent.newNavHeadContent {
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    position: relative;
+    flex-shrink: 0;
+    z-index: 1000;
+    padding-top: 20px;
+}
+#newNavHeadContent .title {
+    flex-grow: 1;
+    text-align: center;
+    line-height: 48px;
+    color: #111;
+    font-size: 16px;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: block;
+
+}
+#newNavHeadContent .leftlnk{
+    height: 48px;
+    position: absolute;
+    width: 50%;
+    z-index: 2;
+    left: 0;
+    top:20px;
+}
+#newNavHeadContent .rightlnk{
+    height: 48px;
+    position: absolute;
+    width: 50%;
+    z-index: 2;
+    right: 0;
+    top: 20px;
+}
+#newNavHeadContent .leftlnk,
+#newNavHeadContent .rightlnk{
+    display: flex;
+    align-items: center;
+}
+#newNavHeadContent .leftlnk *,
+#newNavHeadContent .rightlnk *{
+    max-height: 48px;
+}
+#newNavHeadContent .leftlnk {
+    justify-content: flex-start;
+}
+#newNavHeadContent .rightlnk {
+    justify-content: flex-end;
+}
+#newNavHeadContent .back {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px;
+    height: 48px;
+    width: 45px;
+}
+#newNavHeadContent .back:active{
+    background: #EEE;
+}
+#newNavHeadContent .back:after {
+    content: "";
+    height: 14px;
+    width: 14px;
+    border-left: 2px solid #999;
+    border-bottom: 2px solid #999; 
+    transform:rotate(45deg);
+    display: block;
+}
+#newNavHeadContent .nli {
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 0 15px;
+    font-size: 16px;
+}
+#newNavHeadContent .nli:active {
+    background: #EEE;
+}
+#newNavHeadContent .nli .iconBtn{
+
+}
+#newNavHeadContent .nli .number{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #C00;
+    height: 20px;
+    min-width: 20px;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 20px;
+    color: #FFF;
+}

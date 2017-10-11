@@ -1,0 +1,98 @@
+.carpoolPage{
+    display: flex;
+    flex-direction: column;
+}
+.carpoolPage .pageNav{
+    display: flex;
+    margin: 15px 15%;
+    flex-grow: 0;
+    justify-content: space-between;
+    border: 1px solid #0080ff;
+    color: #0080ff;
+    border-radius: 36px;
+    overflow: hidden;
+
+}
+.carpoolPage .pageNav span{
+    width: 50%;
+    text-align: center;
+    color: #0080ff;
+    height: 36px;
+    line-height: 36px;
+    display: block;
+}
+.carpoolPage .pageNav span.sel{
+     color: #FFF;
+     background: #0080ff;
+}
+.carpoolPage .submitBtn{
+    margin: 15px;
+}
+.carpoolPage .listcontent{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    background: #FFF;
+    flex-grow: 1;
+}
+.carpoolPage .listcontent .licontent{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #EEE;
+    padding: 5px 15px;
+    align-items: center
+}
+.carpoolPage .listcontent .licontent .city{
+    flex-grow: 1;
+}
+.carpoolPage .listcontent .licontent .city p{
+    color: #999;
+    font-size: 14px;
+}
+.carpoolPage .listcontent .licontent .city p span{
+    margin: 0 5px;
+}
+
+.carpoolPage .listcontent .licontent .city p span:first-child{
+    margin-left: 0;
+}
+
+
+.carpoolPage .listcontent .licontent .time{
+    padding-right: 15px;
+    margin-right: 15px;
+    border-right: 1px solid #EEE;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.carpoolPage .listcontent .licontent .bbtn{
+    flex-shrink: 0;
+}
+.carpoolPage .listcontent .licontent .bbtn .btn{
+    padding: 0 20px;
+    border-radius: 50px;
+    height: 30px;
+}
+.setDay{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    background: #FFF;
+    border-top: 1px solid #EEE;
+    align-items: stretch;
+}
+.setDay span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1f6fe8;
+}
+.setDay span:first-child,
+.setDay span:last-child{
+    padding:  0 15px;
+    
+}
+

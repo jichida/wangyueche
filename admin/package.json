@@ -1,0 +1,31 @@
+{
+  "name": "admin",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": ".",
+  "dependencies": {
+    "admin-on-rest": "1.1.0",
+    "antd": "2.10.2",
+    "aor-color-input": "^1.1.0",
+    "aor-language-chinese": "^1.0.3",
+    "aor-summernote-input": "^1.0.0",
+    "axios": "^0.16.1",
+    "json-stringify-safe": "^5.0.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-tagsinput": "^3.16.1",
+    "redux-form-schema": "0.0.3"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.23.0",
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "buildcp": "react-scripts build && cp -r build/. ../deploy/dist/admin && rm -R build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

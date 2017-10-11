@@ -1,0 +1,32 @@
+.userrechargePage{
+	background: #EEE;
+	overflow: hidden;
+}
+.userrechargePage.AppPage .list{
+	flex-grow: 0;
+}
+.userrechargePage .submitBtn .btn{
+    color: #FFF;
+    margin: 15px 30px 0 30px;
+    align-self: stretch;
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+.userrechargePage .weui-cell .weui-cell__hd{
+	display: flex;
+	align-items: center;
+}
+.userrechargePage .weui-cell .weui-cell__hd img{
+	width: 30px;
+	margin-right: 5px;
+}
+.userrechargePage .weui-cells_radio .weui-icon-checked:before{
+	content: "\EA01";
+}
+.userrechargePage .weui-cells_radio .weui-check:checked + .weui-icon-checked:before{
+	  content: '\EA06';
+}
+
+.userrechargePage .weui-check{
+	opacity: 0;
+}

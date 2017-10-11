@@ -1,0 +1,26 @@
+version: '2'
+services:
+  znserver:
+    image: node:6.11.2
+    command: node ./index.js
+    working_dir: /app
+    volumes:
+      - ./srv:/app
+      - ./dist:/dist
+    environment:
+      - MONGO_URL=mongodb://192.168.0.1:27018/zhongnandb
+      - listenport=3004
+    links:
+      - mongodb
+    ports:
+       - "3004:3004"
+    expose:
+       - "3004"
+  mongodb:
+    image:  mongo:3.4
+    expose:
+       - "27018"
+    volumes:
+       - "/var/db100/dbdata:/data/db -d"
+    ports:
+       - "27018:27017"
