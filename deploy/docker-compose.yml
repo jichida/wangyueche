@@ -8,14 +8,14 @@ services:
       - ./srv:/app
       - ./dist:/dist
     environment:
-      - MONGO_URL=mongodb://192.168.0.1:27018/zhongnandb
-      - listenport=3004
+      - MONGO_URL=mongodb://192.168.0.1:27018/wangyueche
+      - listenport=3006
     links:
       - mongodb
     ports:
-       - "3004:3004"
+       - "3006:3006"
     expose:
-       - "3004"
+       - "3006"
   mongodb:
     image:  mongo:3.4
     expose:
