@@ -48,19 +48,20 @@ let getBaseInfoCompanyFareList = (param= {
   }
   let faretype = config.faretypemap[param.triptype];
   let fareModel = dbplatform.Platform_baseInfoCompanyFareModel;
-  fareModel.find({
+  const query = {
     $and: [
       {FareType:faretype},
       {FareValidOn: {$lte: curtimeformatted}},
       {FareValidOff:{$gte: curtimeformatted}}
     ]
-  },(err,resultlist)=> {
+  };
+  fareModel.find(query,(err,resultlist)=> {
     if(!err){
       callback(err,resultlist);
     }
     else{
       callback(err,null);
-      winston.getlog().error(`注意！getBaseInfoCompanyFareList找不到运价${faretype}`);
+      winston.getlog().error(`注意！getBaseInfoCompanyFareList找不到运价${faretype},查询条件:${JSON.stringify(query)}`);
     }
 
   });

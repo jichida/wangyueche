@@ -26,7 +26,7 @@ export default class Page extends React.Component {
                 />
                 <PageRiderHead currentorder={currentorder}/>
                 <div className="mapcontent list">
-                    <MapGaode ref='mapgaode' curreqobj={curreqobj} />
+                    <MapGaode ref='mapgaode' curreqobj={curreqobj} height={window.innerHeight-68}  />
                 </div>
                 <div className="submitBtn">
                     <button onClick={this.onClickNext.bind(this,'接到乘客')} className="btn Primary"><span>开始行程</span></button>

@@ -270,16 +270,13 @@ class DatePickerInput extends React.Component{
 	handleClick = () => {
 		this.setState({ isOpen: true });
 	}
-
 	handleCancel = () => {
 		this.setState({ isOpen: false });
 	}
-
 	handleSelect = (time) => {
 		this.setState({ time, isOpen: false });
     	this.props.input.onChange(time);
 	}
-
 	render() {
 		const { input,...rest } = this.props;
 		return (

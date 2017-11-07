@@ -114,7 +114,7 @@ export class Page extends Component {
     render(){
         return (
             <div className="loginPage AppPage">
-                <NavBar back={true} title="快速登录" />
+                <NavBar back={false} title="快速登录" />
                 <div className="content">
                     <div className="logo">
                         <span className="tit">中南拼车</span>

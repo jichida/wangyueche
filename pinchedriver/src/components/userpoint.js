@@ -31,7 +31,7 @@ export class Page extends Component {
     render() {
         return (
             <div className="routermapPage AppPage">
-                <NavBar back={true} title="路线地图" />
+                <NavBar back={true} title="用户地点位置" />
                 这是地图页面
                 <Map />
             </div>

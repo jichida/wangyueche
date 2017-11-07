@@ -83,12 +83,12 @@ class Page extends Component {
 
         return (
             <div className="outcarPage AppPage">
-                <NavBar back={false} title="网约车" />
+                <NavBar back={false} title="中南出行" />
                 <div className="headNav">
                     {titleco}
                 </div>
                 <div className="mapcontent">
-                    <MapGaode ref='mapgaode' />
+                    <MapGaode ref='mapgaode' height={window.innerHeight-116} />
                     <div className="outcarControl">
                         <div
                           className={outcarexpand?"list show":"list"}

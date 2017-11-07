@@ -70,7 +70,7 @@ class Page extends React.Component {
               {
                   !!curreqobj &&
                 <div className="mapcontent list">
-                    <MapGaode ref='mapgaode' curreqobj={curreqobj} />
+                    <MapGaode ref='mapgaode' curreqobj={curreqobj} height={window.innerHeight-68} />
                 </div>
               }
           </div>

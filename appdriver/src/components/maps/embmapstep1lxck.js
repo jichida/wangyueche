@@ -18,7 +18,7 @@ export default class Page extends React.Component {
       console.log("curreqobj==>"  + JSON.stringify(curreqobj));
       return (
            <div>
-          <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'  curreqobj={curreqobj} /></div>
+          <div style={{height:"200px",overflow:"hidden"}}><MapGaode ref='mapgaode'  curreqobj={curreqobj} height={window.innerHeight-68} /></div>
           <div className="list margin-0 xjl_bottom">
           <div className="item">
                     <div>{curreqobj.showtimestring}</div>

@@ -13,12 +13,12 @@
     text-align: center;
     line-height: 48px;
     color: #111;
-    font-size: 16px;
+    font-size: 18px;
     position: relative;
     z-index: 1;
     width: 100%;
     display: block;
-
+    font-weight: 600;
 }
 #newNavHeadContent .leftlnk{
     height: 48px;

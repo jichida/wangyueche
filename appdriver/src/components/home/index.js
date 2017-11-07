@@ -50,7 +50,7 @@ class Page extends Component {
 
     return (
     		<div className="indexPage AppPage">
-    		<NavBar back={false} title="网约车" />
+    		<NavBar back={false} title="中南出行" />
 				<div className="indexHead" onClick={()=>{this.onClickItem(linkeditprofile)}}>
           {loginsuccess && (
 					<Cells>

@@ -27,7 +27,7 @@ let startsrv = ()=>{
   console.log("static admin:" + admindir);
   app.use('/admin', express.static(admindir));
 
-  let uploaddir = path.join(__dirname,'./router',config.uploaddir);
+  let uploaddir = path.join(__dirname,config.uploaddir);
   console.log("static upload:" + uploaddir);
   app.use(config.uploadurl, express.static(uploaddir));
 
@@ -81,6 +81,7 @@ let startsrv = ()=>{
 
   http.listen(config.listenport, ()=>{
     winston.initLog();
+    console.log(`服务启动,端口号为${config.listenport}`);
     winston.getlog().info(`服务启动,端口号为${config.listenport}`);
   });
 

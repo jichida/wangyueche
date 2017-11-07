@@ -15,7 +15,12 @@ class PicaDisposePhoto {
       width: -1,
       height: -1,
       picaQuality: 90,
-      picaConfig: { features: [ 'js', 'wasm', 'ww', 'cib' ] },
+      picaConfig: {
+        tile:1024,
+        idle:2000,
+        concurrency:1,
+        features: [  'js' ]
+      },
       picaOptions: {
         quality: 3,
         unsharpAmount: 80,
@@ -32,7 +37,8 @@ class PicaDisposePhoto {
       width: newConfig.width,
       height: newConfig.height,
     }
-    this.Pica = require('pica/dist/pica')(newConfig.picaConfig)
+    console.log(`PicaDisposePhoto-->${JSON.stringify(newConfig.picaConfig)}`);
+    // this.Pica = require('pica/dist/pica')(newConfig.picaConfig)
   }
 
   //加载图片读取图片大小
@@ -48,12 +54,28 @@ class PicaDisposePhoto {
         }
         img.src = url
       } catch (err) {
-        reject('预加载错误')
+        reject('getImage 预加载错误')
+      }
+    })
+  }
+
+  toBlob(img, c, picaOptions){
+    return  new Promise(function (resolve, reject) {
+      try {
+        const ctx = c.getContext("2d");
+        ctx.drawImage(img, 0, 0);       // draw in image
+        c.toBlob(function(blob) {        // get content as JPEG blob
+          // here the image is a blob
+          resolve(blob);
+        }, "image/jpeg", 0.75);
+      } catch (err) {
+        reject('toBlob 预加载错误')
       }
     })
   }
 
   disposePhotoWithFile(file, imgInfo = {}) {
+    console.log(`disposePhotoWithFile-->start`);
     return this.getImage(window.URL.createObjectURL(file))
       .then((img) => {
         window.URL.revokeObjectURL(img.src)
@@ -89,17 +111,20 @@ class PicaDisposePhoto {
         //返回图片信息
         imgInfo.width = canvas.width
         imgInfo.height = canvas.height
-
-        return this.Pica.resize(img, canvas, this.picaOptions)
+        console.log(`no Pica toBlob-->start:${JSON.stringify(this.picaOptions)}`);
+        return this.toBlob(img, canvas, this.picaOptions);
+        //this.Pica.resize(img, canvas, this.picaOptions)
       })
-      .then(result => {
-        return this.Pica.toBlob(result, file.type, this.picaQuality)
-      })
+      // .then(result => {
+      //   console.log(`start Pica toBlob-->start${JSON.stringify(this.picaQuality)}`);
+      //   return this.Pica.toBlob(result, file.type, this.picaQuality)
+      // })
       // .then(blob => {
       //   return new File([ blob ], file.name, { type: file.type, lastModified: Date.now() })
       // })
       .catch(err => {
-        if (err) {
+        console.log(`catche Pica err-->start:${JSON.stringify(err.toString())}`);
+        if (!!err) {
           alert(err.toString())
         }
         throw "系统错误，可能原因：1.文件过大，系统内存太低 2.系统版本过低，不支持图片压缩"

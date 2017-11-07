@@ -14,10 +14,42 @@ import _ from 'lodash';
 
 import '../newcss/index.css';
 
-const { Cells, Cell, CellBody, CellFooter,CellHeader, CellsTitle } = WeUI;
+const { Cells, Cell, CellBody, CellFooter,CellHeader, CellsTitle, ActionSheet } = WeUI;
 let usecacherouter = false;
+let userphone = '';
+let username = '';
 
 export class Page extends Component {
+
+     constructor(props) {
+        super(props);
+        this.state={
+            ios_show: false,
+            menus: [{
+                label: "联系TA",
+                onClick: ()=>{this.connectuser()}
+            }, {
+                label: "查看TA的位置",
+                onClick: ()=>{this.pagePush("/showuserpoint")}
+            }],
+            actions: [
+                {
+                    label: '取消',
+                    onClick: this.hide.bind(this)
+                }
+            ]
+        }
+    }
+
+    hide(){
+        this.setState({
+            ios_show: false,
+        });
+    }
+
+    connectuser =(p)=>{
+        window.location.href = `tel:${p}`;
+    }
 
     pagePush=(name)=>{
         usecacherouter = true;
@@ -26,6 +58,27 @@ export class Page extends Component {
 
     componentDidMount(){
         usecacherouter = false;
+    }
+
+    showsheet =(name, phone)=>{
+        this.setState({
+            ios_show: true,
+            menus: [{
+                label: `联系${name}`,
+                onClick: ()=>{this.connectuser(phone)}
+            },{
+                label: `查看${name}的位置`,
+                onClick: ()=>{this.pagePush("/showuserpoint")}
+            }],
+            actions: [
+                {
+                    label: '取消',
+                    onClick: this.hide.bind(this)
+                }
+            ]
+        });
+        username = name;
+        userphone = phone;
     }
 
     render() {
@@ -69,20 +122,36 @@ export class Page extends Component {
                 </div>
 
                 <CellsTitle>乘客列表</CellsTitle>
-                  <Cells>
-                {
-                  _.map(userlist,(userinfo)=>{
-                    return (<Cell href="tel:19000000000" access>
+                    <Cells>
+                        <Cell onClick={()=>{this.showsheet("张飞","1888888888")}} access>
                         <CellBody>
                             张飞
                         </CellBody>
                         <CellFooter>
                             19000000000
                         </CellFooter>
-                    </Cell>);
-                  })
-                }
+                    </Cell>
+                    {
+                        _.map(userlist,(userinfo)=>{
+                            return (<Cell href="tel:19000000000" access>
+                                <CellBody>
+                                    张飞
+                                </CellBody>
+                                <CellFooter>
+                                    19000000000
+                                </CellFooter>
+                            </Cell>);
+                        })
+                    }
                 </Cells>
+
+                <ActionSheet
+                    menus={this.state.menus}
+                    actions={this.state.actions}
+                    show={this.state.ios_show}
+                    type="ios"
+                    onRequestClose={e=>this.setState({ios_show: false})}
+                />
             </div>
         )
     }

@@ -40,7 +40,7 @@ export function* createloadingflow(){
         }
         return false;
       }
-      let delaytime = actionstring === 'driveroute'?1000:500;
+      let delaytime = actionstring === 'driveroute'?2000:1500;
       const { result,err, timeout } = yield race({
           result: take(action_result),
           err: take(action_commonerr),

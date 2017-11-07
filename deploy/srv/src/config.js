@@ -1,14 +1,14 @@
 
 let config =  {
   secretkey:'zongnanchuxingkey',
-  listenport:process.env.listenport||3004,
+  listenport:process.env.listenport||3006,
   rooturl:process.env.rooturl || 'http://wangyueche.com28.cn',
   issmsdebug:process.env.issmsdebug || false,
-  publishdirtest:'../../../dist/test',
-  publishdirrider:'../../../dist/apprider',
-  publishdirdriver:'../../../dist/appdriver',
-  publishdiradmin:'../../../dist/admin',
-  uploaddir:'../uploader',
+  publishdirtest:'../../dist/test',
+  publishdirrider:'../../dist/apprider',
+  publishdirdriver:'../../dist/appdriver',
+  publishdiradmin:'../../dist/admin',
+  uploaddir:'../../dist/uploader',
   uploadurl:'/uploader',
 
   Companyld:'58a30c05061d53264c182029',

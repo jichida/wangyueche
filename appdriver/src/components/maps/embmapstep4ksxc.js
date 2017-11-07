@@ -24,7 +24,7 @@ export default class Page extends React.Component {
                     </div>
                 </div>
                 <div className="mapcontent list">
-                    <MapGaode ref='mapgaode' curreqobj={curreqobj} currentorder={currentorder} />
+                    <MapGaode ref='mapgaode' curreqobj={curreqobj} currentorder={currentorder} height={window.innerHeight-68}  />
                 </div>
                 <div className="submitBtn">
                     <button onClick={onClickNext} className="btn Primary"><span>到目的地</span></button>

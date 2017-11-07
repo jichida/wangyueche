@@ -29,7 +29,7 @@ export default class Page extends React.Component {
                 />
                 <PageRiderHead currentorder={currentorder}/>
                 <div className="mapcontent list">
-                    <MapGaode ref='mapgaode'  curreqobj={curreqobj} />
+                    <MapGaode ref='mapgaode'  curreqobj={curreqobj} height={window.innerHeight-68}  />
                 </div>
                 <div className="submitBtn">
                     <h3 className="item-title text-warning">{routeshow.instruction}<div className="gray">{routeshow.leftdistancetxt} {routeshow.leftduringtxt}</div></h3>

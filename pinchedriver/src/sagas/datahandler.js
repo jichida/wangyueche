@@ -20,6 +20,9 @@ import {
 
     getnotifymessageone_request,
     getnotifymessageone_result,
+
+    getabouthtml_request,
+    getabouthtml_result,
   } from '../actions';
 
 
@@ -37,10 +40,13 @@ let recvmessagetoresultpair = {
 
   'getmypincheroute_result':getmypincheroute_result,
   'getonepincheroutepassengers_result':getonepincheroutepassengers_result,
+
+  'getabouthtml_result':getabouthtml_result,
 };
 
 //非验证发送接口
 let sendmessagefnsz = {
+  'getabouthtml':`${getabouthtml_request}`,
   'logout':`${logout_request}`,
   'login':`${login_request}`,
   'getnotifymessage':`${getnotifymessage_request}`,

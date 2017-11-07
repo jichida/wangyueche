@@ -22,12 +22,13 @@ export class Page extends React.Component {
     this.props.dispatch(carmapshow_createmap());
  }
 
+  
 
   render() {
     return (
       <div style={{
         width: '100%',
-        height: (window.innerHeight-92)+"px",
+        height: `${this.props.height}px`,
         display:'flex',
         justifyContent: 'center',
         alignItems: 'center',

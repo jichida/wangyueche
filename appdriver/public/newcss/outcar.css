@@ -200,7 +200,11 @@
     border-top: 1px solid #EEE;
     box-shadow: 3px 3px 3px rgba(0,0,0,.2);
     position: relative;
-    z-index: 2000
+    z-index: 2000;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
 }
 .outcarPage .orderinfohead .userinfo{
     display: flex;
@@ -297,6 +301,11 @@
 .outcarPage .submitBtn{
     padding: 10px 15px;
     background: #FFF;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    right: 0;
 }
 .startTrip .address .a{
     display: flex;

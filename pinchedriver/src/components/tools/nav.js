@@ -83,7 +83,7 @@ export class Page extends React.Component {
             leftnav = props.leftnav;
         }
         //自定义右侧按钮
-         /*
+        /*
             rightnav = [
                 {
                     icon : 'img/shopping/11.png',

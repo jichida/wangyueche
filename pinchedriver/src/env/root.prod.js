@@ -3,15 +3,11 @@
  */
 import React  from 'react';
 import { Provider } from 'react-redux';
-
-import store  from './store';
-
+import store,{history}  from './store';
 import {
     Route,
 } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
-import {history} from './store';
-
 import AppRoot from '../components/approot.js';
 
 let Root = (props)=>
