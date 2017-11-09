@@ -8,6 +8,8 @@ import notifymessage from './messagecenter';
 import userlogin from './userlogin';
 import route from './route';
 import about from './about';
+import carmap from './carmap';
+
 export default combineReducers({
   route,
   app,
@@ -15,6 +17,7 @@ export default combineReducers({
   userlogin,
   weui,
   about,
+  carmap,
   form: formReducer,
   router: routerReducer
 });

@@ -25,7 +25,7 @@ class Page extends React.Component {
    }
 
     render() {
-        const height = this.props.height;
+        const height = this.props.height || 500;
         console.log('地图---->render---------height:'+height);
         return (
             <div className="mapcontainer">

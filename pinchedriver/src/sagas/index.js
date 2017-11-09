@@ -10,13 +10,13 @@ import {createmapshowflow} from './map';
 
 export default function* rootSaga() {
   try{
+    yield fork(getcurpositionflow);
     yield fork(createmapshowflow);
     yield fork(createloadingflow);
     yield fork(jpushflow);
     yield fork(wsrecvsagaflow);
     yield fork(createnavdrawrouteflow);
     yield fork(flowmain);
-    yield fork(getcurpositionflow);
     yield fork(createsagacallbackflow);
   }
   catch(e){
