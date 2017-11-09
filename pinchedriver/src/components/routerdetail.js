@@ -10,6 +10,7 @@ import moment from "moment";
 import NavBar from './tools/nav.js';
 import InfinitePage from './controls/listview';
 import {callthen} from '../sagas/sagacallback';
+import {getonepincheroutepassengers_request} from '../actions';
 import _ from 'lodash';
 
 import '../newcss/index.css';
@@ -58,6 +59,7 @@ export class Page extends Component {
 
     componentDidMount(){
         usecacherouter = false;
+        this.props.dispatch(getonepincheroutepassengers_request({_id:this.props.match.params.id}));
     }
 
     showsheet =(name, phone)=>{
@@ -88,9 +90,9 @@ export class Page extends Component {
          startcity,
          endcity,
          groupnumber,
-         userlist,
          seatnumber
        } = this.props.pincheroute;
+       const {passengers:userlist} = this.props;
        try{
          startdate = moment(startdate).format("YYYY-MM-DD");
        }
@@ -122,23 +124,15 @@ export class Page extends Component {
                 </div>
 
                 <CellsTitle>乘客列表</CellsTitle>
-                    <Cells>
-                        <Cell onClick={()=>{this.showsheet("张飞","1888888888")}} access>
-                        <CellBody>
-                            张飞
-                        </CellBody>
-                        <CellFooter>
-                            19000000000
-                        </CellFooter>
-                    </Cell>
+                <Cells>
                     {
                         _.map(userlist,(userinfo)=>{
-                            return (<Cell href="tel:19000000000" access>
+                            return (<Cell onClick={()=>{this.showsheet(userinfo.username,userinfo.username)}} access key={userinfo.userid}>
                                 <CellBody>
-                                    张飞
+                                    {userinfo.username}
                                 </CellBody>
                                 <CellFooter>
-                                    19000000000
+                                    座位数:{userinfo.seatnumbertotal}
                                 </CellFooter>
                             </Cell>);
                         })
@@ -160,7 +154,8 @@ export class Page extends Component {
 const mapStateToProps =  ({route}, props) =>{
     let id = props.match.params.id;
     let pincheroute = route.pincheroutes[id];
-    return {pincheroute};
+    let passengers = route.passengers;
+    return {pincheroute,passengers};
 };
 
 Page = connect(mapStateToProps)(Page);
