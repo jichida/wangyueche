@@ -2,6 +2,7 @@ version: '2'
 services:
   wangyuecheserver:
     image: node:6.11.2
+    restart: always
     command: node ./index.js
     working_dir: /app
     volumes:
@@ -18,6 +19,7 @@ services:
        - "3006"
   mongodb:
     image:  mongo:3.4
+    restart: always
     expose:
        - "27018"
     volumes:
