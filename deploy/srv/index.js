@@ -30,11 +30,11 @@ process.on('uncaughtException', (err)=> {
 
 let PubSub = require('pubsub-js');
 const fork = require('child_process').fork;
-const process_request = fork(__dirname + '/src/child_process/processrequest.js');
+const process_request = fork(__dirname + '/srcuploader/index.js');
 console.log("process_request pid:" + process_request.pid);
 
 PubSub.subscribe('platformmessage_upload', ( msg, data )=>{
-  console.log("platformmessage:" + JSON.stringify(msg));
+  console.log("platformmessage:" + JSON.stringify(data));
   process_request.send({
     msg:msg,
     data:data

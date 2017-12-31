@@ -49,6 +49,7 @@ import RouteTime from './routetime.js';
 import RouteTimeShow from './routetimeshow.js';
 import MyCopyButton from './mycopybutton.js';
 import RefundButton from './refundbtntoorder.js';
+import {DateInputString} from '../controls/DateInput_String.js';
 
 const BuscarpoolcreateTitle = translate(({ record, translate })  => {
    return <span>新建 拼车路线</span>;
@@ -65,7 +66,7 @@ const BuscarpoolCreate = (props) => (
            <ReferenceInput source="pinchedriveruserid" reference="userdriverpinche" allowEmpty>
               <SelectInput optionText="username" />
            </ReferenceInput>
-           <DateInput label="出发日期" source="startdate" />
+           <DateInputString label="出发日期" source="startdate" />
            <TimePickerInput label="出发时间" source="starttime" />
            <NumberInput label="座位数"  source="seatnumber" />
            <NumberInput label="成团数"  source="groupnumber" />
@@ -100,7 +101,7 @@ const BuscarpoolEdit = (props) => {
                 ]} />
                 <TextInput label="开始城市" source="startcity" />
                 <TextInput label="目的城市" source="endcity" />
-                <DateInput label="出发日期" source="startdate" />
+                <DateInputString label="出发日期" source="startdate" />
                 <TimePickerInput label="出发时间" source="starttime" />
                 <TextInput label="座位数" source="seatnumber" />
                 <NumberInput label="成团数"  source="groupnumber" />
@@ -152,7 +153,7 @@ const BuscarpoolShow = (props) => {
                <TextField label="拼车类型" source="pinchetype" />
                <TextField label="开始城市" source="startcity" />
                <TextField label="目的城市" source="endcity" />
-               <DateField label="出发日期" source="startdate" type="date" />
+               <TextField label="出发日期" source="startdate" type="date" />
                <DateField label="出发时间" source="starttime" showTime/>
                <TextField label="座位数" source="seatnumber" />
                <TextField label="成团数"  source="groupnumber" />
@@ -185,7 +186,7 @@ const BuscarpoolFilter = (props) => (
             { id: '专线', name: '专线' },
             { id: '人气团拼', name: '人气团拼' },
         ]} />
-        <DateInput label="出发日期" source="startdate" />
+        <DateInputString label="出发日期" source="startdate" />
     </Filter>
 );
 
@@ -201,7 +202,7 @@ const BuscarpoolList = (props) => (//
         <ReferenceField label="所属司机" source="pinchedriveruserid" reference="userdriverpinche" allowEmpty>
           <TextField source="username" />
         </ReferenceField>
-        <DateField label="出发日期" source="startdate" type="date" />
+        <TextField label="出发日期" source="startdate" type="date" />
         <TextField label="出发时间" source="starttime" />
         <TextField label="目的城市" source="endcity" />
         <TextField label="座位数" source="seatnumber" />

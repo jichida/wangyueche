@@ -229,3 +229,16 @@
      export const jsCallPhone = (phone) => {
        window.xview.jsCallPhone(phone);
      }
+
+     export const playaudio = (name)=>{
+       const json = {
+            "voiceName":`${name}.mp3`
+       };
+       if(!!window.xview.xviewVoicePrompt){
+         window.xview.xviewVoicePrompt(JSON.stringify(json));
+       }
+       else{
+         console.log(`找不到xviewVoicePrompt方法`)
+       }
+
+     }

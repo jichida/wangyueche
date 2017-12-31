@@ -23,7 +23,7 @@ const OperateArriveTitle = ({ record }) => {
 const OperateArriveShow = (props) => (
        <Show title={<OperateArriveTitle />} {...props}>
            <SimpleShowLayout>
-           <TextField label="订单号" source="Orderld" />
+           <TextField label="订单号" source="OrderId" />
            <TextField label="车辆到达经度" source="DestLongitude" />
            <TextField label="车辆到达纬度" source="DestLatitude" />
            <TextField label="坐标加密标识" source="Encrypt" />
@@ -39,7 +39,7 @@ const OperateArriveShow = (props) => (
 const OperateArriveList = (props) => (//
      <List title="车辆经营到达列表" {...props}  sort={{ field: 'DestTime', order: 'DESC' }}>
         <Datagrid>
-        <TextField label="订单号" source="Orderld" />
+        <TextField label="订单号" source="OrderId" />
         <TextField label="车辆到达经度" source="DestLongitude" />
         <TextField label="车辆到达纬度" source="DestLatitude" />
         <TextField label="坐标加密标识" source="Encrypt" />

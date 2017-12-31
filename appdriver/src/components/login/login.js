@@ -129,6 +129,7 @@ export class Page extends Component {
                         <img src="newimg/24.png" alt=''/>
                     </div>
                     <PageForm onClickLogin={this.onClickLogin}/>
+
                 </div>
             </div>
         )

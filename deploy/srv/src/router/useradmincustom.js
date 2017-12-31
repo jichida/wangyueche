@@ -3,12 +3,28 @@ let mongoose     = require('mongoose');
 let path = require('path');
 var fs = require('fs');
 const config = require('../config.js');
-const moment  = require('moment');
 let middlewareauth = require('./middlewareauth.js');
 const pinche = require('../handler/common/pinche.js');
 const _ = require('lodash');
+let dbs = require('../db/index.js');
 
 let startadmincustom = (app)=>{
+  app.post('/findone/:resourcename',(req,res)=>{
+    console.log("findone:" + req.params.resourcename);
+    let schmodel = dbs[req.params.resourcename];
+    let dbModel = mongoose.model(schmodel.collectionname, schmodel.schema);
+    dbModel.findOne({},(err,result)=>{
+      if(!err && !!result){
+        result = result.toJSON();
+        res.status(200).json(result);
+      }
+      else{
+        res.status(404).json({});
+      }
+    });
+  });
+
+
   app.post('/pincheorderrefund/:orderid',(req,res)=>{
       console.log("orderid:" + req.params.orderid);
       pinche.pincheorderrefund(req.params.orderid,(err,result)=>{

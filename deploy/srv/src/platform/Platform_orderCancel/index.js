@@ -9,9 +9,9 @@
  订单信息（阶段N)，程序获取
  */
 // let Platform_orderCancelSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Address:Number,//	是	数字型	F6	上车地点行政区划代码	见 GBjT 2260
-//     Orderld:String,	//	是	字符型	V64	订单编号
+//     OrderId:String,	//	是	字符型	V64	订单编号
 //     OrderTime:Date,//	否	数字型	F14	订单时间	YYYYMMDDhhmmss
 //     CancelTime:Date,//	是	数字型	F14	订单撤销时间	YYYYMMDDhhmmss
 //     Operator:Number,	//	 是	字符型	V64	  撤销发起方	1.乘客2:驾驶员3 .平台公司
@@ -25,8 +25,8 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
+const moment = require('moment');
 // "srcaddress" : {
 //     "location" : {
 //         "lng" : 118.728138148353,
@@ -51,11 +51,11 @@ const reasonflag = [
 ];
 exports.insertOrderCancel  = ({triprequest,triporder,canceltypecode=1})=> {
     let orderCancelDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Address:config.Address,// 数据库中读取
-        Orderld:triporder._id,
-        OrderTime:util.gettimeformat(triporder.created_at),
-        CancelTime:util.gettimeformat(triporder.updated_at),
+        OrderId:triporder._id,
+        OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
+        CancelTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
         Operator:1,//撤销发起方	1.乘客2:驾驶员3 .平台公司
         CancelTypeCode:canceltypecode,//	 是  字符型	  V32	  撤销类型代码	1:乘客提前撤销2:驾驶员提前撤销3:平台公司撤销4 .乘客违约撤销 5 .驾驶员违约撤销
         CancelReason:reasonflag[canceltypecode],

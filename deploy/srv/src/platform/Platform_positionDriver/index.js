@@ -7,8 +7,8 @@
  程序获取，司机定位信息，定时获取
  */
 // let Platform_positionDriverSchema= new Schema({
-//     Companyld:String,		//	是	字符型	V32	网约车公司标识
-//     Licenseld:String,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
+//     CompanyId:String,		//	是	字符型	V32	网约车公司标识
+//     LicenseId:String,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
 //     DriverRegionCode:Number,	//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
 //     VehicleNo:String,		//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
 //     PositionTime:Date,	//	是	数字型	V14		定位时间	umxtlme
@@ -19,7 +19,7 @@
 //     Elevation:Number,	//	否	数字型	V10		海拔高度	单位:米
 //     Speed:Number,	//	否	数字型	V10		瞬时速度	单位 :公里每小时(km/h)
 //     BizStatus:Number,	//	否	数字型	V10		营运状态	1:载客、2.接单、3 :空驶4.停运
-//     Orderld:String,		//	是	字符型	V64		订单编号
+//     OrderId:String,		//	是	字符型	V64		订单编号
 // });
 // Platform_positionDriverSchema.plugin(mongoosePaginate);
 
@@ -30,17 +30,16 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
-
+const moment = require('moment');
 
 exports.insertPositionDriver  = (actiondata)=> {
     let positionDriverDoc = {
-        Companyld:config.Companyld,		//	是	字符型	V32	网约车公司标识
-        Licenseld:actiondata.licenseld,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
+        CompanyId:config.CompanyId,		//	是	字符型	V32	网约车公司标识
+        LicenseId:actiondata.licenseld,		//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
         DriverRegionCode:actiondata.riverregioncode,	//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
         VehicleNo:actiondata.vehicleno,		//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
-        PositionTime:util.gettimeformat(new Date()),	//	是	数字型	V14		定位时间	umxtlme
+        PositionTime:moment().format('YYYY-MM-DD HH:mm:ss'),	//	是	数字型	V14		定位时间	umxtlme
         Longitude:actiondata.driverlocation[0],
         Latitude:actiondata.driverlocation[1],
         Encrypt:1,	//	否	数字型	V10		坐标加密标识	2:WGS84 GPS 标准3:BD一09 百度标准4:CGCS2000 北斗标准0:其他
@@ -48,7 +47,7 @@ exports.insertPositionDriver  = (actiondata)=> {
         Elevation:0,	//	否	数字型	V10		海拔高度	单位:米
         Speed:0,	//	否	数字型	V10		瞬时速度	单位 :公里每小时(km/h)
         BizStatus:actiondata.bizstatus,	//	否	数字型	V10		营运状态	1:载客、2.接单、3 :空驶4.停运
-        Orderld:actiondata.triporderid,		//	是	字符型	V64		订单编号
+        OrderId:actiondata.triporderid,		//	是	字符型	V64		订单编号
     };
     let eModel = dbplatform.Platform_positionDriverModel;
     let entity = new eModel(positionDriverDoc);

@@ -16,16 +16,22 @@ let sendsms= (tel,smstext,callbackfn)=> {
         url: baseUrl,
         form: params
     }, (err, resp, body)=> {
-         let result = body.split(',');
-         if (result[0] !== '0') {
-            let error = new Error(result[1]);
-            error.status = parseInt(result[0], 10);
-            error.raw = body;
-            callbackfn(error,null);
-          }
-          else{
-            callbackfn(null,true);
-          }
+         if(!!body){
+           let result = body.split(',');
+           if (result[0] !== '0') {
+              let error = new Error(result[1]);
+              error.status = parseInt(result[0], 10);
+              error.raw = body;
+              callbackfn(error,null);
+            }
+            else{
+              callbackfn(null,true);
+            }
+         }
+         else{
+           let error = new Error('无法访问短信服务');
+           callbackfn(error,null);
+         }
     });
 };
 

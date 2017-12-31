@@ -61,7 +61,7 @@ let setorderpaid = (out_trade_no)=>{
           let updatedpaydata = {
                orderstatus : '已支付',
                paystatus: '已支付',
-               pay_at:new Date()
+               pay_at:moment().format('YYYY-MM-DD HH:mm:ss')
           };
 
           if(orderinfo.triptype === '充值'){

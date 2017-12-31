@@ -54,6 +54,7 @@ const authhandler = {
   'carupdate':car.carupdate,
   'carsetdefault':car.carsetdefault,
 
+  'getrealnameprofile':driveruserlogin.getrealnameprofile,
   'fillrealnameprofile':driveruserlogin.fillrealnameprofile,
   'queryuserbalance':driveruserlogin.queryuserbalance,
 

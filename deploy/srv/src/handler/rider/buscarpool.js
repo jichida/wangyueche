@@ -18,8 +18,8 @@ exports.getbuscarpool = (socket,actiondata,ctx)=>{
       let curdate =  moment(startdate);
       let nextdate = moment(curdate).add(1, 'days');
       query.startdate = {
-        $gte: curdate.toDate(),
-        $lt: nextdate.toDate()
+        $gte: curdate.format('YYYY-MM-DD'),
+        $lt: nextdate.format('YYYY-MM-DD'),
       }
   }
    query.isenabled = true;

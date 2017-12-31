@@ -7,7 +7,7 @@
  程序获取，车辆定位信息，定时获取
  */
 // let Platform_positionVehicleSchema= new Schema({
-//     Companyld:String,	//是	字符型	V32	公司标识
+//     CompanyId:String,	//是	字符型	V32	公司标识
 //     VehicleNo:String,	//是	字符型	V32	车辆号牌
 //     VehicleRegionCode:Number,		//是	数字型	F6 行政区划代码	车辆报备地行政区划代码，地市级 ，应符合GB/T2260
 //     PositionTime:Date,		//是	数字型	 V14	定位时间	Unlxtlme
@@ -21,7 +21,7 @@
 //     WarnStatus:Number,		//	否	数字型	V10	预警状态	参考 JT/T808
 //     VehStatus:Number,		//	否	数字型	V10	车辆状态	参考 JT/T808
 //     BizStatus:Number,		//	否	数字型	V10	营运状态	1.载客2 :接单3 :空驶  4 .停运
-//     Orderld:String,	//是	字符型	V64	订单编号	非营运状态下填 "0"
+//     OrderId:String,	//是	字符型	V64	订单编号	非营运状态下填 "0"
 // });
 // Platform_positionVehicleSchema.plugin(mongoosePaginate);
 
@@ -32,17 +32,17 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const util = require('../util');//
 let dbplatform = require('../../db/modelsplatform.js');
-
+const moment = require('moment');
 
 exports.insertPositionVehicle  = (actiondata)=> {
     let positionVehicleDoc = {
-        Companyld:config.Companyld,		//	是	字符型	V32	网约车公司标识
+        CompanyId:config.CompanyId,		//	是	字符型	V32	网约车公司标识
         VehicleNo:actiondata.licenseld,			//	是	字符型	V32	网约车公司标识	是	字符型	V32		机动车驾驶证号		驾驶员报备地行政区划
         VehicleRegionCode:actiondata.riverregioncode,		//	是	数字型	F6		行政区划代码	代码，地市级，应符合GB/T2260
         VehicleNo:actiondata.vehicleno,	//	是	字符型	V32	网约车公司标识	是	字符型 V32		车辆号牌
-        PositionTime:util.gettimeformat(new Date()),//	是	数字型	V14		定位时间	umxtlme
+        PositionTime:moment().format('YYYY-MM-DD HH:mm:ss'),//	是	数字型	V14		定位时间	umxtlme
         Longitude:actiondata.driverlocation[0],	//	是	数字型	V10		经度	单位 :1祷 10-6 度
         Latitude:actiondata.driverlocation[1],	//	是	数字型	V10		纬度	单位 :1铃 10-6 度 1:GC]-02 测绘局标准
         Encrypt:1,	//	否	数字型	V10		坐标加密标识	2:WGS84 GPS 标准3:BD一09 百度标准4:CGCS2000 北斗标准0:其他
@@ -53,7 +53,7 @@ exports.insertPositionVehicle  = (actiondata)=> {
         WarnStatus:0,		//	否	数字型	V10	预警状态	参考 JT/T808
         VehStatus:0,		//	否	数字型	V10	车辆状态	参考 JT/T808
         BizStatus:0,		//	否	数字型	V10	营运状态	1.载客2 :接单3 :空驶  4 .停运
-        Orderld:actiondata.triporderid,			//	是	字符型	V64		订单编号
+        OrderId:actiondata.triporderid,			//	是	字符型	V64		订单编号
     };
     let eModel = dbplatform.Platform_positionVehicleModel;
     let entity = new eModel(positionVehicleDoc);

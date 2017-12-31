@@ -8,8 +8,8 @@
  程序获取，驾驶员处罚信息接口
  */
 // let Platform_ratedDriverPunishSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
-//     Licenseld:String,	//	是	字符型	V32	机动车驾驶证编号
+//     CompanyId:String,	//	是	字符型	V32	公司标识
+//     LicenseId:String,	//	是	字符型	V32	机动车驾驶证编号
 //     PunishTime:Date,	//	是	数字型	F14	处罚时间	YYYYMMDDhhmmss
 //     PunishReason:String,	//	否	字符型	V128	处罚原因
 //     PunishResult:String,	//	是	字符型	V128	处罚结果
@@ -23,15 +23,15 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
 exports.insertRatedDriverPunish  = ({triprequest,triporder})=> {
     let ratedDriverPunishDoc = {
-        Companyld:config.Companyld,
-        Licenseld:'',// 数据库中读取
-        PunishTime:util.gettimeformat(triporder.updated_at),
+        CompanyId:config.CompanyId,
+        LicenseId:'',// 数据库中读取
+        PunishTime:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
         PunishReason:'',
         PunishResult:'',
     };

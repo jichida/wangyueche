@@ -18,42 +18,72 @@ import { push } from 'react-router-redux';
 import { CreateButton,NumberInput,Create, Edit, SimpleForm, DisabledInput, TextInput,  Show,SimpleShowLayout,ShowButton,
    DateInput, LongTextInput, ReferenceManyField, Datagrid, TextField, DateField, EditButton,BooleanInput,BooleanField } from 'admin-on-rest/lib/mui';
 //import { CreateButton } from 'admin-on-rest/lib/mui/button';
+import _ from 'lodash';
 
-import CircularProgress from 'material-ui/CircularProgress';
+// import CircularProgress from 'material-ui/CircularProgress';
+// 参见代码: src/mui/detail/Edit.js
 class Page extends Component {
 
-    componentDidMount() {
+    componentWillMount() {
       this.props.crudGetList(this.props.resource);
     }
-    componentWillReceiveProps (nextProps) {
-      if(nextProps.ids.length > 0){
-          let id = nextProps.ids[0];
-          let basePath = nextProps.location.pathname;
-          let pathname=`${basePath}/${encodeURIComponent(id)}/show`;
-          console.log("enter--->" + pathname);
-          nextProps.redirecturl(pathname);
-          //nextProps.dispatch(pushAction(pathname));
-      }
+    // componentWillReceiveProps (nextProps) {
+    //   if(nextProps.ids.length > 0){
+    //       let id = nextProps.ids[0];
+    //       let basePath = nextProps.location.pathname;
+    //       let pathname=`${basePath}/${encodeURIComponent(id)}/show`;
+    //       console.log("enter--->" + pathname);
+    //       nextProps.redirecturl(pathname);
+    //       //nextProps.dispatch(pushAction(pathname));
+    //   }
+    //
+    // }
 
-    }
     render() {
-        if(this.props.ids.length === 0){
-          let basePath = this.props.location.pathname;
-          return (<CreateButton basePath={basePath} />)
+        console.log(this.props);
+        const {isLoading,ids} = this.props;
+        if(ids.length === 0){
+          let Create = this.props.Create;
+          return <Create actions={null} {...this.props} hasShow={false} hasEdit={false} isLoading={isLoading} />
         }
-        return <CircularProgress size={60} thickness={7} />;
+        const id = ids[0];
+        const {
+            resource,
+            location
+          } = this.props;
+        const editprops = {
+          actions:null,
+          resource,
+          location:{
+            pathname:`${resource}/${id}`,
+          },
+          match:{
+            path:`${resource}/${id}`,
+            url:`${resource}/${id}`,
+            params:{
+              id
+            }
+          }
+        }
+
+        let Edit = this.props.Edit;
+        return <Edit {...editprops} isLoading={isLoading}/>
     }
 }
 
 
 const mapStateToProps = (state,props) => {
-  const resourceState = state.admin[props.resource];
-  console.log('resourceState===>' + JSON.stringify(resourceState));
+  const resourceState = state.admin.resources[props.resource];
   let page = {
-    ids: resourceState.list.ids,
+    ids:[],
+    isLoading: state.admin.loading > 0,
   };
-  console.log("page:" + JSON.stringify(page));
-  return Object.assign({},page);
+  if(!!resourceState){
+    page.ids = _.get(resourceState,'list.ids',[]);
+    console.log(`resourceState==>${JSON.stringify(resourceState)}`)
+  }
+
+  return {...page};
 };
 
 const mapDispatchToProps = (dispatch) => {

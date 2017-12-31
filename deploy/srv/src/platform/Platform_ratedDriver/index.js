@@ -8,8 +8,8 @@
  程序获取，驾驶员信誉信息
  */
 // let Platform_ratedDriverSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
-//     Licenseld:String,	//	是	字符型	V32	机动车驾驶证编号
+//     CompanyId:String,	//	是	字符型	V32	公司标识
+//     LicenseId:String,	//	是	字符型	V32	机动车驾驶证编号
 //     Level:Number,	//	是	数字型	VI0	服务质量信誉等级	五分制
 //     TestDate:Date,	//	是	数字型	  F8	服务质量信誉考核日 期	YYYYMMDD
 //     TestDepartment:String,	//	是	字符型	V128 服务质量信誉考核机构
@@ -24,19 +24,19 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const moment = require('moment');//
 let dbplatform = require('../../db/modelsplatform.js');
 
 
 exports.insertRatedDriver  = (actiondata)=> {
     let ratedDriverDoc = {
-        Companyld:config.Companyld,
-        Licenseld:'',
+        CompanyId:config.CompanyId,
+        LicenseId:'',
         Level:0,
-        TestDate:util.gettimeformat(triporder.updated_at),
+        TestDate:moment(triporder.updated_at).format('YYYY-MM-DD HH:mm:ss'),
         TestDepartment:'',
     };
-    let eModel = dbplatform.Platform_insertRatedDriverModel;
+    let eModel = dbplatform.Platform_ratedDriverModel;
     let entity = new eModel(ratedDriverDoc);
     entity.save((err,result)=> {
         if (!err && result) {

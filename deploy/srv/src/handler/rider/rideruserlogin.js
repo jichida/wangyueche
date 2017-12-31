@@ -7,10 +7,11 @@ let winston = require('../../log/log.js');
 let dbplatform = require('../../db/modelsplatform.js');
 const Chance = require('chance');
 const chance = new Chance();
-const uuid = require('node-uuid');
 const coupon = require('./mycoupon.js');
 const oftenuseaddress = require('./oftenuseaddress.js');
 const rate = require('../common/rate.js');
+const loginauth = require('../common/loginauth.js');
+const moment = require('moment');
 
 exports.queryuserbalance = (socket,actiondata,ctx)=>{
   let userModel = DBModels.UserRiderModel;
@@ -181,7 +182,7 @@ exports.logout = (socket,actiondata,ctx)=>{
 
 exports.fillprofile = (socket,actiondata,ctx)=>{
   if (typeof actiondata.birthday === 'string') {
-    actiondata.birthday = new Date(Date.parse(actiondata.birthday));
+    actiondata.birthday = moment(actiondata.birthday).format('YYYY-MM-DD');
   }
 
   let userModel = DBModels.UserRiderModel;
@@ -220,4 +221,117 @@ exports.fillprofile = (socket,actiondata,ctx)=>{
 
     }
   });
+};
+
+
+exports.oauthbinduser = (socket,actiondata,ctx)=>{
+  let newUser = {};
+  if(actiondata.bindtype === 'qq'){
+    newUser.openidqq = actiondata.openid;
+  }
+  else if(actiondata.bindtype === 'weixin'){
+    newUser.openidweixin = actiondata.openid;
+  }
+  else{
+    socket.emit('common_err',{errmsg:'不支持该类型绑定',type:'oauthbinduser'});
+    return;
+  }
+
+  let globalUserauth = loginauth.globalUserauth;
+  if(!globalUserauth.hasOwnProperty(actiondata.username)){
+   socket.emit('common_err',{errmsg:'请先发送验证码',type:'oauthbinduser'});
+   return;
+ }
+ if(globalUserauth[actiondata.username].authcode != actiondata.authcode){
+   socket.emit('common_err',{errmsg:'验证码不对',type:'oauthbinduser'});
+   return;
+ }
+ let nowDate = new Date();
+ let min2Ago = new Date(nowDate.getTime() - 1000 * config.authexptime);
+ if(min2Ago > globalUserauth[actiondata.username].updated_at){
+   socket.emit('common_err',{errmsg:'验证码已过期',type:'oauthbinduser'});
+   return;
+ }
+
+ let  updateduserobj = {updated_at:moment().format('YYYY-MM-DD HH:mm:ss')};
+ if(actiondata.bindtype === 'qq'){
+   updateduserobj.openidqq = actiondata.openid;
+ }
+ else if(actiondata.bindtype === 'weixin'){
+   updateduserobj.openidweixin = actiondata.openid;
+ }
+ let queryuserobj = {username:actiondata.username};
+ console.log(`queryuserobj==>${JSON.stringify(queryuserobj)},updateduserobj==>${JSON.stringify(updateduserobj)}`)
+ let userModel = DBModels.UserRiderModel;
+ userModel.findOneAndUpdate(queryuserobj,
+   updateduserobj,{upsert:true,new: true,},(err,result)=>{
+   if(!err && !!result){
+     setloginsuccess(socket,ctx,result);
+   }
+   socket.emit('oauthbinduser_result',{});
+ });
+  //以下逻辑待实现
+  // tryregisteruser(socket,actiondata,ctx,newUser,'oauthbinduser_err',(isok,user)=>{
+  //     if(isok){
+  //         setloginsuccess(socket,ctx,user);
+  //         socket.emit('oauthbinduser_result',{});
+  //      }
+  //     else{
+  //         hashPassword(actiondata.password, user.passwordsalt, (err, passwordHash)=> {
+  //         //验证才能通过！
+  //         if (passwordHash == user.passwordhash) {
+  //             let  updateduserobj = {};
+  //             if(actiondata.bindtype === 'qq'){
+  //               updateduserobj.openidqq = actiondata.openid;
+  //             }
+  //             else if(actiondata.bindtype === 'weixin'){
+  //               updateduserobj.openidweixin = actiondata.openid;
+  //             }
+  //             let userModel = DBModels.UserModel;
+  //             userModel.findOneAndUpdate({_id:user._id}, {$set:updateduserobj},{new: true},(err,result)=>{
+  //               if(!err && result){
+  //                   setloginsuccess(socket,ctx,result);
+  //                   socket.emit('oauthbinduser_result',{});
+  //               }
+  //             });
+  //         }
+  //         else{
+  //           socket.emit('common_err',{errmsg:'密码不对',type:'oauthbinduser'});
+  //         }
+  //       });
+  //      }
+  // });
+}
+
+exports.loginwithoauth = (socket,actiondata,ctx)=>{
+  //actiondata:bindtype:'qq,weixin',openid:'xxx'
+    let  queryuserobj = {};
+    if(actiondata.bindtype === 'qq'){
+      queryuserobj.openidqq = actiondata.openid;
+      if(!queryuserobj.openidqq){
+        socket.emit('common_err',{errmsg:'QQopenid不能为空',type:'login'});
+        return;
+      }
+    }
+    else if(actiondata.bindtype === 'weixin'){
+      queryuserobj.openidweixin = actiondata.openid;
+      if(!queryuserobj.openidweixin){
+        socket.emit('common_err',{errmsg:'微信openid不能为空',type:'login'});
+        return;
+      }
+    }
+    else{
+      socket.emit('common_err',{errmsg:'不支持该类型登录',type:'login'});
+      return;
+    }
+    let userModel = DBModels.UserRiderModel;
+    userModel.findOneAndUpdate(queryuserobj,
+      {updated_at:new Date()},{new: true},(err,result)=>{
+      if(!err && !!result){
+        setloginsuccess(socket,ctx,result);
+      }
+      else{
+        socket.emit('loginwithoauth_result',actiondata);
+      }
+    });
 };

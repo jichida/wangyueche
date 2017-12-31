@@ -40,6 +40,10 @@ export class Page extends Component {
     }
 
     startTime=()=>{
+      if(!!timeinterval){
+        window.clearInterval(timeinterval);
+        timeinterval = null;
+      }
         timeinterval = window.setInterval(()=>{
             if(this.state.time===0){
                 window.clearInterval(timeinterval);
@@ -63,6 +67,12 @@ export class Page extends Component {
             }
         },1000);
     }
+    componentWillUnmount() {
+      if(!!timeinterval){
+        window.clearInterval(timeinterval);
+        timeinterval = null;
+      }
+    }
 
     render(){
         const renderstyle = !!this.state.style?{}:this.state.domstyle;
@@ -79,5 +89,3 @@ export class Page extends Component {
 };
 
 export default Page;
-
-

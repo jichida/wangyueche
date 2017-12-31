@@ -11,10 +11,10 @@ const util = require('../../platform/util.js');
 exports.senddriverappinfo = (socket,actiondata,ctx)=>{
    if(ctx.approvalstatus === '已审核'){
        let eModel = dbplatform.Platform_baseInfoDriverAppModel;
-       eModel.findOne({licenseld:ctx.driverinfo.Licenseld},(err,result)=>{
+       eModel.findOne({licenseld:ctx.driverinfo.LicenseId},(err,result)=>{
            let postdata = {
                address:config.Address,
-               licenseld:ctx.driverinfo.Licenseld,
+               licenseld:ctx.driverinfo.LicenseId,
                appversion:actiondata.appversion,
                nettype:util.getmobilenettype(ctx.driverinfo.DriverPhone||ctx.username),//手机运营商	1.中国联通2 .中国移动3 .中国电信4 :其他
            };

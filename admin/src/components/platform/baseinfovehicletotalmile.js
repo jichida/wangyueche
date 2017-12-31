@@ -23,20 +23,16 @@ import {
 import Chip from 'material-ui/Chip';
 import RichTextEditorInput from '../controls/richtoolbar.js';
 
-import ShowPageOne from '../controls/singlelistpage.js';
 
 
 const BaseInfoVehicleTotalMileTitle = ({ record }) => <span>车辆里程信息</span>;
-const BaseInfoVehicleTotalMileShow = (props) => (
-       <ShowPage title={<BaseInfoVehicleTotalMileTitle />} {...props}>
-           <SimpleShowLayout>
-           <TextField label="车辆号牌"  source="VehicleNo" />
-           <TextField label="行驶总里程"  source="TotalMile" />
-           </SimpleShowLayout>
-       </ShowPage>
-);
 
-export {BaseInfoVehicleTotalMileShow};
-export const BaseInfoVehicleTotalMileList = props => (
-    <ShowPageOne resource={props.resource} location={props.location} ShowPage={BaseInfoVehicleTotalMileShow} hasEdit={false}/>
+
+export const BaseInfoVehicleTotalMileList = (props) => (//
+     <List title="车辆里程信息" {...props} >
+        <Datagrid>
+        <TextField label="车辆号牌"  source="VehicleNo" />
+        <TextField label="行驶总里程"  source="TotalMile" />
+        </Datagrid>
+    </List>
 );

@@ -8,6 +8,7 @@ const price = require('../common/price');
 const geolib = require('geolib');
 const async = require('async');
 const _ = require('lodash');
+const moment = require('moment');
 
 const notifymessage_all = require('../common/notifymessage.js');
 
@@ -31,14 +32,14 @@ let getdistance =(fromlocation,tolocation)=>{
 let calcpriceanddistance = (ctx,curlocation,forceupdate=false)=>{
     let ctxrealtimeprice = ctx.realtimeprice;
     let distance = getdistance(ctxrealtimeprice.lastlocation,curlocation);
-    let datenow = new Date();
-    let difftime = (datenow.getTime() - ctxrealtimeprice.lastlocationtime.getTime())/1000;
+    let datenow = moment();//(dateend.unix() - datestart.unix())/1000;
+    let difftime = (datenow.unix() - moment(ctxrealtimeprice.lastlocationtime).unix())/1000;
     if(distance > 50 || difftime > 10 || forceupdate){
         //50米或10秒保存一次
         ctxrealtimeprice.totaldistance += distance;
         ctxrealtimeprice.totalduring += difftime;
 
-        ctxrealtimeprice.lastlocationtime = datenow;
+        ctxrealtimeprice.lastlocationtime = moment().format('YYYY-MM-DD HH:mm:ss');
         ctxrealtimeprice.lastlocation = curlocation;
 
         price.getBaseInfoCompanyFare({
@@ -54,7 +55,7 @@ let calcpriceanddistance = (ctx,curlocation,forceupdate=false)=>{
                     $set: {
                         realtimepricedetail,
                         ctxrealtimeprice,
-                        updated_at: new Date(),
+                        updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
                         driverlocation: curlocation,
                         orderprice:realtimepricedetail.price,
                     }
@@ -127,7 +128,7 @@ exports.sendcurlocationtoserver = (socket,actiondata,ctx)=>{
     //===========插入平台的处理===========
         let postdata = {
               vehicleno: ctx.driverinfo.VehicleNo,
-              licenseld: ctx.driverinfo.Licenseld,
+              licenseld: ctx.driverinfo.LicenseId,
               vehicleregioncode:ctx.driverinfo.VehicleRegionCode,
               riverregioncode:actiondata.DriverRegionCode,//注:DriverRegionCode由参数发送过来<--------------------------------
               driverlocation: actiondata.driverlocation,//营运状态	1:载客、2.接单、3 :空驶、4.停运==>停运->空驶->接单->载客->空驶
@@ -164,7 +165,12 @@ exports.acceptrequest = (socket,actiondata,ctx)=>{
     if(!err && triprequest){
       let TripOrderModel = DBModels.TripOrderModel;
       TripOrderModel.findOneAndUpdate({triprequest:triprequest._id},
-          {$set:{driverinfo:ctx.driverinfo,driveruserid:ctx.userid,updated_at:new Date(),driverlocation:param.driverlocation}},{new: true},(err,triporder)=>{
+          {$set:{
+            driverinfo:ctx.driverinfo,
+            driveruserid:ctx.userid,
+            updated_at:moment().format('YYYY-MM-DD HH:mm:ss'),
+            driverlocation:param.driverlocation
+          }},{new: true},(err,triporder)=>{
         winston.getlog().info("acceptrequest err===>" + JSON.stringify(err));
         winston.getlog().info("acceptrequest triporder===>" + JSON.stringify(triporder));
 
@@ -229,7 +235,7 @@ exports.acceptrequest = (socket,actiondata,ctx)=>{
 exports.updaterequeststatus = (socket,actiondata,ctx)=>{
   let param = actiondata;
   let TripRequestModel = DBModels.TripRequestModel;
-  let datenow = new Date();
+  let datenow = moment().format('YYYY-MM-DD HH:mm:ss');
   let updatedorder = {
       updated_at:datenow,
       driverlocation:actiondata.driverlocation
@@ -250,8 +256,8 @@ exports.updaterequeststatus = (socket,actiondata,ctx)=>{
           totaldistance:0,
           totalduring:0,
           totalprice:0,
-          starttime:datenow,
-          lastlocationtime:datenow,
+          starttime: datenow,
+          lastlocationtime: datenow,
           lastlocation:actiondata.driverlocation,
       };
       calcpriceanddistance(ctx,actiondata.driverlocation,true);
@@ -260,7 +266,7 @@ exports.updaterequeststatus = (socket,actiondata,ctx)=>{
       ctx.bizstatus = 3;//3 :空驶
       updatedrequest.getoffdate_at = datenow;//下车时间
       updatedrequest.getofflocation = actiondata.driverlocation;//下车位置
-      updatedorder.getoffdate_at = datenow;//上车时间
+      updatedorder.getoffdate_at =  datenow;//上车时间
       updatedorder.getofflocation = actiondata.driverlocation;//下车位置
       //<------动态计算价格，然后设置ctx.realtimeprice为空
       //注意：仍需监听支付消息!!!!!<--user..
@@ -345,7 +351,7 @@ let getfn_cancelorder =(socket,actiondata,ctx)=>{
       TripOrderModel.findOneAndUpdate({
         _id:param.triporderid,
         orderstatus:{ '$nin': ['待支付','已支付','已取消'] }
-      },{$set:{orderstatus:'已取消',updated_at:new Date()}},{new: true},(err,triporder)=>{
+      },{$set:{orderstatus:'已取消',updated_at:moment().format('YYYY-MM-DD HH:mm:ss')}},{new: true},(err,triporder)=>{
         if(!err){
           callbackfn(null,triporder);
         }
@@ -363,7 +369,7 @@ let getfn_cancelrequest = (socket,actiondata,ctx)=>{
     TripRequestModel.findOneAndUpdate({
       _id:param.triprequestid,
       requeststatus:{ '$nin': ['行程中','行程完成','已取消'] }
-    },{$set:{requeststatus:'已取消',updated_at:new Date()}},{new: true},(err,triprequest)=>{
+    },{$set:{requeststatus:'已取消',updated_at:moment().format('YYYY-MM-DD HH:mm:ss')}},{new: true},(err,triprequest)=>{
       if(!err){
         callbackfn(null,triprequest);
       }

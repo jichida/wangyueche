@@ -3,6 +3,7 @@
  */
 import {requestpostdatawithtoken} from '../util/util.js';
 import PicaDisposePhoto from './pica_dispose_photo';
+import _ from 'lodash';
 
 export function fileupload(e,config,callbackfn){
     const {usertoken,...restconfig} = config;
@@ -28,4 +29,10 @@ export function fileupload(e,config,callbackfn){
           callbackfn(issuc,result);
       });
     });
+}
+
+
+export const getthumbnailurl =(url)=>{
+  let thumbnailurl = _.replace(url,'/uploader/','/uploader/thumbnail/');
+  return thumbnailurl;
 }

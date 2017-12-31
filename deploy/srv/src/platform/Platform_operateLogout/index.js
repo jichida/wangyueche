@@ -7,8 +7,8 @@
  程序获取
  */
 // let Platform_operateLogoutSchema= new Schema({
-//     Companyld:String,		//是	字符型	V32	公司标识
-//     Licenseld:String,		//是	字符型	V32	机动车驾驶证 号
+//     CompanyId:String,		//是	字符型	V32	公司标识
+//     LicenseId:String,		//是	字符型	V32	机动车驾驶证 号
 //     VehicleNo:String,		//是	字符型 V32	车辆号牌
 //     LogoutTime:Number,	//是	数字型 F14	车辆经营下线时间 YYYYMMDDhhmm ss
 //     Longitude:Number,	//否	数字型	V10	下线经度	单位 :1铃 10-6度
@@ -16,6 +16,7 @@
 //     Encrypt:Number,	//是	数字型	F1	坐标加密标识	l :GCJ 一02 测绘局标准2:WGS84 GPS 标准3:BD一09 百度标准4: CGCS2000 北斗标准0:其他
 // });
 // Platform_operateLogoutSchema.plugin(mongoosePaginate);
+const moment = require('moment');
 
 let DBModels = require('../../db/models.js');
 let mongoose = require('mongoose');
@@ -24,15 +25,14 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertOperateLogout  = (actiondata)=> {
     let operateLogoutDoc = {
-        Companyld:config.Companyld,
-        Licenseld:actiondata.licenseld,
+        CompanyId:config.CompanyId,
+        LicenseId:actiondata.licenseld,
         VehicleNo:actiondata.vehicleno,
-        LogoutTime:util.gettimeformat(new Date()),
+        LogoutTime:moment().format('YYYY-MM-DD HH:mm:ss'),
         Longitude:actiondata.driverlocation[0],
         Latitude:actiondata.driverlocation[1],
         Encrypt:1,//1:GCJ-02 测绘局标准

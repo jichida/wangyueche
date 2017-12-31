@@ -23,8 +23,8 @@ const OperateDepartTitle = ({ record }) => {
 const OperateDepartShow = (props) => (
        <Show title={<OperateDepartTitle />} {...props}>
            <SimpleShowLayout>
-           <TextField label="订单号" source="Orderld" />
-           <TextField label="机动车驾驶证号" source="Licenseld" />
+           <TextField label="订单号" source="OrderId" />
+           <TextField label="机动车驾驶证号" source="LicenseId" />
            <TextField label="运价类型编码" source="FareType" />
            <TextField label="车辆号牌" source="VehicleNo" />
            <TextField label="车辆出发经度" source="DepLongitude" />
@@ -42,8 +42,8 @@ const OperateDepartShow = (props) => (
 const OperateDepartList = (props) => (//
      <List title="车辆经营出发列表" {...props} sort={{ field: 'DepTime', order: 'DESC' }}>
         <Datagrid>
-        <TextField label="订单号" source="Orderld" />
-        <TextField label="机动车驾驶证号" source="Licenseld" />
+        <TextField label="订单号" source="OrderId" />
+        <TextField label="机动车驾驶证号" source="LicenseId" />
         <TextField label="运价类型编码" source="FareType" />
         <TextField label="车辆号牌" source="VehicleNo" />
         <TextField label="车辆出发经度" source="DepLongitude" />

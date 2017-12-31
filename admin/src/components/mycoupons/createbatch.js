@@ -38,6 +38,7 @@ import TimePicker from 'material-ui/TimePicker';
 import { ReferenceArrayInput, SelectArrayInput } from 'admin-on-rest';
 import CreateBatch from './create.js';
 import moment from 'moment';
+import {DateInputString} from '../controls/DateInput_String.js';
 
 const MycouponcreateTitle = ({ record }) => {
    return <span>新建 批量优惠券</span>;
@@ -58,7 +59,7 @@ const MycouponbatchCreate = (props) => {
                   { id: '旅游大巴', name: '旅游大巴' },
                   { id: '拼车', name: '拼车' },
                 ]} allowEmpty/>
-                <DateInput label="过期时间"  source="expdate" />
+                <DateInputString label="过期时间"  source="expdate" />
                 <NumberInput label="最高抵扣金额(单位：元)"  source="pricediscountmax" />
                 <NumberInput label="最高抵扣（折）,范围：（1-10）"  source="pricediscountpercent" />
                 <NumberInput label="优惠券数量"  source="couponnumber" />

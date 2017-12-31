@@ -18,7 +18,7 @@ let sendauthcode = (socket,actiondata,ctx)=>{
     let nowDate = new Date();
     let userAuth = actiondata;
     console.log(`loginsendauth=>${JSON.stringify(globalUserauth)}`);
-    if(globalUserauth.hasOwnProperty(userAuth.phonenumber)){
+    if(!!globalUserauth[userAuth.phonenumber]){
         let minAgo = new Date(nowDate.getTime() - 1000 * 30);
         if(minAgo < globalUserauth[userAuth.phonenumber].updated_at){
             socket.emit('common_err',{errmsg:'请勿频繁发送验证码',type:'loginsendauth'});
@@ -39,7 +39,7 @@ let sendauthcode = (socket,actiondata,ctx)=>{
         globalUserauth[userAuth.phonenumber].updated_at = nowDate;
     }
     const sms = require('../../smspush/sms.js');
-    let message = `验证码为:${globalUserauth[userAuth.phonenumber].authcode},请在${config.authexptime}秒内登录,过期无效!`;
+    // let message = `验证码为:${globalUserauth[userAuth.phonenumber].authcode},请在${config.authexptime}秒内登录,过期无效!`;
     sms.sendsmstouser(userAuth.phonenumber,`${ctx.usertype}_${userAuth.reason}`,globalUserauth[userAuth.phonenumber].authcode,
       (err,result)=>{
             if(!err){
@@ -49,7 +49,7 @@ let sendauthcode = (socket,actiondata,ctx)=>{
                 socket.emit('common_err',{type:'loginsendauth',errmsg:'发送验证码失败'});
             }
       });
-      console.log(`sendmessage:${message},type_reason:${ctx.usertype}_${userAuth.reason}`);
+      // console.log(`sendmessage:${message},type_reason:${ctx.usertype}_${userAuth.reason}`);
 };
 
 
@@ -105,7 +105,7 @@ exports.loginwithauth = (socket,actiondata,ctx)=>{
         return;
     }
 
-    userModel.findOneAndUpdate({username:actiondata.phonenumber},{updated_at:new Date()},{new: true},(err,userEntity)=> {
+    userModel.findOneAndUpdate({username:actiondata.phonenumber},{updated_at:moment().format('YYYY-MM-DD HH:mm:ss')},{new: true},(err,userEntity)=> {
         if (!err && userEntity) {
             // ctx.userid = userEntity._id.toString();
             // let token = jwt.sign({
@@ -130,8 +130,8 @@ exports.loginwithauth = (socket,actiondata,ctx)=>{
             if (!err) {
                 let datauser = {
                     username: actiondata.phonenumber,
-                    created_at: new Date(),
-                    updated_at: new Date()
+                    created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+                    updated_at: moment().format('YYYY-MM-DD HH:mm:ss')
                 }
                 let userEntity = new userModel(datauser);
                 userEntity.save((err, result)=> {

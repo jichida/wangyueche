@@ -13,6 +13,7 @@ import TimePicker from 'material-ui/TimePicker';
 import moment from 'moment';
 import {TimePickerInput} from '../controls/timepicker.js';
 import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
+import {required} from 'admin-on-rest';
 
 const BaseInfoCompanyPaycreateTitle = ({ record }) => {
    return <span>新建 支付信息</span>;
@@ -20,12 +21,13 @@ const BaseInfoCompanyPaycreateTitle = ({ record }) => {
 const BaseInfoCompanyPayCreate = (props) => (
        <Create {...props} title={<BaseInfoCompanyPaycreateTitle />} >
            <SimpleForm>
-               <TextInputEx label="银行或者非银行支付机构名称全称" source="PayName" />
-               <TextInputEx label="非银行支付机构支付业务许可证编号"  source="Payld" />
-               <TextInputEx label="支付业务类型"  source="PayType" />
-               <TextInputEx label="业务覆盖范围"  source="PayScope" />
-               <TextInputEx label="备付金存管银行全称" source="PrepareBank" />
-               <NumberInputEx label="结算周期(单位:天)" source="CountDate" />
+               <TextInputEx label="银行或者非银行支付机构名称全称" source="PayName" validate={[required]}/>
+               <TextInputEx label="非银行支付机构支付业务许可证编号"  source="PayId" validate={[required]}/>
+               <TextInputEx label="支付业务类型"  source="PayType" validate={[required]}/>
+               <TextInputEx label="业务覆盖范围"  source="PayScope" validate={[required]}/>
+               <TextInputEx label="备付金存管银行全称" source="PrepareBank" validate={[required]}/>
+               <BooleanInput label="是否失效(0有效1失效)" source="State" defaultValue={false} />
+               <NumberInputEx label="结算周期(单位:天)" source="CountDate" validate={[required]}/>
            </SimpleForm>
        </Create>
 );
@@ -38,51 +40,35 @@ const BaseInfoCompanyPayeditTitle = ({ record }) => {
 const BaseInfoCompanyPayEdit = (props) => {
       return (<Edit title={<BaseInfoCompanyPayeditTitle />} {...props}>
           <SimpleForm>
-            <TextInputEx label="银行或者非银行支付机构名称全称" source="PayName" />
-            <TextInputEx label="非银行支付机构支付业务许可证编号"  source="Payld" />
-            <TextInputEx label="支付业务类型"  source="PayType" />
-            <TextInputEx label="业务覆盖范围"  source="PayScope" />
-            <TextInputEx label="备付金存管银行全称" source="PrepareBank" />
-            <NumberInputEx label="结算周期(单位:天)" source="CountDate" />
+            <TextInputEx label="银行或者非银行支付机构名称全称" source="PayName" validate={[required]}/>
+            <TextInputEx label="非银行支付机构支付业务许可证编号"  source="PayId" validate={[required]}/>
+            <TextInputEx label="支付业务类型"  source="PayType" validate={[required]}/>
+            <TextInputEx label="业务覆盖范围"  source="PayScope" validate={[required]}/>
+            <TextInputEx label="备付金存管银行全称" source="PrepareBank" validate={[required]}/>
+            <NumberInputEx label="结算周期(单位:天)" source="CountDate" validate={[required]}/>
+            <BooleanInput label="是否失效(0有效1失效)" source="State" defaultValue={false} />
+            <TextField label="操作标识" source="Flag"  />
+            <TextField label="数据更新时间" source="UpdateTime"  />
           </SimpleForm>
       </Edit>);
 
 };
-
-const BaseInfoCompanyPayshowTitle = ({ record }) => {
-    console.log("record=>" + JSON.stringify(record));
-   return <span>显示 支付信息</span>;
-};
-
-const BaseInfoCompanyPayShow = (props) => (
-       <Show title={<BaseInfoCompanyPayshowTitle />} {...props}>
-           <SimpleShowLayout>
-             <TextField label="支付机构名称全称" source="PayName" />
-             <TextField label="许可证编号"  source="Payld" />
-             <TextField label="支付业务类型"  source="PayType" />
-             <TextField label="范围"  source="PayScope" />
-             <TextField label="备付金存管银行全称" source="PrepareBank" />
-             <TextField label="结算周期(单位:天)" source="CountDate" />
-           </SimpleShowLayout>
-       </Show>
-);
-
 
 
 const BaseInfoCompanyPayList = (props) => (//
      <List title="支付信息列表" {...props} >
         <Datagrid>
         <TextField label="支付机构名称全称" source="PayName" />
-        <TextField label="许可证编号"  source="Payld" />
+        <TextField label="许可证编号"  source="PayId" />
         <TextField label="支付业务类型"  source="PayType" />
         <TextField label="范围"  source="PayScope" />
         <TextField label="备付金存管银行全称" source="PrepareBank" />
         <TextField label="结算周期(单位:天)" source="CountDate" />
+        <TextField label="数据更新时间" source="UpdateTime"  />
         <EditButton />
-        <ShowButton />
         </Datagrid>
     </List>
 );
 
 
-export  {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit,BaseInfoCompanyPayShow};
+export  {BaseInfoCompanyPayList,BaseInfoCompanyPayCreate,BaseInfoCompanyPayEdit};

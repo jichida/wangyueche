@@ -5,9 +5,9 @@
  订单信息（阶段N)，程序获取
  */
 // let Platform_orderCreateSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Address:Number,//	是	数字型	F6	发起地行政区划代码	见 GB/T 2260
-//     Orderld:String,	//	是	字符型	V64	订单编号
+//     OrderId:String,	//	是	字符型	V64	订单编号
 //     DepartTime:Date,//	是	数字型	F14	预计用车时间	YYYYMMDDhhmmss
 //     OrderTime:Date,//	是	数字型F14	订单发起时间 YYYYMMDDhhmmss
 //     PassengerNote:String,	//	否	字符型V128	乘客备注
@@ -27,7 +27,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
+const moment = require('moment');
 let dbplatform = require('../../db/modelsplatform.js');
 // "srcaddress" : {
 //     "location" : {
@@ -46,11 +46,11 @@ let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertOrderCreate  = ({triprequest,triporder})=> {
     let orderCreateDoc = {
-        Companyld:config.Companyld,
+        CompanyId:config.CompanyId,
         Address:config.Address,// 数据库中读取
-        Orderld:triporder._id,
-        DepartTime:triprequest.isrealtime?util.gettimeformat(triprequest.created_at):util.gettimeformat(triprequest.dated_at),
-        OrderTime:util.gettimeformat(triporder.created_at),
+        OrderId:triporder._id,
+        DepartTime:triprequest.isrealtime?moment(triprequest.created_at).format('YYYY-MM-DD'):moment(triprequest.dated_at).format('YYYY-MM-DD'),
+        OrderTime:moment(triporder.created_at).format('YYYY-MM-DD HH:mm:ss'),
         PassengerNote:'',
         Departure:triporder.srcaddress.addressname,
         DepLongitude:triporder.srcaddress.location.lat,

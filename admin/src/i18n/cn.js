@@ -134,7 +134,7 @@ export default {
         tab4:'服务',
       }
     },
-    baseinfovehiclelnsurance:{
+    baseinfovehicleinsurance:{
       name: '车辆保险信息 |||| 车辆保险信息',
     },
     baseinfovehicletotalmile:{

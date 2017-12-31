@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import WeUI from 'react-weui';
+import NavBar from '../tools/nav.js';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/newcss/register.css';
@@ -27,6 +28,10 @@ import {
 } from '../../actions';
 
 class RegisterFillWizardForm extends Component {
+
+  componentWillMount () {//刚进页面，重置为第一页
+    this.props.dispatch(ui_registerfillwizard({curpage:0}));
+  }
 
   nextPage = ()=> {
     this.props.dispatch(ui_registerfillwizard({
@@ -56,16 +61,20 @@ class RegisterFillWizardForm extends Component {
     // PhotoandCarmanURL:String,//人车合影
     // PhotoJiandukaURL:String,//监督卡照片
     // PhotoServiceicenseURL:String,//服务资格证
-    // CarrunPhotoldURL:String,//机动车行驶证
+    // CarrunPhotoIdURL:String,//机动车行驶证
+    const { registertype } = this.props;
     const {
+      avatarURL,
       idcard,
       bankname,
       bankaccount,
       huji,
-      CarmanPhotoldURL,
+      PhotoandCarmanURL,
       PhotoJiandukaURL,
       PhotoServiceicenseURL,
-      CarrunPhotoldURL,
+      CarrunPhotoIdURL,
+
+      OwnerName,
 
       City,
       VehicleNo,
@@ -80,12 +89,14 @@ class RegisterFillWizardForm extends Component {
       bankname,
       bankaccount,
       huji,
-      CarmanPhotoldURL,
+      avatarURL,
+      PhotoandCarmanURL,
       PhotoJiandukaURL,
       PhotoServiceicenseURL,
-      CarrunPhotoldURL,
+      CarrunPhotoIdURL,
       Platform_baseInfoDriver,
       Platform_baseInfoVehicle:{
+        OwnerName,
         City,
         VehicleNo,
         Seats,
@@ -93,15 +104,25 @@ class RegisterFillWizardForm extends Component {
         PhotoldURL,
         CheckState
       },
-      approvalstatus:'待审批'
+      approvalstatus:'待审批',
+      registertype
     };
     this.props.dispatch(fillrealnameprofile_request({data}));
   };
 
   renderpage0 =()=> {
         return (
-    		<div className="registerPage register1Page  AppPage">
-				<Cells>
+    		<div className="registerPage approvalPage register1Page  AppPage">
+          <NavBar back={false} title="开始成为司机"  leftnav={[
+              {
+                type:"action",
+                action : ()=>{
+                  this.props.history.replace('/');
+                },
+                text:"首页"
+              }
+            ]}/>
+				      <Cells>
 		            <Cell access onClick={()=>this.setcurPage('快车')}>
 		                <CellHeader>
 		                    <img src="newimg/1.png" alt=""/>

@@ -25,7 +25,8 @@ class Page extends Component {
     // }
 
     render() {
-        const {avatarURL,DriverName,DriverPhone,VehicleNo,servicephonenumber} = this.props;
+        const {avatarURL,DriverName,DriverPhone,VehicleNo,servicephonenumber,username} = this.props;
+        let mobilephone = !DriverPhone ? username:DriverPhone;
         return (
             <div className="baseinfoPage AppPage">
                 <NavBar back={true} title="查看个人资料" />
@@ -52,7 +53,7 @@ class Page extends Component {
                                 手机号
                             </CellBody>
                             <CellFooter>
-                                {DriverPhone}
+                                {mobilephone}
                             </CellFooter>
                         </Cell>
                         <Cell>
@@ -82,6 +83,7 @@ class Page extends Component {
 const mapStateToProps =  ({
     app:{servicephonenumber},
     userlogin:{
+        username,
         avatarURL,
         Platform_baseInfoDriver:{
             DriverName,
@@ -93,7 +95,7 @@ const mapStateToProps =  ({
         loginsuccess
     }
 }) =>{
-    return {avatarURL,DriverName,DriverPhone,VehicleNo,servicephonenumber,loginsuccess};
+    return {username,avatarURL,DriverName,DriverPhone,VehicleNo,servicephonenumber,loginsuccess};
 };
 
 export default connect(

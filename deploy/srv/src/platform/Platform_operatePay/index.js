@@ -7,11 +7,11 @@
  程序获取，订单信息
  */
 // let Platform_operatePaySchema= new Schema({
-//     Companyld:String,		//	是	字符型	V32	网约车公司标识
-//     Orderld:String,		//	是	字符型	V64	订单编号
+//     CompanyId:String,		//	是	字符型	V32	网约车公司标识
+//     OrderId:String,		//	是	字符型	V64	订单编号
 //     OnArea:Number,	//	是	数字型	F6	上车位置行政区划编号	见 GB/T 2260
 //     DriverName:String,		//	否	字符型	V64	机动车驾驶员姓名
-//     Licenseld:String,		//	是	字符型	V32	机动车驾驶证号
+//     LicenseId:String,		//	是	字符型	V32	机动车驾驶证号
 //     FareType:String,		//	是	字符型	V16	运价类型编码	由网约车公司定义，与 A. 4. 6运价信息 接 口一一 对应
 //     VehicleNo:String,		//	是	字符型	V32	车辆号牌
 //     BookDepTime:Date,	//	是	数字型	F14	预计上车时间	YYYYMMDDhhmmss
@@ -57,17 +57,16 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertOperatePay  = ({triporder})=> {
     //let WaitTime = triporder.getindate_at.
     let OperatePayDoc = {
-        Companyld:config.Companyld,
-        Orderld:triporder._id,		//	是	字符型	V64	订单编号
+        CompanyId:config.CompanyId,
+        OrderId:triporder._id,		//	是	字符型	V64	订单编号
         //OnArea:Number,	//	是	数字型	F6	上车位置行政区划编号	见 GB/T 2260
         DriverName:triporder.driverinfo.DriverName|| '',		//	否	字符型	V64	机动车驾驶员姓名
-        Licenseld:triporder.driverinfo.Licenseld || '',		//	是	字符型	V32	机动车驾驶证号
+        LicenseId:triporder.driverinfo.LicenseId || '',		//	是	字符型	V32	机动车驾驶证号
         //FareType:String,		//	是	字符型	V16	运价类型编码	由网约车公司定义，与 A. 4. 6运价信息 接 口一一 对应
         VehicleNo:triporder.driverinfo.VehicleNo|| '',		//	是	字符型	V32	车辆号牌
         BookDepTime:triporder.isrealtime?triporder.created_at:triporder.created_at,	//	是	数字型	F14	预计上车时间	YYYYMMDDhhmmss

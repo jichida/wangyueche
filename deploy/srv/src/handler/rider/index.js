@@ -25,6 +25,8 @@ const actiondatahandler = {
   'loginsendauth':userlogin.loginsendauth,
   'loginwithauth':userlogin.loginwithauth,
   'loginwithtoken':rideruserlogin.loginwithtoken,
+  'loginwithoauth':rideruserlogin.loginwithoauth,
+  'oauthbinduser':rideruserlogin.oauthbinduser,
 
   'logout':rideruserlogin.logout,
 
@@ -100,6 +102,7 @@ module.exports = (socket,actiondata,ctx)=>{
     }
   }
   catch(e){
+    console.log(e);
     socket.emit('common_err',{errmsg:`服务端内部错误:${JSON.stringify(e)}`});
   }
 

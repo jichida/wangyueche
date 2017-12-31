@@ -15,14 +15,14 @@ let starttriprequestorder = (socket,actiondata,ctx)=>{
   let dataorder = actiondata.order;
   datatriprequest.resultpricedetail = dataorder.resultpricedetail;
   datatriprequest.rideruserid = ctx.userid;
-  datatriprequest.created_at = new Date();
+  datatriprequest.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
   datatriprequest.createtime = moment().format('YYYY-MM-DD HH:mm:ss');
   if(!!datatriprequest.showtimestring){
     datatriprequest.showtimestring = moment().format('MM月DD日 HH:mm');
   }
   if(!datatriprequest.isrealtime){
     if(typeof datatriprequest.dated_at === 'string'){
-      datatriprequest.dated_at =  new Date(Date.parse(datatriprequest.dated_at));
+      datatriprequest.dated_at =  moment(datatriprequest.dated_at).format('YYYY-MM-DD HH:mm:ss');
     }
   }
   datatriprequest.srclocation = [datatriprequest.srcaddress.location.lng,datatriprequest.srcaddress.location.lat];
@@ -38,8 +38,8 @@ let starttriprequestorder = (socket,actiondata,ctx)=>{
       dataorder.rideruserid = triprequest.rideruserid;
       dataorder.triptype = triprequest.triptype;
       dataorder.ordertitle = triprequest.triptype + '订单';
-      dataorder.created_at = new Date();
-      dataorder.updated_at = new Date();
+      dataorder.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
+      dataorder.updated_at = moment().format('YYYY-MM-DD HH:mm:ss');
       dataorder.paystatus = '未支付';
       dataorder.srcaddress = triprequest.srcaddress;
       dataorder.dstaddress = triprequest.dstaddress;
@@ -161,7 +161,7 @@ let getfn_cancelorder =(socket,actiondata,ctx)=>{
       TripOrderModel.findOneAndUpdate({
         _id:param.triporderid,
         orderstatus:{ '$nin': ['待支付','已支付','已取消'] }
-      },{$set:{orderstatus:'已取消',updated_at:new Date()}},{new: true},(err,triporder)=>{
+      },{$set:{orderstatus:'已取消',updated_at:moment().format('YYYY-MM-DD HH:mm:ss')}},{new: true},(err,triporder)=>{
         if(!err){
           callbackfn(null,triporder);
         }
@@ -179,7 +179,7 @@ let getfn_cancelrequest = (socket,actiondata,ctx)=>{
     TripRequestModel.findOneAndUpdate({
       _id:param.triprequestid,
       requeststatus:{ '$nin': ['行程中','行程完成','已取消'] }
-    },{$set:{requeststatus:'已取消',updated_at:new Date()}},{new: true},(err,triprequest)=>{
+    },{$set:{requeststatus:'已取消',updated_at:moment().format('YYYY-MM-DD HH:mm:ss')}},{new: true},(err,triprequest)=>{
       if(!err){
         callbackfn(null,triprequest);
       }

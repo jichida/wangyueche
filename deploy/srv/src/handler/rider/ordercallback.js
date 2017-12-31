@@ -4,6 +4,8 @@ let winston = require('../../log/log.js');
 const async = require('async');
 let PubSub = require('pubsub-js');
 const notifymessage_all = require('../common/notifymessage.js');
+const moment = require('moment');
+const platformpay = require('../../platform/platformpay');
 
 let doordersuccess_daijiacancel = (order,systemconfig,ctxuser,fncallback)=>{
   //获取order所在的用户,往userfrom加一条充值记录
@@ -11,7 +13,7 @@ let doordersuccess_daijiacancel = (order,systemconfig,ctxuser,fncallback)=>{
   let fromorder = order._id;
   let fromuser = order.creator;
   let srctype = 'order';
-  let created_at = new Date();
+  let created_at = moment().format('YYYY-MM-DD HH:mm:ss');
   let userModel = DBModels.UserDriverModel;
   console.log(`往司机端加一条充值记录${order.driveruserid}`);
   userModel.findOne({_id:order.driveruserid},(err,targetuser)=>{
@@ -31,7 +33,7 @@ let doordersuccess_daijiacancel = (order,systemconfig,ctxuser,fncallback)=>{
               feebonus,
               orderprice,
               srctype,
-              created_at:new Date()
+              created_at:moment().format('YYYY-MM-DD HH:mm:ss')
           };
           console.log(`====>${JSON.stringify(newdata)}`);
           let rechargerecordModel =  DBModels.RechargerecordModel;
@@ -112,7 +114,7 @@ let doordersuccess = (order,ctxuser,systemconfig,fncallback)=>{
                   feebonus,
                   orderprice,
                   srctype,
-                  created_at:new Date()
+                  created_at:moment().format('YYYY-MM-DD HH:mm:ss')
               };
               console.log(`====>${JSON.stringify(newdata)}`);
               let rechargerecordModel =  DBModels.RechargerecordModel;
@@ -138,6 +140,9 @@ let doordersuccess = (order,ctxuser,systemconfig,fncallback)=>{
                           messagecontent:`/mywallet`,
                           subtype:'order'
                         });
+
+                        //<---插入平台
+                        platformpay.notifyplatform_orderpaied(order);
                     });
                 }
                 else{

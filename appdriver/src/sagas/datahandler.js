@@ -104,11 +104,14 @@ import {
     findpwd_request,
     findpwd_result,
 
+    getrealnameprofile_request,
+    getrealnameprofile_result
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'getrealnameprofile_result':getrealnameprofile_result,
   'updateorder_comment_result':updateorder_comment_result,
   'serverpush_userloginsuccess_notify':serverpush_userloginsuccess_notify,
   'payorderwithcash_result':payorderwithcash_result,
@@ -160,6 +163,7 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+  'getrealnameprofile':`${getrealnameprofile_request}`,
   'logout':`${logout_request}`,
   'findpwd':`${findpwd_request}`,
   'login':`${login_request}`,

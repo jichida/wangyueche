@@ -30,19 +30,19 @@ const renderImageupload= (props) => {
     }
 
     let handleChange = (info) => {
-        loading(true);
+        // loading(true);
         if (info.file.status !== 'uploading') {
-            loading(false);
+            // loading(false);
         }
         if (info.file.status === 'done') {
-          message.success(`${info.file.name} file uploaded successfully`);
+          // message.success(`${info.file.name} file uploaded successfully`);
           if(info.file.response.files.length > 0){
             //"url": "http://localhost:3004/uploader/IMG_3047.JPG",
             input.onChange(info.file.response.files[0].url);
           }
 
         } else if (info.file.status === 'error') {
-          message.error(`${info.file.name} file upload failed.`);
+          // message.error(`${info.file.name} file upload failed.`);
         }
 
     }

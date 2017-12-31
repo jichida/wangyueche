@@ -4,6 +4,7 @@ let DBModelsPlatform = require('../../db/modelsplatform.js');
 let mongoose  = require('mongoose');
 const winston = require('../../log/log.js');
 const userlogin = require('./driveruserlogin.js');
+const moment = require('moment');
 
 let carsetdefault = (socket,actiondata,ctx)=>{
   let carid = actiondata.carid;
@@ -38,7 +39,7 @@ exports.carcreate = (socket,actiondata,ctx)=>{
 //新建一辆车
     let entitydata = actiondata.data;
     entitydata.creator = ctx.userid;
-    entitydata.created_at = new Date();
+    entitydata.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
 
     let Platform_baseInfoVehicle = actiondata.Platform_baseInfoVehicle;
     let DBPlatformModel = DBModelsPlatform.Platform_baseInfoVehicleModel;

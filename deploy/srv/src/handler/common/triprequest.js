@@ -93,7 +93,7 @@ exports.getnearbyrequests = (param,callback)=>{
     if(param.userid != ''){
       let driverlocationobj = {
         driverid:param.userid,
-        updated_at:new Date(),
+        updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
         driverlocation:param.driverlocation,
         registertype:param.registertype
       };
@@ -112,7 +112,7 @@ exports.getnearbyrequests = (param,callback)=>{
   let TripRequestModel = DBModels.TripRequestModel;
       let coords = param.driverlocation;
       let maxDistance = config.maxDistance;
-      let nowDate = new Date();
+      let nowDate = moment();
       let queryobj = {
         'srclocation': {
             $near: {
@@ -125,7 +125,7 @@ exports.getnearbyrequests = (param,callback)=>{
             }
         },
         'created_at': { // 18 minutes ago (from now)
-            $gt: new Date(nowDate.getTime() - 1000 * 60 * config.expRequestMinutes)
+            $gt:  nowDate.subtract(1000 * 60 * config.expRequestMinutes,'seconds').format('YYYY-MM-DD HH:mm:ss')
          },
          'requeststatus':'请求中'
       };
@@ -144,7 +144,13 @@ exports.getnearbyrequests = (param,callback)=>{
         newqueryobj['$and'].push(queryobj);
         queryobj = newqueryobj;
       }
-
+      else if(param.registertype === '网约车'){
+        let newqueryobj = {
+          $and:[{$or: [{triptype:'网约车'}, {triptype:'代驾'}]}]
+        };
+        newqueryobj['$and'].push(queryobj);
+        queryobj = newqueryobj;
+      }
       console.log(`getnearbyrequests=========${JSON.stringify(queryobj)}`);
       TripRequestModel.find(queryobj,(err,list)=>{
           console.log("err:" + JSON.stringify(err));

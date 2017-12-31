@@ -48,7 +48,7 @@ class Page extends Component {
                         <div className="tit">驾驶证</div>
                         <FormUI>
                           <Field
-                            name="Licenseld"
+                            name="LicenseId"
                             InputTit="驾驶证号"
                             placeholder="请输入驾驶证号"
                             type="text"
@@ -58,7 +58,7 @@ class Page extends Component {
                         </FormUI>
                         <div className="desc">有效期内，证件清晰，信息全部展示</div>
                         <div className="imgbox">
-                            <Field name="LicensePhotoldURL"
+                            <Field name="LicensePhotoIdURL"
                               component={renderImageupload}
                               loading={this.showLoading.bind(this)}
                               validate={[ requiredImg ]}

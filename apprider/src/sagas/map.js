@@ -137,7 +137,7 @@ const drawmap = (nextprop)=>{
               if (driverlist.length > 0) {
                   let carIcon = new window.AMap.Icon({
                       image: 'images/mycar.png',
-                      imageSize: new window.AMap.Size(20, 30)
+                      imageSize: new window.AMap.Size(40, 40)
                   });
 
                   _.map(driverlist,(curloc)=>{

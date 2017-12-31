@@ -35,6 +35,7 @@ const FaretypelistTitle = ({ record }) => {
 };
 
 const FaretypelistEdit = (props) => {
+      console.log(props);
       return (<Edit title={<FaretypelistTitle />} {...props}>
           <SimpleForm>
               <DisabledInput label="Id" source="id" />

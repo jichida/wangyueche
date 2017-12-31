@@ -36,7 +36,7 @@ const PositionVehicleShow = (props) => (
              <TextField label="预警状态" source="WarnStatus" />
              <TextField label="车辆状态" source="VehStatus" />
              <TextField label="营运状态" source="BizStatus" />
-             <TextField label="订单编号" source="Orderld" />
+             <TextField label="订单编号" source="OrderId" />
            </SimpleShowLayout>
        </Show>
 );
@@ -57,7 +57,7 @@ const PositionVehicleList = (props) => (//
         <TextField label="预警状态" source="WarnStatus" />
         <TextField label="车辆状态" source="VehStatus" />
         <TextField label="营运状态" source="BizStatus" />
-        <TextField label="订单编号" source="Orderld" />
+        <TextField label="订单编号" source="OrderId" />
         <ShowButton />
         </Datagrid>
     </List>

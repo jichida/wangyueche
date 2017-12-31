@@ -17,7 +17,7 @@ export default function* rootSaga() {
   try{
     yield fork(createinitflow);
     yield fork(createmapshowflow);
-    yield fork(createloadingflow);
+    // yield fork(createloadingflow);
     yield fork(createnavdrawrouteflow);
     yield fork(creategetaddrflow);
     yield fork(jpushflow);

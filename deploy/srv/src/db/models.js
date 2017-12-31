@@ -2,6 +2,7 @@ let mongoose     = require('mongoose');
 let Schema       = mongoose.Schema;
 let mongoosePaginate = require('mongoose-paginate');
 const config = require('../config.js');
+const moment = require('moment');
 
 mongoose.Promise = global.Promise;
 //系统设置
@@ -13,6 +14,8 @@ let SystemConfigSchema = new Schema({
     pinchecitylist:[],//拼车城市列表
     hotcity:[],
     servicephonenumber:String,//客服电话
+    downloadurl_android:String,//android下载地址
+    downloadurl_ios:String,//ios下载地址
     daijialeastbalance:{ type: Number, default: 50 },
     daijiacancelprice:{ type: Number, default: 10 },
 
@@ -22,8 +25,8 @@ SystemConfigSchema.plugin(mongoosePaginate);
 //拼车司机
 let UserDriverPincheSchema = new Schema({
   username:String,
-  created_at:{ type: Date, default:new Date()},
-  updated_at:Date,
+  created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
+  updated_at:String,
   truename:String,
   nickname:String,
   password:String,
@@ -33,7 +36,7 @@ UserDriverPincheSchema.plugin(mongoosePaginate);
 //拼车司机登录日志
 let UserDriverPincheLoginLogSchema = new Schema({
     username:String,
-    created_at:{ type: Date, default:new Date()},
+    created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
     creator:{ type: Schema.Types.ObjectId, ref: 'userdriverpinche' },
     type:{type:String,default:'login'}
 });
@@ -41,8 +44,10 @@ UserDriverPincheLoginLogSchema.plugin(mongoosePaginate);
 //乘客表//常用地址管理
 let UserRiderSchema = new Schema({
     username:String,
-    created_at:{ type: Date, default:new Date()},
-    updated_at:Date,
+    openidqq: String,
+    openidweixin: String,
+    created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
+    updated_at:String,
     truename:String,
     phoneos:String,//'android' & 'ios'
     oftenuseaddress:Schema.Types.Mixed,
@@ -57,7 +62,7 @@ UserRiderSchema.plugin(mongoosePaginate);
 //乘客登录日志
 let UserRiderLoginLogSchema = new Schema({
     username:String,
-    created_at:{ type: Date, default:new Date()},
+    created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
     creator:{ type: Schema.Types.ObjectId, ref: 'userrider' },
     type:{type:String,default:'login'}
 });
@@ -71,8 +76,8 @@ let UserDriverSchema = new Schema({
     passwordsalt:String,
     registertype:String,
     phoneos:String,//'android' & 'ios'
-    created_at: { type: Date, default:new Date()},
-    updated_at: { type: Date, default:new Date()},
+    created_at: { type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
+    updated_at: { type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
     profile:Schema.Types.Mixed,
     avatarURL:String,//司机头像
     starnum:{ type: Number, default: 0 },//
@@ -83,7 +88,7 @@ let UserDriverSchema = new Schema({
     PhotoandCarmanURL:String,//人车合影
     PhotoJiandukaURL:String,//监督卡照片
     PhotoServiceicenseURL:String,//服务资格证
-    CarrunPhotoldURL:String,//机动车行驶证
+    CarrunPhotoIdURL:String,//机动车行驶证
     Platform_baseInfoDriverId:{ type: Schema.Types.ObjectId, ref: 'baseinfodriver' },
     Platform_baseInfoDriver:{
         CompanyId:String,	//是	字符型	V32	公司标识
@@ -92,7 +97,7 @@ let UserDriverSchema = new Schema({
         DriverName:String,	// <---否字符型V64 机动车驾驶员姓名
         DriverPhone:String,	// <---是字符型V32 驾驶员手机号
         DriverGender:String,	//<--- 是字符型V2 驾驶员性别见JT/ T 697. 7- 2014中4. 1. 2. 1. 3
-        DriverBirthday:Date,	// 是数字型F8 出生日期YYYYMMDD
+        DriverBirthday:String,	// 是数字型F8 出生日期YYYYMMDD
         DriverNationality:String,	// 杏字符型V32 国籍
         DriverNation:String,	//<--- 是字符型V32 驾驶员民族见JT/T 697. 7-2014中4. 1. 2. 1. 7
         DriverMaritalStatus:String,	//<--- 杏字符型V64 驾驶员婚姻状况未婚;已婚;离异
@@ -102,30 +107,30 @@ let UserDriverSchema = new Schema({
         DriverCensus:String,	//	否	字符型	V256	户口登记机关名称
         DriverAddress:String,	//	否	字符型	V256	户口住址或长住地址 阶iv町
         DriverContactAddress:String,	//<---	是	字符型	V256	驾驶员通信地址
-        Photold:String,	//	否	字符型	V128	驾驶员照片文件编号	FTPS  接口传输;格式 照片文件通过 6. 1 节jpg; 按照居民身份证照片的标准
-        PhotoldURL:String,	//<---	否	字符型	V128	驾驶员照片文件编号	FTPS  接口传输;格式 照片文件通过 6. 1 节jpg; 按照居民身份证照片的标准
-        Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
-        LicensePhotoldURL:String,	//<---	否	字符型	V128机动车驾驶证扫描件文件编号扫描件文件通过 6. 1节FTPS 接口传输;格式lPg
+        PhotoId:String,	//	否	字符型	V128	驾驶员照片文件编号	FTPS  接口传输;格式 照片文件通过 6. 1 节jpg; 按照居民身份证照片的标准
+        PhotoIdURL:String,	//<---	否	字符型	V128	驾驶员照片文件编号	FTPS  接口传输;格式 照片文件通过 6. 1 节jpg; 按照居民身份证照片的标准
+        LicenseId:String,	//	是	字符型	V32	机动车驾驶证号
+        LicensePhotoIdURL:String,	//<---	否	字符型	V128机动车驾驶证扫描件文件编号扫描件文件通过 6. 1节FTPS 接口传输;格式lPg
         DriverType:String,	//<---	否	字符型	V16	准驾车型见 JT/T 697. 7-2014中 5. 16
-        GetDriverLicenseDate:Date,//<---	是 数字型 F8 初次领取驾驶证日期 YYYYMMDD
-        DriverLicenseOn:Date,//	 是 数字型  F8  驾驶证有效期限起  YYYYMMDD
-        DriverLicenseOff:Date,//	            是   数字型   F8      驾驶证有效期限止    YYYYMMDD
+        GetDriverLicenseDate:String,//<---	是 数字型 F8 初次领取驾驶证日期 YYYYMMDD
+        DriverLicenseOn:String,//	 是 数字型  F8  驾驶证有效期限起  YYYYMMDD
+        DriverLicenseOff:String,//	            是   数字型   F8      驾驶证有效期限止    YYYYMMDD
 
         TaxiDriver:Boolean,//<---	                   是   数字型   F1      是否出租汽车驾驶员	。:否
         CertificateNo:String,	//<---                         是   字符型  V128    网络预约出租汽车驾驶员资格证号
         NetworkCarIssueOrganization:String,	//<--- 是	字符型	V256网络预约出租汽车驾驶员证发证机构
-        NetworkCarIssueDate:Date,//		是	数字型	F8	资格证发证日期	YYYYMMDD
-        GetNetworkCarProofDate:Date,//		是	数字型	F8	初次领取资格证日期	YYYYMMDD
-        NetworkCarProofOn:Date,//		是	数字型	F8	资格证有效起始日期	YYYYMMDD
-        NetworkCarProofOff:Date,//		是	数字型	F8	资格证有效截止日期	YYYYMMDD
-        RegisterDate:Date,//	 是数字型F8报备日期驾驶员信息向服务所在 地出租汽车行政主管部 门报备日期 YYYYM-MDD
+        NetworkCarIssueDate:String,//		是	数字型	F8	资格证发证日期	YYYYMMDD
+        GetNetworkCarProofDate:String,//		是	数字型	F8	初次领取资格证日期	YYYYMMDD
+        NetworkCarProofOn:String,//		是	数字型	F8	资格证有效起始日期	YYYYMMDD
+        NetworkCarProofOff:String,//		是	数字型	F8	资格证有效截止日期	YYYYMMDD
+        RegisterDate:String,//	 是数字型F8报备日期驾驶员信息向服务所在 地出租汽车行政主管部 门报备日期 YYYYM-MDD
 
         FullTimeDriver:Boolean,//	 否数字型F1  是否专职驾驶员1:是  0:否
         InDriverBlacklist:Boolean,//	否数字型F1是否在驾驶员黑名单内	1.是。:否
         CommercialType:Number,//	  是数字型F1服务类型1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
         ContractCompany:String,	//是字符型V256驾驶员合同〈或协议〉 签署公司全称
-        ContractOn:Date,//	是数字型F8   合同或协议)有效期起 YYYYMMDD
-        ContractOff:Date,//	是数字型F8	合同(或协议)有效期止 YYYYMMDD
+        ContractOn:String,//	是数字型F8   合同或协议)有效期起 YYYYMMDD
+        ContractOff:String,//	是数字型F8	合同(或协议)有效期止 YYYYMMDD
 
         EmergencyContact:String,	//	否	字符型V64	紧急情况联系人
         EmergencyContactPhone:String,	//否字符型V32 紧急情况联系人电话手机号
@@ -135,8 +140,7 @@ let UserDriverSchema = new Schema({
     defaultmycar:{ type: Schema.Types.ObjectId, ref: 'mycar' },
     Platform_baseInfoVehicleId:{ type: Schema.Types.ObjectId, ref: 'baseinfovehicle' },
     Platform_baseInfoVehicle:{
-    	City:String,//<---所在城市
-      VehicleRegionCode:Number,		//是	数字型	F6 行政区划代码	车辆报备地行政区划代码，地市级 ，应符合GB/T2260
+      Address:Number,		//是	数字型	F6 行政区划代码	车辆报备地行政区划代码，地市级 ，应符合GB/T2260
 
       VehicleNo:String,//<---	是	字符型	V32	车辆号牌
       PlateColor:String,//	是	字符型	V32	车牌颜色	见 J T/T 697. 7-2014 中5.6
@@ -147,32 +151,32 @@ let UserDriverSchema = new Schema({
       OwnerName:String,//	是	字符型	V64	车辆所有人	应与《机动车登记证书》所注明的车辆所有人一致
       VehicleColor:String,//	是	字符型	V32	车身颜色
 
-      Engineld:String,//	是	字符型	V32	发动机号	以机动车行驶证为准
+      EngineId:String,//	是	字符型	V32	发动机号	以机动车行驶证为准
       VIN:String,//	是	字符型	F17	车辆VIN码	以机动车行驶证为准
-      CertifyDateA:Date,//	是	数字型	F8	车辆注册日期	以机动车行驶证为准
+      CertifyDateA:String,//	是	数字型	F8	车辆注册日期	以机动车行驶证为准
       FuelType:String,//	是	字符型	V32	牢辆燃料类型	见 JT/T697. 7-2014  中4. 1.4. 15
       EngineDisplace:String,//	是	字符型	V32	发动机排量	单位 :毫升
 
-      Photold:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
-      PhotoldURL:String,//<---	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
+      PhotoId:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
+      PhotoIdURL:String,//<---	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
       Certificate:String,//<---	否	字符型	V64	运输证字号	见 JT/T  415-2006  中5. 4.1，地市字别可包含三个汉字
       TransAgency:String,//	是	字符型	V256	车辆运输证发证机构	全称
       TransArea:String,//	是	字符型	V256	车辆经营区域
-      TransDateStart:Date,//	是	数字型	F8	车辆运输证有效期起	YYYYMMDD 元素名称	必选	类型	长度	字段名称	描	述
-      TransDateStop:Date,//	是	数字型	F8	车辆运输证有效期止	YYYYMMDD
-      CertifyDateB:Date,//	是	数字型	F8	车辆初次登记日期	YYYYMMDD
+      TransDateStart:String,//	是	数字型	F8	车辆运输证有效期起	YYYYMMDD 元素名称	必选	类型	长度	字段名称	描	述
+      TransDateStop:String,//	是	数字型	F8	车辆运输证有效期止	YYYYMMDD
+      CertifyDateB:String,//	是	数字型	F8	车辆初次登记日期	YYYYMMDD
       FixState:String,//	是字符型	V64	车辆检修状态	数据取值有效范围 :0 :未检修1.已检修2 :未知
-      NextFixDate:Number,//	否	数字型	F8	车辆下次年检时间
+      NextFixDate:String,//	否	数字型	F8	车辆下次年检时间
       CheckState:String,//<---	是	字符型	F2	车辆年度审验状态	见 JT/T 415-2006 中5.4.4
-      FeePrintld:String,//	是	字符型	V32	发票打印设备序列号
+      FeePrintId:String,//	是	字符型	V32	发票打印设备序列号
 
       GPSBrand:String,//	是	字符型	V2 56	卫星定位装置品牌
       GPSModel:String,//	是	字符型	V64	卫星定位装置型号
       GPSIMEI:String,//	否	字符型	V128	卫星定位装置IMEI号
-      GPSlnstallDate:Date,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
+      GPSlnstallDate:String,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
 
-      RegisterDate:Date,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
-      'Commercial-Type':Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
+      RegisterDate:String,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
+      CommercialType:Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
       FareType:{ type: Schema.Types.ObjectId, ref: 'faretype' },//	是	字符型	V16	运价类型编码由网约车公司定义，与 A. 4.6 运价信息接口一一对 应
     },
     issynctoplatform:{ type: Boolean, default: false },//同步到平台,admin有效
@@ -184,7 +188,7 @@ UserDriverSchema.plugin(mongoosePaginate);
 //司机登录日志
 let UserDriverLoginLogSchema = new Schema({
     username:String,
-    created_at:{ type: Date, default:new Date()},
+    created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
     creator:{ type: Schema.Types.ObjectId, ref: 'userdriver' },
     type:{type:String,default:'login'}
 });
@@ -209,8 +213,8 @@ let TripRequestSchema = new Schema({
         index: '2dsphere'
     },
     resultpricedetail:Schema.Types.Mixed,//仅快车，出租车，代驾有效，使用平台定义的运价(详细信息）
-    getindate_at:Date,//上车时间
-    getoffdate_at:Date,//下车时间
+    getindate_at:String,//上车时间
+    getoffdate_at:String,//下车时间
     getinlocation:[Number],//上车位置
     getofflocation:[Number],//下车位置
     riderlocation:[Number],
@@ -218,9 +222,9 @@ let TripRequestSchema = new Schema({
     srcaddress:Schema.Types.Mixed,//预计出发地
     dstaddress:Schema.Types.Mixed,//预计目的地
     createtime:String,
-    created_at:{ type: Date, default:new Date()},
-    dated_at:Date,
-    updated_at:Date,
+    created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
+    dated_at:String,
+    updated_at:String,
     triptype:String,
     isrealtime:Boolean,
     showtimestring:String,
@@ -230,9 +234,10 @@ TripRequestSchema.plugin(mongoosePaginate);
 //拼车城市站点设置
 UserAdminSchema = new Schema({
   username:String,
-  password:String,
-  created_at: { type: Date, default:new Date()},
-  updated_at: Date,
+  passwordhash: String,
+  passwordsalt: String,
+  created_at: { type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
+  updated_at: String,
 });
 
 //拼车--行程路线(后台发布)
@@ -241,8 +246,8 @@ BuscarpoolSchema = new Schema({
     startcity:String,//开始城市
     endcity:String,//结束城市
     starttime:String,//出发时间
-    created_at:{ type: Date, default:new Date()},
-    startdate:Date,//出发日期
+    created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
+    startdate:String,//出发日期 'YYYY-MM-DD'
     seatnumber:Number,//座位
     groupnumber:Number,//成团人数
     startstations:[],//出发点站台{name/address/desc/location}
@@ -282,11 +287,11 @@ let TripOrderSchema = new Schema({
     ordertitle:String,
     orderdetail:String,
     paytype:String,//支付方式
-    pay_at:Date,
-    created_at: { type: Date, default:new Date()},//订单生成时间
-    dated_at:Date,//预计上车时间
-    updated_at: { type: Date, default:new Date()},//订单更新时间
-    finished_at:Date,//订单完成时间
+    pay_at:String,
+    created_at: { type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},//订单生成时间
+    dated_at:String,//预计上车时间
+    updated_at: { type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},//订单更新时间
+    finished_at:String,//订单完成时间
     paystatus:{ type: String, default: '未支付' },//订单状态：未支付->已支付定金->已支付
     orderstatus:{ type: String, default: '未支付' },//订单状态：未支付->待支付(不能取消)->已支付
     relatedid:String,//快车，出租车，代驾:请求id,拼车：buscarpoolId,旅游大巴：无
@@ -301,7 +306,7 @@ let TripOrderSchema = new Schema({
       RiderName:String,//乘客姓别
     },
     driverinfo:{
-      Licenseld:String,	//驾驶证号
+      LicenseId:String,	//驾驶证号
       avatarURL:{ type: String, default: config.defaultprofileimage },
       DriverName:String,//司机名
       DriverPhone:String,//司机电话
@@ -316,8 +321,8 @@ let TripOrderSchema = new Schema({
     isrealtime:{ type: Number,default: true } ,//是否实时
     srcaddress:Schema.Types.Mixed,
     dstaddress:Schema.Types.Mixed,
-    getindate_at:Date,//上车时间
-    getoffdate_at:Date,//下车时间
+    getindate_at:String,//上车时间
+    getoffdate_at:String,//下车时间
     getinlocation:[Number],//上车位置
     getofflocation:[Number],//下车位置
     totaldistance:Number,//单位：米
@@ -341,8 +346,8 @@ let TripOrderSchema = new Schema({
     rentusername:String,//租车人姓名
     rentuserphone:String,
     buslistsel:Schema.Types.Mixed, //旅游大巴订阅详情
-    startdate:Date,//开始用车时间
-    enddate:Date,//还车时间
+    startdate:String,//开始用车时间 YYYY-MM-DD
+    enddate:String,//还车时间
 
 });
 TripOrderSchema.plugin(mongoosePaginate);
@@ -365,11 +370,11 @@ let MyCouponSchema = new Schema({
     triptype:String,//‘出租车’|‘快车’|....
     pricediscountmax:Number,//最大抵扣金额
     pricediscountpercent:Number,//抵扣折扣
-    expdate: Date,// 过期时间
+    expdate: String,// 过期时间
     usestatus:{ type: Schema.Types.String,default: '未使用'},// //未使用／已使用／已过期
     fromorder:{ type: Schema.Types.ObjectId, ref: 'Order' },
-    created_at: { type: Date, default:new Date()},
-    used_at:Date,
+    created_at: { type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
+    used_at:String,
 });
 MyCouponSchema.plugin(mongoosePaginate);
 //UserRiderCouponSchema
@@ -410,7 +415,7 @@ let RateSchema = new Schema({
   ratestar:Number,
   orderid:String,
   comment:String,
-  created_at:{ type: Date, default:new Date()},
+  created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
 });
 RateSchema.plugin(mongoosePaginate);
 //旅游大巴,型号,座位,图标,每小时费用,是否启用
@@ -442,7 +447,7 @@ let NotifyMessageSchema = new Schema({
     messagetitle:String,
     messagecontent:String,
     subtype:{type:String,default:'msg'},
-    created_at:{ type: Date, default:new Date()},
+    created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
 });
 NotifyMessageSchema.plugin(mongoosePaginate);
 
@@ -455,7 +460,7 @@ FareTypeSchema.plugin(mongoosePaginate);
 //司机当前位置
 let UserDriverRealtimeLocationSchema = new Schema({
   driverid:String,
-  updated_at:{ type: Date, default:new Date()},
+  updated_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
   registertype:String,
   driverlocation: {
       type: [Number],
@@ -491,15 +496,15 @@ let MycarSchema = new Schema({
     name:String,//名字
     carmodelid:{ type: Schema.Types.ObjectId, ref: 'carmodel' },
     carcolorid:{ type: Schema.Types.ObjectId, ref: 'carcolor' },
-    created_at:{ type: Date, default:new Date()},
+    created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
     issynctoplatform:{ type: Boolean, default: false },//同步到平台,admin有效
     approvalrejectseason:{type:String,default:''},
     approvalstatus:{type:String,default:'待审核'},//未递交/待审核/审核中/已审核/已拒绝
 
     PhotoandCarmanURL:String,//人车合影
-  	LicensePhotoldURL:String,//机动车驾驶证
-  	City:String,//<----
-  	CarrunPhotoldURL:String,//机动车行驶证
+  	LicensePhotoIdURL:String,//机动车驾驶证
+
+  	CarrunPhotoIdURL:String,//机动车行驶证
     Platform_baseInfoVehicleId:{ type: Schema.Types.ObjectId, ref: 'baseinfovehicle' },
     Platform_baseInfoVehicle:{
       VehicleNo:String,//<----	是	字符型	V32	车辆号牌
@@ -511,32 +516,32 @@ let MycarSchema = new Schema({
       OwnerName:String,//<----	是	字符型	V64	车辆所有人	应与《机动车登记证书》所注明的车辆所有人一致
       VehicleColor:String,//	是	字符型	V32	车身颜色
 
-      Engineld:String,//	是	字符型	V32	发动机号	以机动车行驶证为准
+      EngineId:String,//	是	字符型	V32	发动机号	以机动车行驶证为准
       VIN:String,//	是	字符型	F17	车辆VIN码	以机动车行驶证为准
-      CertifyDateA:Date,//	是	数字型	F8	车辆注册日期	以机动车行驶证为准
+      CertifyDateA:String,//	是	数字型	F8	车辆注册日期	以机动车行驶证为准
       FuelType:String,//	是	字符型	V32	牢辆燃料类型	见 JT/T697. 7-2014  中4. 1.4. 15
       EngineDisplace:String,//	是	字符型	V32	发动机排量	单位 :毫升
 
-      Photold:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
-      PhotoldURL:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
+      PhotoId:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
+      PhotoIdURL:String,//	否	字符型	V128	车辆照片文件编号	本字段传输照片文件编 号，照片文件通过 6. 1节FTPS 接 口 传输;格式 jpg; 按照车辆行驶证照片 的标准。
       Certificate:String,//<----	否	字符型	V64	运输证字号	见 JT/T  415-2006  中5. 4.1，地市字别可包含三个汉字
       TransAgency:String,//	是	字符型	V256	车辆运输证发证机构	全称
       TransArea:String,//	是	字符型	V256	车辆经营区域
-      TransDateStart:Date,//	是	数字型	F8	车辆运输证有效期起	YYYYMMDD 元素名称	必选	类型	长度	字段名称	描	述
-      TransDateStop:Date,//	是	数字型	F8	车辆运输证有效期止	YYYYMMDD
-      CertifyDateB:Date,//	是	数字型	F8	车辆初次登记日期	YYYYMMDD
+      TransDateStart:String,//	是	数字型	F8	车辆运输证有效期起	YYYYMMDD 元素名称	必选	类型	长度	字段名称	描	述
+      TransDateStop:String,//	是	数字型	F8	车辆运输证有效期止	YYYYMMDD
+      CertifyDateB:String,//	是	数字型	F8	车辆初次登记日期	YYYYMMDD
       FixState:String,//	是字符型	V64	车辆检修状态	数据取值有效范围 :0 :未检修1.已检修2 :未知
-      NextFixDate:Number,//	否	数字型	F8	车辆下次年检时间
+      NextFixDate:String,//	否	数字型	F8	车辆下次年检时间
       CheckState:String,//<----	是	字符型	F2	车辆年度审验状态	见 JT/T 415-2006 中5.4.4
-      FeePrintld:String,//	是	字符型	V32	发票打印设备序列号
+      FeePrintId:String,//	是	字符型	V32	发票打印设备序列号
 
       GPSBrand:String,//	是	字符型	V2 56	卫星定位装置品牌
       GPSModel:String,//	是	字符型	V64	卫星定位装置型号
       GPSIMEI:String,//	否	字符型	V128	卫星定位装置IMEI号
-      GPSlnstallDate:Date,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
+      GPSlnstallDate:String,//	是	数字型	F8	卫星定位设备安装日期	YYYYMMDD
 
-      RegisterDate:Date,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
-      'Commercial-Type':Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
+      RegisterDate:String,//	是	数字型	F8	报备日期	车辆信息向服务所在地出租汽车行政主管部门报备 日期 YYYYMMDD
+      'CommercialType':Number,//	是	数字型	F1	服务类型	1.网络预约出租汽车2 .巡游出租汽车3 :私人小客车合乘
       FareType:String,//	是	字符型	V16	运价类型编码由网约车公司定义，与 A. 4.6 运价信息接口一一对 应
     }
 });
@@ -554,7 +559,7 @@ let RechargerecordSchema = new Schema({
     feebonus:Number,//奖励金额
     orderprice:Number,//订单金额
     srctype:String,////‘order'来自订单/'withdrawcash_ing'来自提现/'withdrawcash_ed'来自提现/withdrawcash_denied
-    created_at: { type: Date, default:new Date()},
+    created_at: { type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
 });
 RechargerecordSchema.plugin(mongoosePaginate);
 let Rechargerecord  = mongoose.model('rechargerecord',  RechargerecordSchema);
@@ -568,7 +573,7 @@ let WithdrawcashapplySchema =  new Schema({
     cashmoney:Number,//提现金额
     rechargerecord:{ type: Schema.Types.ObjectId, ref: 'Rechargerecord' },
     status:String,//未验证／已验证／已支付
-    created_at: { type: Date, default:new Date()},
+    created_at: { type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
 });
 WithdrawcashapplySchema.plugin(mongoosePaginate);
 let Withdrawcashapply  = mongoose.model('withdrawcashapply',  WithdrawcashapplySchema);
@@ -583,7 +588,7 @@ let PointrecordSchema = new Schema({
     fromorder:{ type: Schema.Types.ObjectId, ref: 'Order' },
     srctype:{ type: Schema.Types.String,default: 'Order'},//‘order'来自订单
     reason:{ type: Schema.Types.String,default: '支付订单'},//原因,例如：'支付订单
-    created_at:{ type: Date, default:new Date()},
+    created_at:{ type: String, default:moment().format('YYYY-MM-DD HH:mm:ss')},
     getdate:String,//获得日期,YYYY-MM-DD
 });
 PointrecordSchema.plugin(mongoosePaginate);

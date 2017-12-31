@@ -4,11 +4,7 @@ import {
   setcurselcity
 } from '../actions';
 
-let defaultcurselcity = {
-    "cityname": "天长",
-    "zipcode": "0550",
-    "pinyin": "Tianchang"
-};
+let defaultcurselcity = null;
 
 let dcscl = localStorage.getItem('defaultcurselcity');
 if(!!dcscl){
@@ -30,7 +26,11 @@ const initial = {
 
 const city = createReducer({
   [setcurcity]:(state, payload) => {
-    return { ...state,curcity:{...payload}};
+    let curselcity = state.curselcity;
+    if(!curselcity){
+      curselcity = {...payload};
+    }
+    return { ...state,curcity:{...payload},curselcity};
   },
   [setcurselcity]:(state, payload) => {
     localStorage.setItem('defaultcurselcity',JSON.stringify(payload));

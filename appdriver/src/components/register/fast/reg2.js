@@ -2,6 +2,8 @@
     注册司机－车辆信息
 */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import _ from "lodash";
 import { Field,reduxForm} from 'redux-form';
 import WeUI from 'react-weui';
 import 'weui';
@@ -80,11 +82,34 @@ class Page extends Component {
         )
     }
 }
-export default reduxForm({
-    form: 'registerfillwizard',                 // <------ same form name
-    destroyOnUnmount: false,        // <------ preserve form data
-    forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-    initialValues:{
-      CheckState: "已审"
-    }
-})(Page)
+
+let RegisterFillWizardForm = reduxForm({
+  form: 'registerfillwizard',                 // <------ same form name
+  destroyOnUnmount: false,        // <------ preserve form data
+  forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
+})(Page);
+
+// RegisterFillWizardForm = connect(
+//   ({userlogin},props)=>{
+//       return {
+//         initialValues:{
+//             OwnerName:_.get(userlogin,'Platform_baseInfoVehicle.OwnerName',''),
+//             VehicleNo:_.get(userlogin,'Platform_baseInfoVehicle.VehicleNo',''),
+//             Seats:_.get(userlogin,'Platform_baseInfoVehicle.Seats',''),
+//             CheckState:_.get(userlogin,'Platform_baseInfoVehicle.CheckState','已审'),
+//             Certificate:_.get(userlogin,'Platform_baseInfoVehicle.Certificate',''),
+//         },
+//       }
+//   }
+// )(RegisterFillWizardForm);
+
+export default RegisterFillWizardForm;
+
+// export default reduxForm({
+//     form: 'registerfillwizard',                 // <------ same form name
+//     destroyOnUnmount: false,        // <------ preserve form data
+//     forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
+//     initialValues:{
+//       CheckState: "已审"
+//     }
+// })(Page)

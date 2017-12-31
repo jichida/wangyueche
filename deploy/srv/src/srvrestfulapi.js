@@ -7,7 +7,7 @@ let bodyParser = require("body-parser");
 const config = require('./config');
 const routerindex = require("./router/index.js");
 const upload = require('jquery-file-upload-middleware');
-const uuid = require('node-uuid');
+const uuid = require('uuid');
 const _  = require('lodash');
 
 let startsrv = ()=>{
@@ -18,6 +18,11 @@ let startsrv = ()=>{
   let driverdir = path.join(__dirname,config.publishdirdriver);
   console.log("static driver:" + driverdir);
   app.use('/driver', express.static(driverdir));
+
+  let driverdirpinche = path.join(__dirname,config.publishdirriderpinche);
+  console.log("static driverdirpinche:" + driverdirpinche);
+  app.use('/driverpinche', express.static(driverdirpinche));
+
 
   let testdir = path.join(__dirname,config.publishdirtest);
   console.log("static test:" + testdir);

@@ -1,9 +1,7 @@
 let DBModels = require('../db/models.js');
-let mongoose     = require('mongoose');
 let path = require('path');
 var fs = require('fs');
 const config = require('../config.js');
-const moment  = require('moment');
 let middlewareauth = require('./middlewareauth.js');
 let formidable = require('formidable');
 let util = require('util');
@@ -15,8 +13,8 @@ let startuploader = (app)=>{
     // data.userid = req.userid;
     // let userModel = mongoose.model('UserRider', DBModels.UserRiderSchema);
 
-     var form = new formidable.IncomingForm();
-     form.uploadDir = path.join(__dirname,config.uploaddir);
+     const form = new formidable.IncomingForm();
+     form.uploadDir = path.join(__dirname,'../',config.uploaddir);
      //form.keepExtensions = true;
 
      form.parse(req, (err, fields, files)=> {

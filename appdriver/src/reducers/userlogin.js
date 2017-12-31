@@ -8,6 +8,7 @@ import {
     queryuserbalance_result,
     startoperate,
     stopoperate,
+    getrealnameprofile_result
 } from '../actions';
 
 const initial = {
@@ -51,6 +52,9 @@ const userlogin = createReducer({
   [login_result]: (state, payload) => {
     localStorage.setItem('zhongnan_driver_token',payload.token);
     return { ...state, ...payload,loginsuccess:true};
+  },
+  [getrealnameprofile_result]:(state,payload)=> {
+    return { ...state, ...payload};
   },
   [fillrealnameprofile_result]: (state, payload) => {
     return { ...state, ...payload};

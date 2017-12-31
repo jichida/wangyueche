@@ -23,10 +23,10 @@ const OperatePayTitle = ({ record }) => {
 const OperatePayShow = (props) => (
        <Show title={<OperatePayTitle />} {...props}>
            <SimpleShowLayout>
-           <TextField label="订单号" source="Orderld" />
+           <TextField label="订单号" source="OrderId" />
            <TextField label="上车位置行政区划编号" source="OnArea" />
            <TextField label="机动车驾驶员姓名" source="DriverName" />
-           <TextField label="机动车驾驶证号" source="Licenseld" />
+           <TextField label="机动车驾驶证号" source="LicenseId" />
            <TextField label="运价类型编码" source="FareType" />
            <TextField label="车辆号牌" source="VehicleNo" />
            <DateField label="预计上车时间" source="BookDepTime" />
@@ -68,9 +68,9 @@ const OperatePayShow = (props) => (
 const OperatePayList = (props) => (//
      <List title="经营支付列表" {...props}  sort={{ field: 'PayTime', order: 'DESC' }}>
         <Datagrid>
-        <TextField label="订单号" source="Orderld" />
+        <TextField label="订单号" source="OrderId" />
         <TextField label="机动车驾驶员姓名" source="DriverName" />
-        <TextField label="机动车驾驶证号" source="Licenseld" />
+        <TextField label="机动车驾驶证号" source="LicenseId" />
         <TextField label="运价类型编码" source="FareType" />
         <TextField label="车辆号牌" source="VehicleNo" />
         <TextField label="出发经度" source="DepLongitude" />

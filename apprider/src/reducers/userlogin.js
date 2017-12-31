@@ -6,6 +6,7 @@ import {
     loginsendauth_result,
     fillprofile_result,
     logout_result,
+    loginwithoauth_result,
     queryuserbalance_result
 } from '../actions';
 
@@ -20,10 +21,16 @@ const initial = {
       avatar:'images/user.jpg',
       nickname:''
     },
+    bindtype:'',
+    openid:'',
   },
 };
 
 const userlogin = createReducer({
+  [loginwithoauth_result]:(state,payload)=>{
+      const {bindtype,openid} = payload;
+      return  {...state,bindtype,openid};
+  },
   [queryuserbalance_result]: (state, payload) => {
     return { ...state,...payload};
   },

@@ -42,7 +42,14 @@ import {
 
   getorderdetail_result,
   md_starttriprequestorder_result,
-  pushrequesttodrivers_request
+  pushrequesttodrivers_request,
+
+  oauthbinduser_result,
+  wait_oauthbinduser_result,
+  md_oauthbinduser,
+
+
+  loginwithoauth_result
 } from '../actions';
 import { push,replace } from 'react-router-redux';
 import _ from 'lodash';
@@ -62,6 +69,11 @@ const waitfnsz = [
     getrechargerecords_result,
     wait_getrechargerecords_result,
     `${md_getrechargerecords}`,
+  ],
+  [
+    oauthbinduser_result,
+    wait_oauthbinduser_result,
+    `${md_oauthbinduser}`,
   ],
   [
     getmytriporders_result,
@@ -176,5 +188,14 @@ export function* wsrecvsagaflow() {
       let {payload:result} = action;
       yield put(canceltriprequestorder_result(result));
       yield put(triporder_updateone(result.triporder));
+  });
+
+  yield takeEvery(`${loginwithoauth_result}`, function*(action) {
+    const {payload:{bindtype,openid}} = action;
+    if(!!bindtype && !!openid){
+      if(bindtype !== '' && openid !== ''){
+        yield put(push('/userbind'));
+      }
+    }
   });
 }

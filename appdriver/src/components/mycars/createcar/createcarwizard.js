@@ -52,13 +52,13 @@ class CreateCarWizardForm extends Component {
       Seats,
       CheckState,
       Certificate,
-      LicensePhotoldURL,
-      CarrunPhotoldURL,
+      LicensePhotoIdURL,
+      CarrunPhotoIdURL,
       PhotoandCarmanURL
     } = values;
 
     let data = {
-      CarrunPhotoldURL,
+      CarrunPhotoIdURL,
       PhotoandCarmanURL,
       Platform_baseInfoVehicle:{
         OwnerName,
@@ -66,7 +66,7 @@ class CreateCarWizardForm extends Component {
         Seats,
         CheckState,
         Certificate,
-        LicensePhotoldURL,
+        LicensePhotoIdURL,
 
       }
     };

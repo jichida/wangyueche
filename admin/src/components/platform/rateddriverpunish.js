@@ -13,37 +13,57 @@ import TimePicker from 'material-ui/TimePicker';
 import moment from 'moment';
 import {TimePickerInput} from '../controls/timepicker.js';
 
+import {TextInputEx,DisabledInputEx,NumberInputEx} from '../controls/TextInputEx.js';
+import {required} from 'admin-on-rest';
+import {DateInputString} from '../controls/DateInput_String.js';
 
-const RatedDriverPunishTitle = ({ record }) => {
-    console.log("record=>" + JSON.stringify(record));
-   return <span>驾驶员处罚信息</span>;
+
+
+
+const RatedDriverPunishcreateTitle = ({ record }) => {
+   return <span>新建 驾驶员处罚信息</span>;
 };
-
-
-const RatedDriverPunishShow = (props) => (
-       <Show title={<RatedDriverPunishTitle />} {...props}>
-           <SimpleShowLayout>
-           <TextField label="机动车驾驶证编号" source="Licenseld" />
-           <DateField label="处罚时间"  source="PunishTime" />
-           <TextField label="处罚原因"  source="PunishReason" />
-           <TextField label="处罚结果"  source="PunishResult" />
-           </SimpleShowLayout>
-       </Show>
+const RatedDriverPunishCreate = (props) => (
+       <Create {...props} title={<RatedDriverPunishcreateTitle />} >
+           <SimpleForm>
+             <TextInputEx label="机动车驾驶证编号" source="LicenseId"   validate={[required]}/>
+             <DateInputString label="处罚时间"  source="PunishTime"   validate={[required]}/>
+             <TextInputEx label="处罚原因"  source="PunishReason"   validate={[required]}/>
+             <TextInputEx label="处罚结果"  source="PunishResult"   validate={[required]}/>
+           </SimpleForm>
+       </Create>
 );
 
+const RatedDriverPunisheditTitle = ({ record }) => {
+    console.log("record=>" + JSON.stringify(record));
+   return <span>编辑 驾驶员处罚信息</span>;
+};
+
+const RatedDriverPunishEdit = (props) => {
+      return (<Edit title={<RatedDriverPunisheditTitle />} {...props}>
+          <SimpleForm>
+            <TextInputEx label="机动车驾驶证编号" source="LicenseId"   validate={[required]}/>
+            <DateInputString label="处罚时间"  source="PunishTime"   validate={[required]}/>
+            <TextInputEx label="处罚原因"  source="PunishReason"   validate={[required]}/>
+            <TextInputEx label="处罚结果"  source="PunishResult"   validate={[required]}/>
+            <TextField label="数据更新时间" source="UpdateTime"  />
+          </SimpleForm>
+      </Edit>);
+
+};
 
 
 const RatedDriverPunishList = (props) => (//
      <List title="驾驶员处罚信息列表" {...props} >
         <Datagrid>
-        <TextField label="机动车驾驶证编号" source="Licenseld" />
+        <TextField label="机动车驾驶证编号" source="LicenseId" />
         <DateField label="处罚时间"  source="PunishTime" />
         <TextField label="处罚原因"  source="PunishReason" />
         <TextField label="处罚结果"  source="PunishResult" />
-        <ShowButton />
+        <EditButton />
         </Datagrid>
     </List>
 );
 
 
-export  {RatedDriverPunishList,RatedDriverPunishShow};
+export  {RatedDriverPunishList,RatedDriverPunishCreate,RatedDriverPunishEdit};

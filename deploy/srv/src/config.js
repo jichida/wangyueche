@@ -1,18 +1,22 @@
 
 let config =  {
+  platformserverurl:process.env.platformserverurl||'http://127.0.0.1:8080',//'http://127.0.0.1:8080',
+
   secretkey:'zongnanchuxingkey',
-  listenport:process.env.listenport||3006,
-  rooturl:process.env.rooturl || 'http://wangyueche.com28.cn',
+  listenport:process.env.listenport||3005,
+  rooturl:process.env.rooturl || 'http://api.tczncx.com',
   issmsdebug:process.env.issmsdebug || false,
   publishdirtest:'../../dist/test',
   publishdirrider:'../../dist/apprider',
   publishdirdriver:'../../dist/appdriver',
+  publishdirriderpinche:'../../dist/pinchedriver',
   publishdiradmin:'../../dist/admin',
   uploaddir:'../../dist/uploader',
   uploadurl:'/uploader',
+  logdir:'../../dist/log',
 
-  Companyld:'58a30c05061d53264c182029',
-  Address:213000,
+  CompanyId:'zncx',
+  Address:340000,
 
   expRequestMinutes:200,//2分钟之内
   maxAge:86400000,
@@ -24,25 +28,23 @@ let config =  {
   mongodburl:process.env.MONGO_URL || `mongodb://localhost/zhongnandb`,
   defaultprofileimage:'newimg/17.png',
   faretypemap:{
-       '快车':'001',
-       '出租车':'002',
-       '代驾':'003',
-       '顺风车':'004',
-       '专车':'005',
+       '快车':'590c8e423beda6051b5afa26',
+       '出租车':'590c8e4d3beda6051b5afa27',
+       '代驾':'590c8e593beda6051b5afa28',
   }
 };
 
 
-config.setfaretypemap =  (faretypemap)=>{
-  config.faretypemap = faretypemap;
-  console.log(`setfaretypemap:${JSON.stringify(config.faretypemap )}`);
-};
-
-config.setcompanyandaddress =  (Companyld,Address)=>{
-  config.Companyld = Companyld;
-  config.Address = Address;
-  console.log(`setcompanyandaddress:${Companyld},===>${Address}`);
-};
+// config.setfaretypemap =  (faretypemap)=>{
+//   config.faretypemap = faretypemap;
+//   console.log(`setfaretypemap:${JSON.stringify(config.faretypemap)}`);
+// };
+//
+// config.setcompanyandaddress =  (CompanyId,Address)=>{
+//   config.CompanyId = CompanyId;
+//   config.Address = Address;
+//   console.log(`setcompanyandaddress:${CompanyId},===>${Address}`);
+// };
 
 
 module.exports = config;

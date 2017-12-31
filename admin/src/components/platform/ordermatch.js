@@ -23,11 +23,11 @@ const OrderMatchTitle = ({ record }) => {
 const OrderMatchShow = (props) => (
        <Show title={<OrderMatchTitle />} {...props}>
            <SimpleShowLayout>
-           <TextField label="订单编号" source="Orderld" />
+           <TextField label="订单编号" source="OrderId" />
            <TextField label="车辆经度" source="Longitude" />
            <TextField label="车辆纬度" source="Latitude" />
            <TextField label="坐标加密标识" source="Encrypt" />
-           <TextField label="机动车驾驶证编号" source="Licenseld" />
+           <TextField label="机动车驾驶证编号" source="LicenseId" />
            <DateField label="派单成功时间" source="DistributeTime" showTime/>
            </SimpleShowLayout>
        </Show>
@@ -38,11 +38,11 @@ const OrderMatchShow = (props) => (
 const OrderMatchList = (props) => (//
      <List title="订单成功匹配列表" {...props} sort={{ field: 'DistributeTime', order: 'DESC' }}>
         <Datagrid>
-        <TextField label="订单编号" source="Orderld" />
+        <TextField label="订单编号" source="OrderId" />
         <TextField label="车辆经度" source="Longitude" />
         <TextField label="车辆纬度" source="Latitude" />
         <TextField label="坐标加密标识" source="Encrypt" />
-        <TextField label="机动车驾驶证编号" source="Licenseld" />
+        <TextField label="机动车驾驶证编号" source="LicenseId" />
         <DateField label="派单成功时间" source="DistributeTime" showTime/>
         <ShowButton />
         </Datagrid>

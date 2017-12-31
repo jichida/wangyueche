@@ -4,6 +4,7 @@ import {
     getnotifymessage_request,wait_getnotifymessage_request,wait_getnotifymessage_result,
     getmytriporders_request,wait_getmytriporders_request,wait_getmytriporders_result,
     mycoupongetall_request,wait_mycoupongetall_request,wait_mycoupongetall_result,
+    oauthbinduser_request,wait_oauthbinduser_request,wait_oauthbinduser_result,
 } from '../actions/index.js';
 
 import { take, call, race ,takeLatest} from 'redux-saga/effects';
@@ -34,6 +35,10 @@ export function getmytriporders(payload){
 export function mycoupongetall(payload){
   return synccall(payload,wait_mycoupongetall_request,mycoupongetall_request);
 }
+
+export function oauthbinduser(payload){
+  return synccall(payload,wait_oauthbinduser_request,oauthbinduser_request);
+}
 //2.
 function* createflowsz(fnwatres,action){
     let {payload:{resolve,reject,payload:data}} = action;
@@ -62,6 +67,7 @@ export function* createsagacallbackflow(){
   waitfnsz.push([`${wait_getnotifymessage_request}`,`${wait_getnotifymessage_result}`]);
   waitfnsz.push([`${wait_getmytriporders_request}`,`${wait_getmytriporders_result}`]);
   waitfnsz.push([`${wait_mycoupongetall_request}`,`${wait_mycoupongetall_result}`]);
+  waitfnsz.push([`${wait_oauthbinduser_request}`,`${wait_oauthbinduser_result}`]);
 
   for(let i=0;i <waitfnsz.length; i++){
      let fnsz = waitfnsz[i];

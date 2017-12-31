@@ -1,18 +1,20 @@
 var winston = require('winston');
 var moment = require('moment');
 var path = require('path');
+const config = require('../config.js');
 var logger;
 exports.initLog =  ()=>{
   var filename = "zhongnan_"+moment().format('YYYY-MM-DD-HHmmss');
 
-  var logfile = filename+".log";
-  var logpath = path.resolve(__dirname,'../../', logfile);
+  var logfile = `${config.logdir}/${filename}.log`;
+  var logpath = path.resolve(__dirname,'../', logfile);
+  console.log(`logpath==>${logpath}`);
 
-  var logfileerr = filename+"_err.log";
-  var logpatherr = path.resolve(__dirname,'../../', logfileerr);
+  var logfileerr = `${config.logdir}/${filename}_err.log`;
+  var logpatherr = path.resolve(__dirname,'../', logfileerr);
 
-  var logfilewarn = filename+"_warn.log";
-  var logpathwarn = path.resolve(__dirname,'../../', logfilewarn);
+  var logfilewarn = `${config.logdir}/${filename}_warn.log`;
+  var logpathwarn = path.resolve(__dirname,'../', logfilewarn);
 
   // winston.configure({
   //   transports: [

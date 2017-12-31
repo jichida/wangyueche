@@ -12,6 +12,7 @@ import InfinitePage from './controls/listview';
 import {callthen} from '../sagas/sagacallback';
 import {getonepincheroutepassengers_request} from '../actions';
 import _ from 'lodash';
+import Mapicon from '../img/map.png';
 
 import '../newcss/index.css';
 
@@ -104,7 +105,7 @@ export class Page extends Component {
         return (
             <div className="pinchePage AppPage">
                 <NavBar back={true} title="路线详情" rightnav={[
-                    {icon : '../img/map.png',
+                    {icon : Mapicon,
                     text : '路线地图',
                     type : 'push',
                     url : '/routermap'}

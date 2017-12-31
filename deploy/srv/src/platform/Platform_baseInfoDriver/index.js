@@ -2,9 +2,9 @@
  * Created by wangxiaoqing on 2017/3/22.
  */
 // let Platform_baseInfoDriverAppSchema= new Schema({
-//     Companyld:String,	//	是	字符型	V32	公司标识
+//     CompanyId:String,	//	是	字符型	V32	公司标识
 //     Address:Number,//		是	数字型	F6	注册地行政区划代码	驾驶员在平台的注册地， 见 GB/T 2260
-//     Licenseld:String,	//	是	字符型	V32	机动车驾驶证号
+//     LicenseId:String,	//	是	字符型	V32	机动车驾驶证号
 //     DriverPhone:String,	//	是	字符型	V32	驾驶员手机号
 //     NetType:Number,//	 是	数字型	F1	手机运营商	1.中国联通2 .中国移动3 .中国电信4 :其他
 //     AppVersion:String,	//	是	字符型	V32	使用APP版本号
@@ -22,12 +22,11 @@ const jwt = require('jsonwebtoken');
 const config = require('../../config.js');
 let winston = require('../../log/log.js');
 const platformaction = require('../platformaction.js');
-const util = require('../util');//gettimeformat
 let dbplatform = require('../../db/modelsplatform.js');
 
 exports.insertBaseInfoDriver  = (actiondata)=> {
     let baseInfoDriverDoc = {
-      
+
     };
     let eModel = dbplatform.Platform_baseInfoDriverModel;
     let entity = new eModel(baseInfoDriverDoc);
@@ -43,7 +42,7 @@ exports.updateBaseInfoDriver  = (actiondata)=> {
 
     };
     let eModel = dbplatform.Platform_baseInfoDriverModel;
-    eModel.findOneAndUpdate({Licenseld:actiondata.licenseld},{$set:baseInfoDriverDoc},{new:true},(err,result)=> {
+    eModel.findOneAndUpdate({LicenseId:actiondata.licenseld},{$set:baseInfoDriverDoc},{new:true},(err,result)=> {
         if (!err && result) {
             platformaction.postaction('findOneAndUpdate','baseinfodriver',result);
         }

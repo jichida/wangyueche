@@ -31,7 +31,7 @@ import {
   ReferenceField,
   Filter
 } from 'admin-on-rest/lib/mui';
-
+import {DateInputString} from '../controls/DateInput_String.js';
 import { Field,FieldArray } from 'redux-form';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -55,7 +55,7 @@ const MycouponlistCreate = (props) => (
        <Create {...props} title={<MycouponcreateTitle />} >
            <SimpleForm>
                <TextInput label="优惠券名字" source="name" />
-               <ReferenceInput source="creator" reference="userrider" allowEmpty>
+               <ReferenceInput label="用户" source="creator" reference="userrider" allowEmpty>
                   <SelectInput optionText="username" />
                </ReferenceInput>
                <SelectInput  label="优惠类型"  source="triptype" choices={[
@@ -66,7 +66,7 @@ const MycouponlistCreate = (props) => (
                    { id: '代驾', name: '代驾' },
                    { id: '拼车', name: '拼车' },
                ]} />
-               <DateInput label="过期时间"  source="expdate" />
+               <DateInputString label="过期时间"  source="expdate" />
                <NumberInput label="最高抵扣金额(单位：元)"  source="pricediscountmax" />
                <NumberInput label="最高抵扣（折）,范围：（1-10）"  source="pricediscountpercent" />
            </SimpleForm>
@@ -82,7 +82,7 @@ const MycouponlistEdit = (props) => {
       return (<Edit title={<MycouponlistTitle />} {...props}>
           <SimpleForm>
             <TextInput label="优惠券名字" source="name" />
-            <ReferenceInput source="creator" reference="userrider" allowEmpty>
+            <ReferenceInput label="用户"  source="creator" reference="userrider" allowEmpty>
                <SelectInput optionText="username" />
             </ReferenceInput>
             <SelectInput  label="优惠类型"  source="triptype" choices={[
@@ -93,7 +93,7 @@ const MycouponlistEdit = (props) => {
                 { id: '代驾', name: '代驾' },
                 { id: '拼车', name: '拼车' },
             ]} />
-            <DateInput label="过期时间"  source="expdate" />
+            <DateInputString label="过期时间"  source="expdate" />
             <NumberInput label="最高抵扣金额(单位：元)"  source="pricediscountmax" />
             <NumberInput label="最高抵扣（折）,范围：（1-10）"  source="pricediscountpercent" />
           </SimpleForm>

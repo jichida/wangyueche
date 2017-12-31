@@ -28,6 +28,7 @@ export class Search extends React.Component {
 
 
     handleChangeSearchTxt(text){
+      if(!!this.props.curselcity){
         let searchtxt = text;
         console.log("text:" + text);
         this.props.dispatch(setsearchtxt(searchtxt));
@@ -49,6 +50,8 @@ export class Search extends React.Component {
                 }
            });
         });
+    }
+
     }
 
     onClickSelAddress(addressitem){
@@ -99,7 +102,7 @@ export class Search extends React.Component {
                         {
                             type : 'action',
                             action : this.onChangeCity.bind(this),
-                            text : this.props.curselcity.cityname
+                            text : _.get(this.props,'curselcity.cityname','未知')
                         },
                     ]}
                     />

@@ -2,15 +2,15 @@
  * Created by wangxiaoqing on 2017/3/21.
  */
 var moment = require('moment');
-let gettimeformat =(datemine)=>{
-    if (typeof datemine === 'string') {
-        datemine = new Date(Date.parse(datemine));
-    }
-    return datemine;
-    // let dateminestring = moment(datemine).format("YYYYMMDDhhmmss");
-    // let ltime = parseInt(dateminestring, 10);
-    // return ltime;
-}
+// let gettimeformat =(datemine)=>{
+//     if (typeof datemine === 'string') {
+//         datemine = new Date(Date.parse(datemine));
+//     }
+//     return datemine;
+//     // let dateminestring = moment(datemine).format("YYYYMMDDhhmmss");
+//     // let ltime = parseInt(dateminestring, 10);
+//     // return ltime;
+// }
 
 const CHINA_MOBILE_TYPE = 2; /*中国移动号码段*/
 const CHINA_UNICOM_TYPE = 1; /*中国联通号码段*/
@@ -75,5 +75,4 @@ let getmobilenettype = (phonenumber)=>{
 }
 
 
-exports.gettimeformat = gettimeformat;
 exports.getmobilenettype = getmobilenettype;

@@ -17,31 +17,34 @@ class renderDateField extends React.Component{
         super(props);
         this.state = {
             isdateopen : false,
+            time : new Date()
         }
     }
     setDateopen =(v)=>{
         this.setState({isdateopen : v});
     }
 
+    handleClick1 =()=>{
+        this.setDateopen(true);
+    }
+    handleSelect1=(time)=>{
+        console.log(this.state.time);
+        // input.onChange(moment(time).format('YYYY-MM-DD'));
+        this.setState({
+            time,
+            isdateopen : false
+        })
+    };
+    handleCancel1=()=>{
+        this.setDateopen(false);
+    }
+
     render(){
-        const { input, label} = this.props;
+        const { input, label } = this.props;
+        const newinput = { ...input, value:moment(this.state.time).format('YYYY-MM-DD') }
 
-
-        console.log("input value"+input.value);
-
-
-        let handleClick1 =()=>{
-            this.setDateopen(true);
-        }
-        let handleSelect1=(time)=>{
-            input.onChange(moment(time).format('YYYY-MM-DD'));
-            this.setDateopen(false);
-        };
-        let handleCancel1=()=>{
-            this.setDateopen(false);
-        }
         return (
-            <FormCell>
+            <FormCell className="renderDateField">
                 <CellHeader>
                     <Label>
                         <span>{label}</span>
@@ -49,16 +52,16 @@ class renderDateField extends React.Component{
                 </CellHeader>
                 <CellFooter>
                     <Input
-                        {...input}
-                        onClick={handleClick1}
-                        style={{textAlign:"right"}}
+                        value={moment(this.state.time).format('YYYY-MM-DD')}
+                        onClick={this.handleClick1}
+                        style={{textAlign:"right",width: "100%", flexGrow:"1"}}
                         />
                 </CellFooter>
                 <DatePicker
-                    value={new Date(input.value)}
+                    value={this.state.time}
                     isOpen={this.state.isdateopen}
-                    onSelect={handleSelect1}
-                    onCancel={handleCancel1}
+                    onSelect={this.handleSelect1}
+                    onCancel={this.handleCancel1}
                     dateFormat={['YYYY', 'MM', 'DD']}
                     theme="ios"
                 />

@@ -16,7 +16,7 @@ exports.operatelogin = (socket,actiondata,ctx)=>{
 
         let postdata = {
             vehicleno:ctx.driverinfo.VehicleNo,
-            licenseld:ctx.driverinfo.Licenseld,
+            licenseld:ctx.driverinfo.LicenseId,
             driverlocation:actiondata.driverlocation
         };
         //通知平台插入
@@ -31,18 +31,18 @@ exports.operatelogin = (socket,actiondata,ctx)=>{
 exports.operatelogout = (socket,actiondata,ctx)=>{
 
     ctx.bizstatus = 4;//4.停运
-    if(ctx.hasOwnProperty('licenseld')){
-        let postdata = {
-            vehicleno:ctx.driverinfo.VehicleNo,
-            licenseld:ctx.driverinfo.Licenseld,
-            driverlocation:actiondata.driverlocation
-        };
-        //通知平台插入
-        PubSub.publish('Platformmsgs', {
-            action:'Insert',
-            type:'Platform_operateLogout',
-            payload:postdata
-        });
-    }
+    // if(ctx.hasOwnProperty('licenseld')){
+    let postdata = {
+        vehicleno:ctx.driverinfo.VehicleNo,
+        licenseld:ctx.driverinfo.LicenseId,
+        driverlocation:actiondata.driverlocation
+    };
+    //通知平台插入
+    PubSub.publish('Platformmsgs', {
+        action:'Insert',
+        type:'Platform_operateLogout',
+        payload:postdata
+    });
+    // }
 
 }

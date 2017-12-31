@@ -7,6 +7,7 @@ const httpClient = (url, options = {}) => {
     }
     const token = localStorage.getItem('admintoken');
     options.headers.set('Authorization', `Bearer ${token}`);
+
     return fetchUtils.fetchJson(url, options);
 }
 const restClient = simpleRestClient(config.restserverurl, httpClient);

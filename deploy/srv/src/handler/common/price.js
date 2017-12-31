@@ -38,15 +38,16 @@ const getstringoftime=(leftduring)=>{
  fareid:'58da12b971983947079ae4f8'
 * */
 let getBaseInfoCompanyFareList = (param= {
-  curtime:new Date(),
+  curtime: moment().format('YYYY-MM-DD HH:mm:ss'),
   triptype:'快车',
 },callback)=>{
-  let curtime = param.curtime || new Date();
+  let curtime = param.curtime || moment().format('YYYY-MM-DD HH:mm:ss');
   let curtimeformatted = curtime;
   if (typeof curtimeformatted === 'string') {
-    curtimeformatted = new Date(Date.parse(curtimeformatted));
+    curtimeformatted = moment(curtimeformatted).format('YYYY-MM-DD HH:mm:ss')
   }
   let faretype = config.faretypemap[param.triptype];
+  console.log(`faretype:${faretype}`)
   let fareModel = dbplatform.Platform_baseInfoCompanyFareModel;
   const query = {
     $and: [
@@ -75,7 +76,7 @@ let getBaseInfoCompanyFareList = (param= {
  *
  * */
 // let Platform_baseInfoCompanyFareSchema = new Schema({
-//   Companyld:String,
+//   CompanyId:String,
 //   Address:Number,
 //   FareType:String,//	是	字符型	V16	运价类型编码	由网约车平台公司统一 编码，应确保唯一性
 //   FareTypeNote:String,//	否	字符型	V128	运价类型说明
@@ -107,17 +108,17 @@ let getBaseInfoCompanyFareList = (param= {
 let getBaseInfoCompanyFare = (param={
   distance:0,
   during:0,
-  curtime:new Date(),
+  curtime: moment().format('YYYY-MM-DD HH:mm:ss'),
   fareid:'58da12b971983947079ae4f8'
 },callback)=>{
-  let curtime = param.curtime || new Date();
+  let curtime = param.curtime ||  moment().format('YYYY-MM-DD HH:mm:ss');
   let curtimeformatted = curtime;
   if (typeof curtimeformatted === 'string') {
-    curtimeformatted = new Date(Date.parse(curtimeformatted));
+    curtimeformatted =  moment(curtimeformatted).format('YYYY-MM-DD HH:mm:ss')
   }
   let fareModel = dbplatform.Platform_baseInfoCompanyFareModel;
   fareModel.findOne({_id:param.fareid},(err,baseInfoCompanyFare)=>{
-    if(!err && baseInfoCompanyFare){
+    if(!err && !!baseInfoCompanyFare){
       let price = 0 ;
       let pricestringdebug = '';
       let pricestringdetail = '';
@@ -234,7 +235,7 @@ exports.getBaseInfoCompanyFare = getBaseInfoCompanyFare;
     *
     * */
 let getprice= (param,callback)=>{
-  let curtime = new Date();
+  let curtime = moment().format('YYYY-MM-DD HH:mm:ss');
   getBaseInfoCompanyFareList({triptype:param.registertype,curtime},(err,result)=>{
     if(!err && result.length > 0){
       let fareid = result[0]._id;
@@ -244,6 +245,9 @@ let getprice= (param,callback)=>{
         curtime:curtime,
         fareid
       },(err,result)=>{
+
+        winston.getlog().info(`注意！getprice找不到运价${fareid},curtime:${curtime}`);
+
         callback(err,result);
       });
     }

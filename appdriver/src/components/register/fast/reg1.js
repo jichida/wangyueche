@@ -2,12 +2,15 @@
     注册快车司机－基本信息
 */
 import React, { Component } from 'react';
+import _ from "lodash";
 import { Field,reduxForm} from 'redux-form';
+import { getRegisterFillWizardForm } from '../registerfillwizardform';
+
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
-import _ from "lodash";
+
 const {
     Form:FormUI,
     } = WeUI;
@@ -175,7 +178,7 @@ class Page extends Component {
                           placeholder="请输入银行卡号"
                           type="number"
                           component={InputBankValidation}
-                          validate={[ required,validatebank ]}
+                          validate={[ required ]}
                           />
 
                         <Field
@@ -241,7 +244,7 @@ class Page extends Component {
                           />
 
                         <Field
-                          name="CertificateN0"
+                          name="CertificateNo"
                           InputTit="网约出租车证件编号"
                           placeholder="请输入网约出租车证件编号"
                           type="text"
@@ -261,22 +264,28 @@ class Page extends Component {
     }
 }
 
-export default reduxForm({
-  form: 'registerfillwizard',                 // <------ same form name
-  destroyOnUnmount: false,        // <------ preserve form data
-  forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-  //asyncValidate,
-  //asyncBlurFields: ['bankaccount']
-  //DriverType DriverGender huji DriverNation DriverMaritalStatus
-  initialValues:{
-      DriverType: "C1",
-      DriverGender: "男",
-      huji: "江苏省",
-      DriverNation: "汉族",
-      DriverMaritalStatus: "未婚",
-  }
-})(Page)
 
+export default getRegisterFillWizardForm(Page);
 
+// "Platform_baseInfoVehicle" : {
+//     "Certificate" : "1234",
+//     "Seats" : 15,
+//     "VehicleNo" : "苏A235"
+// },
+// "Platform_baseInfoDriver" : {
+//     "Address" : 213000,
+//     "CompanyId" : "58a30c05061d53264c182029",
+//     "LicensePhotoIdURL" : "http://ynyj.com28.cn/uploader/6465ccf2-b850-4fd0-a931-f3a99791d0ba.jpeg",
+//     "LicenseId" : "123",
+//     "EmergencyContactAddress" : "是啊",
+//     "EmergencyContactPhone" : "15961125167",
+//     "DriverAddress" : "常州",
+//     "DriverPhone" : "15961125167",
+//     "DriverName" : "王小庆",
+//     "DriverMaritalStatus" : "未婚",
+//     "DriverNation" : "汉族",
+//     "DriverGender" : "男",
+//     "DriverType" : "C1"
+// },
 
 //bankname

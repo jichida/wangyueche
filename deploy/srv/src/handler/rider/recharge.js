@@ -1,7 +1,8 @@
 let DBModels = require('../../db/models.js');
 let winston = require('../../log/log.js');
 const async = require('async');
-let PubSub = require('pubsub-js'); 
+let PubSub = require('pubsub-js');
+const moment = require('moment');
 
 exports.getrechargerecords = (socket,payloadata,ctx)=>{
 
@@ -42,7 +43,7 @@ exports.paywithleftbalance_daijiacancel = (ctx,order,systemconfig,user,callbackf
                       feebonus,
                       orderprice,
                       srctype:'paywithleftbalance',
-                      created_at:new Date()
+                      created_at:moment().format('YYYY-MM-DD HH:mm:ss')
                   });
    console.log(`使用余额支付,创建充值记录:${JSON.stringify(entityuser1)}`);
    entityuser1.save((err,rechargerecord1)=>{
@@ -64,7 +65,7 @@ exports.paywithleftbalance_daijiacancel = (ctx,order,systemconfig,user,callbackf
                   orderstatus : '已取消',
                   orderprice,
                   paystatus: '已支付',
-                  pay_at:new Date()
+                  pay_at:moment().format('YYYY-MM-DD HH:mm:ss')
               }, {new: true}, (err, updateditem)=> {
                   if(!err && !!updateditem){
                     //socket.emit('serverpush_triporder',{triporder:updateditem});
@@ -123,7 +124,7 @@ exports.paywithleftbalance = (ctx,order,user,callbackfn)=>{
                         feebonus,
                         orderprice,
                         srctype:'paywithleftbalance',
-                        created_at:new Date()
+                        created_at:moment().format('YYYY-MM-DD HH:mm:ss')
                     });
      console.log(`使用余额支付,创建充值记录:${JSON.stringify(entityuser1)}`);
      entityuser1.save((err,rechargerecord1)=>{
@@ -143,7 +144,7 @@ exports.paywithleftbalance = (ctx,order,user,callbackfn)=>{
                     paytype: "leftbalance",
                     orderstatus : '已支付',
                     paystatus: '已支付',
-                    pay_at:new Date()
+                    pay_at:moment().format('YYYY-MM-DD HH:mm:ss')
                 }, {new: true}, (err, updateditem)=> {
                     if(!err && !!updateditem){
                         //socket.emit('serverpush_triporder',{triporder:updateditem});

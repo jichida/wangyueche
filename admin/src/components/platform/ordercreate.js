@@ -23,7 +23,7 @@ const OrderCreateTitle = ({ record }) => {
 const OrderCreateShow = (props) => (
        <Show title={<OrderCreateTitle />} {...props}>
            <SimpleShowLayout>
-               <TextField label="订单编号" source="Orderld" />
+               <TextField label="订单编号" source="OrderId" />
                <DateField label="预计用车时间"  source="DepartTime" showTime />
                <DateField label="订单发起时间"  source="OrderTime" showTime />
                <TextField label="乘客备注"  source="PassengerNote" />
@@ -44,7 +44,7 @@ const OrderCreateShow = (props) => (
 const OrderCreateList = (props) => (//
      <List title="订单生成列表" {...props} sort={{ field: 'OrderTime', order: 'DESC' }}>
         <Datagrid>
-        <TextField label="订单编号" source="Orderld" />
+        <TextField label="订单编号" source="OrderId" />
         <DateField label="预计用车时间"  source="DepartTime" showTime />
         <DateField label="订单发起时间"  source="OrderTime" showTime />
         <TextField label="预计出发地点详细地址" source="Departure" />

@@ -11,7 +11,7 @@ import {
     cancelJPushAlisa
 } from '../env/jpush';
 import _ from 'lodash';
-import { push } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { push,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
 let async_setJPushAlias =(userid)=> {
   return new Promise(resolve => {
@@ -38,6 +38,7 @@ export function* jpushflow(){//仅执行一次
     yield takeEvery(`${logout_result}`, function*(action) {
       let {payload:msgobj} = action;
       yield call(async_cancelJPushAlisa);
+      yield put(replace('/'));
       console.log(`logout_result ===>${JSON.stringify(msgobj)}`);
     });
 

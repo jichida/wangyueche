@@ -4,6 +4,8 @@ let mongoose  = require('mongoose');
 let PubSub = require('pubsub-js');
 const winston = require('../../log/log.js');
 const notifymessage_all = require('../common/notifymessage.js');
+const moment = require('moment');
+const platformpay = require('../../platform/platformpay');
 
 let getorderdetail_command =(socket,actiondata,ctx,commandstring)=>{
   let isvaild = false;
@@ -58,7 +60,7 @@ exports.payorderwithcash = (socket,actiondata,ctx)=>{
       paytype: "cash",
       orderstatus : '已支付',
       paystatus: '已支付',
-      pay_at:new Date(),
+      pay_at:moment().format('YYYY-MM-DD HH:mm:ss'),
   };
   //payload.realprice = payload.realprice;
   if(typeof actiondata.query._id === 'string'){
@@ -86,16 +88,7 @@ exports.payorderwithcash = (socket,actiondata,ctx)=>{
             subtype:'order'
           });
 
-          //功能缺失！
-          //   PubSub.publish('Platformmsgs', {
-          //     action:'Insert',
-          //     type:'Platform_ratedDriver',
-          //     payload:{
-          //       triporderid:triporder._id,
-          //       scoreservice:triporder.ratedriverinfo.ratenum,
-          //       detail:triporder.ratedriverinfo.comment
-          //     }
-          // });
+          platformpay.notifyplatform_orderpaied(triporder);
         }
         else{
           socket.emit('common_err',{errmsg:`找不到相应的订单:${JSON.stringify(actiondata)}`,title:'支付',type:'payorderwithcash'});
@@ -182,7 +175,7 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
   }
   else if(ctx.usertype === 'driver'){
     if(!actiondata.data.rateriderinfo.hasOwnProperty('created_at')){
-      actiondata.data.rateriderinfo.created_at = new Date();
+      actiondata.data.rateriderinfo.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
     }
   }
   let orderModel = DBModels.TripOrderModel;
@@ -202,7 +195,7 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
         driverid:orderEntity.driveruserid,
         riderid:orderEntity.rideruserid,
         orderid:orderEntity._id,
-        created_at:new Date()
+        created_at:moment().format('YYYY-MM-DD HH:mm:ss')
       };
       if(ctx.usertype === 'rider'){//通知司机已评论
         rateobj.targetid = orderEntity.driveruserid;
@@ -248,15 +241,16 @@ let updateorder_comment = (socket,actiondata,ctx)=>{
             // });
           }
           else if(ctx.usertype === 'driver'){//司机=》乘客评论
-              PubSub.publish('Platformmsgs', {
-                action:'Update',
-                type:'Platform_ratedPassenger',
-                payload:{
-                  triporderid:triporder._id,
-                  scoreservice:triporder.rateriderinfo.ratenum,
-                  detail:triporder.rateriderinfo.comment
-                }
-            });
+            //  注意:功能缺失！司机对乘客的评价不用接口
+            //   PubSub.publish('Platformmsgs', {
+            //     action:'Insert',
+            //     type:'Platform_ratedPassenger',
+            //     payload:{
+            //       triporderid:triporder._id,
+            //       scoreservice:triporder.rateriderinfo.ratenum,
+            //       detail:triporder.rateriderinfo.comment
+            //     }
+            // });
           }
 
         }

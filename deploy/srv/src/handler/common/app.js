@@ -15,6 +15,8 @@ exports.getsystemconfig = (socket,actiondata,ctx)=>{
                     servicephonenumber:systemconfig.servicephonenumber,
                     hotcity:city.gethotcitys(systemconfig.hotcity),
                     pinchecitylist:systemconfig.pinchecitylist,
+                    downloadurl_android:systemconfig.downloadurl_android,
+                    downloadurl_ios:systemconfig.downloadurl_ios,
                     daijialeastbalance:systemconfig.daijialeastbalance,
                     daijiacancelprice:systemconfig.daijiacancelprice,
                 };

@@ -6,7 +6,7 @@ const moment = require('moment');
 
 exports.pushnotifymessage = (notifymessage)=>{
   let notifyMessageModel = DBModels.NotifyMessageModel;
-  notifymessage.created_at = new Date();
+  notifymessage.created_at = moment().format('YYYY-MM-DD HH:mm:ss');
   let entityMsg = new notifyMessageModel(notifymessage);
   entityMsg.save((err,nmsg)=>{
     if(!err && !!nmsg){

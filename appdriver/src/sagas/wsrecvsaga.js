@@ -137,7 +137,7 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_register_result}`, function*(action) {
       let {payload:result} = action;
       yield put(register_result(result));
-      yield put(push('/register1'));
+      yield put(replace('/register1'));
   });
 
 

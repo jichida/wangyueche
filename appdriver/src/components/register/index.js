@@ -100,7 +100,7 @@ let RegisterForm = (props)=> {
             </FormUI>
             <div className="submitBtn">
                 <button className="btn Primary" onClick={handleSubmit}><span>下一步</span></button>
-                <a className="blue" onClick={handleLogin}>已有账号，去登录</a>
+                <a onClick={handleLogin}>已有账号，去登录</a>
             </div>
         </Form>
     );

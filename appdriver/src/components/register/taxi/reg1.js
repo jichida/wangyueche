@@ -3,11 +3,13 @@
 */
 import React, { Component } from 'react';
 import { Field,reduxForm} from 'redux-form';
+import { getRegisterFillWizardForm } from '../registerfillwizardform';
+import _ from "lodash";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../../public/newcss/taxi.css';
-import _ from "lodash";
+
 const {
     Form:FormUI,
     } = WeUI;
@@ -166,7 +168,7 @@ class Page extends Component {
                           placeholder="请输入银行卡号"
                           type="number"
                           component={InputBankValidation}
-                          validate={[ required,validatebank ]}
+                          validate={[ required ]}
                           />
 
                         <Field
@@ -232,7 +234,7 @@ class Page extends Component {
                           />
 
                         <Field
-                          name="CertificateN0"
+                          name="CertificateNo"
                           InputTit="网约出租车证件编号"
                           placeholder="请输入网约出租车证件编号"
                           type="text"
@@ -252,15 +254,17 @@ class Page extends Component {
     }
 }
 
-export default reduxForm({
-  form: 'registerfillwizard',      // <------ same form name
-  destroyOnUnmount: false,        // <------ preserve form data
-  forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-  initialValues:{
-      DriverType: "C1",
-      DriverGender: "男",
-      huji: "江苏省",
-      DriverNation: "汉族",
-      DriverMaritalStatus: "未婚",
-  }
-})(Page)
+// export default reduxForm({
+//   form: 'registerfillwizard',      // <------ same form name
+//   destroyOnUnmount: false,        // <------ preserve form data
+//   forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
+//   initialValues:{
+//       DriverType: "C1",
+//       DriverGender: "男",
+//       huji: "江苏省",
+//       DriverNation: "汉族",
+//       DriverMaritalStatus: "未婚",
+//   }
+// })(Page)
+
+export default getRegisterFillWizardForm(Page);

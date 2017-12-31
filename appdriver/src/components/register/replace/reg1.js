@@ -4,6 +4,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field,reduxForm} from 'redux-form';
+import { getRegisterFillWizardForm } from '../registerfillwizardform';
+
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
@@ -155,7 +157,7 @@ class Page extends Component {
                           placeholder="请输入银行卡号"
                           type="number"
                           component={InputBankValidation}
-                          validate={[ required,validatebank ]}
+                          validate={[ required ]}
                           />
                         <Field
                           name="DriverType"
@@ -186,13 +188,4 @@ const mapStateToProps = ({appui:{isdateopen}}) => {
 
 Page = connect(mapStateToProps)(Page);
 
-export default reduxForm({
-  form: 'registerfillwizard',                 // <------ same form name
-  destroyOnUnmount: false,        // <------ preserve form data
-  forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
-  
-  initialValues:{
-      GetDriverLicenseDate:moment(new Date()).format('YYYY-MM-DD'),
-      DriverType: "C1",
-  },
-})(Page)
+export default getRegisterFillWizardForm(Page);

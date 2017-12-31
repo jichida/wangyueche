@@ -23,7 +23,7 @@ const OperateLogoutTitle = ({ record }) => {
 const OperateLogoutShow = (props) => (
        <Show title={<OperateLogoutTitle />} {...props}>
            <SimpleShowLayout>
-           <TextField label="机动车驾驶证号" source="Licenseld" />
+           <TextField label="机动车驾驶证号" source="LicenseId" />
            <TextField label="车辆号牌" source="VehicleNo" />
            <DateField label="车辆经营下线时间" source="LogoutTime" showTime/>
            <TextField label="上线经度" source="Longitude" />
@@ -38,7 +38,7 @@ const OperateLogoutShow = (props) => (
 const OperateLogoutList = (props) => (//
      <List title="车辆经营下线列表" {...props}  sort={{ field: 'LogoutTime', order: 'DESC' }}>
         <Datagrid>
-        <TextField label="机动车驾驶证号" source="Licenseld" />
+        <TextField label="机动车驾驶证号" source="LicenseId" />
         <TextField label="车辆号牌" source="VehicleNo" />
         <DateField label="车辆经营下线时间" source="LogoutTime" showTime/>
         <TextField label="上线经度" source="Longitude" />

@@ -50,7 +50,8 @@ import {
     getnearestdrivers_result,
     serverpush_triprequest,
 
-
+    oauthbinduser_request,
+    md_oauthbinduser,
 
     insertorder_result,
     getpaysign_result,
@@ -96,12 +97,16 @@ import {
     serverpush_userloginsuccess_notify,
     queryorder,
 
-    pushrequesttodrivers_result
+    pushrequesttodrivers_result,
+    loginwithoauth_request,
+    loginwithoauth_result,
 } from '../actions';
 
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'oauthbinduser_result':md_oauthbinduser,
+  'loginwithoauth_result':loginwithoauth_result,
   'pushrequesttodrivers_result':pushrequesttodrivers_result,
   'serverpush_userloginsuccess_notify':serverpush_userloginsuccess_notify,
   'getorderdetail_result':getorderdetail_result,
@@ -150,12 +155,14 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+  'oauthbinduser':`${oauthbinduser_request}`,
   'getnotifymessageone':`${getnotifymessageone_request}`,
   'getnotifymessage':`${getnotifymessage_request}`,
   'getabouthtml':`${getabouthtml_request}`,
   'loginsendauth':`${loginsendauth_request}`,
   'loginwithauth':`${loginwithauth_request}`,
   'loginwithtoken':`${loginwithtoken_request}`,
+  'loginwithoauth':`${loginwithoauth_request}`,
   'getbuscarpool':`${getbuscarpool_request}`,
 
   'getnearestdrivers':`${getnearestdrivers_request}`,

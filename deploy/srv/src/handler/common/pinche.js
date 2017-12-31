@@ -2,6 +2,7 @@ const config = require('../../config.js');
 let DBModels = require('../../db/models.js');
 let mongoose  = require('mongoose');
 const winston = require('../../log/log.js');
+const moment = require('moment');
 
 //指定拼车订单退款！
 let pincheorderrefund = (orderid,fnresult)=>{
@@ -27,7 +28,7 @@ let pincheorderrefund = (orderid,fnresult)=>{
                                 feebonus,
                                 orderprice,
                                 srctype:'pincheorderrefund',
-                                created_at:new Date()
+                                created_at:moment().format('YYYY-MM-DD HH:mm:ss')
                             });
              console.log(`拼车订单退款,创建充值记录:${JSON.stringify(rechargerecord)}`);
              rechargerecord.save((err,rechargerecord1)=>{
@@ -39,7 +40,7 @@ let pincheorderrefund = (orderid,fnresult)=>{
                         orderModel.findOneAndUpdate({_id: triporder._id},{
                             orderstatus : '已取消',
                             paystatus: '已退款',
-                            pay_at:new Date()
+                            pay_at:moment().format('YYYY-MM-DD HH:mm:ss')
                         }, {new: true}, (err, updateditem)=> {
                             if(!err && !!updateditem){
                               fnresult(null,updateditem);

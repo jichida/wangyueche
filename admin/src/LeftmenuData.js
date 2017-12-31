@@ -11,7 +11,7 @@ import BaseinfocompanyserviceIcon from 'material-ui/svg-icons/action/account-bal
 import BaseinfocompanypermitIcon from 'material-ui/svg-icons/action/verified-user';//平台经营许可信息
 import BaseinfocompanyfareIcon from 'material-ui/svg-icons/maps/local-atm';//运价信息
 import BaseinfovehicleIcon from 'material-ui/svg-icons/maps/directions-car';//车辆信息
-import BaseinfovehiclelnsuranceIcon from 'material-ui/svg-icons/hardware/security';//保险信息
+import BaseinfovehicleinsuranceIcon from 'material-ui/svg-icons/hardware/security';//保险信息
 import BaseinfovehicletotalmileIcon from 'material-ui/svg-icons/action/donut-large';//车辆里程信息
 import BaseinfodriverIcon  from 'material-ui/svg-icons/action/assignment-ind';//司机基本信息
 import BaseinfodrivereducateIcon  from 'material-ui/svg-icons/maps/directions-car';//司机教育信息
@@ -120,8 +120,8 @@ export default [
         'icon': <BaseinfovehicleIcon />,
       },
       {
-        'name':'baseinfovehiclelnsurance',
-        'icon': <BaseinfovehiclelnsuranceIcon />,
+        'name':'baseinfovehicleinsurance',
+        'icon': <BaseinfovehicleinsuranceIcon />,
       },
       {
         'name':'baseinfovehicletotalmile',

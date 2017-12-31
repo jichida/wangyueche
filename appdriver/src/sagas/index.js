@@ -13,7 +13,7 @@ import {createmapshowflow} from './map';
 
 export default function* rootSaga() {
   yield fork(createmapshowflow);
-  yield fork(createloadingflow);
+  // yield fork(createloadingflow);
   yield fork(jpushflow);
   yield fork(wsrecvsagaflow);
   yield fork(createrestoreorderflow);
